@@ -43,11 +43,13 @@
   </ItemGroup>
   <ItemGroup>
     <Compile Include="Class1.cs" />
-    <Compile Include="Common\Class1.cs" />
+    <Compile Include="Common\EmailHelper.cs" />
     <Compile Include="Common\MailModel.cs" />
     <Compile Include="Common\TextReader.cs" />
     <Compile Include="Common\SystemConstants.cs" />
     <Compile Include="Common\IGenericService.cs" />
+    <Compile Include="Impl\Class1.cs" />
+    <Compile Include="Interface\Class1.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
   </ItemGroup>
   <Import Project="$(MSBuildToolsPath)\Microsoft.CSharp.targets" />
