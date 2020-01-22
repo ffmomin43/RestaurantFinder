@@ -4,9 +4,9 @@ using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
 
-namespace RestaurantFinder.Repository
+namespace RestaurantFinder.Repository.Impl
 {
-    public class Class1
+    class Class1
     {
     }
 }
