@@ -60,15 +60,20 @@
     <Compile Include="Datatables\Page.cs" />
     <Compile Include="Datatables\ISortCriteria.cs" />
     <Compile Include="Datatables\FieldSortOrder.cs" />
-    <Compile Include="Impl\Class1.cs" />
-    <Compile Include="Interface\Class1.cs" />
+    <Compile Include="Impl\RestaurantRepository.cs" />
+    <Compile Include="Interface\IRestaurantRepository.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
   </ItemGroup>
   <ItemGroup>
     <None Include="App.config" />
     <None Include="packages.config" />
   </ItemGroup>
-  <ItemGroup />
+  <ItemGroup>
+    <ProjectReference Include="..\RestaurantFinder.Models\RestaurantFinder.Models.csproj">
+      <Project>{144FB94F-BA6B-4AFD-869B-732447511553}</Project>
+      <Name>RestaurantFinder.Models</Name>
+    </ProjectReference>
+  </ItemGroup>
   <Import Project="$(MSBuildToolsPath)\Microsoft.CSharp.targets" />
   <Target Name="EnsureNuGetPackageBuildImports" BeforeTargets="PrepareForBuild">
     <PropertyGroup>

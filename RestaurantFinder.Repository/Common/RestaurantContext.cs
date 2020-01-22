@@ -9,5 +9,9 @@ namespace RestaurantFinder.Repository
 {
     public class RestaurantContext:DbContext
     {
+        public RestaurantContext(): base("RestaurantConnectionString")
+        {
+
+        }
     }
 }

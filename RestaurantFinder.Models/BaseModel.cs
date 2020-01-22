@@ -10,8 +10,7 @@ namespace RestaurantFinder.Models
     public abstract class BaseModel
     {
         public BaseModel()
-        {
-            UniqueId = Guid.NewGuid();
+        {   
             IsActive = true;
             CreatedDate = DateTime.Now;
         }
