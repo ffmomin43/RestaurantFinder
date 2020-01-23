@@ -1,5 +1,6 @@
 ﻿using Autofac;
 using Autofac.Integration.Mvc;
+using Autofac.Integration.WebApi;
 using RestaurantFinder.Repository;
 using RestaurantFinder.WebUI.Common.IoC;
 using System;
@@ -22,9 +23,15 @@ namespace RestaurantFinder.WebUI
             builder.RegisterControllers(assembly);
 
             //Registring api controller
+            builder.RegisterApiControllers(assembly);
 
             // Register dependencies in filter attributes
             builder.RegisterFilterProvider();
+
+            // OPTIONAL: Register the Autofac model binder provider.
+            
+            builder.RegisterWebApiFilterProvider(configuration);
+            builder.RegisterWebApiModelBinderProvider();
 
             // Register dependencies in custom views
             builder.RegisterSource(new ViewRegistrationSource());
@@ -43,6 +50,7 @@ namespace RestaurantFinder.WebUI
 
             // Set MVC DI resolver to use our Autofac container
             DependencyResolver.SetResolver(new AutofacDependencyResolver(container));
+            configuration.DependencyResolver = new AutofacWebApiDependencyResolver(container);
         }
     }
 }
