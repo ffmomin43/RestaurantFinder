@@ -1,10 +1,12 @@
-﻿using Ecommerce.Repository.Common;
+﻿using RestaurantFinder.Repository.Common;
 using Microsoft.AspNet.Identity;
 using Microsoft.AspNet.Identity.EntityFramework;
 using System.Data.Entity;
 using System.Linq;
 using System.Security.Claims;
 using System.Threading.Tasks;
+using RestaurantFinder.Repository;
+using RestaurantFinder.Models;
 
 namespace Ecommerce.Models
 {
@@ -17,7 +19,7 @@ namespace Ecommerce.Models
             var userIdentity = await manager.CreateIdentityAsync(this, DefaultAuthenticationTypes.ApplicationCookie);
 
             User user;
-            using (var dbContext = new EcommerceContext())
+            using (var dbContext = new RestaurantContext())
             {
                 user = await dbContext.User.Include("Roles").FirstOrDefaultAsync(u => u.Username == userIdentity.Name);
 
@@ -52,7 +54,7 @@ namespace Ecommerce.Models
     public class ApplicationDbContext : IdentityDbContext<ApplicationUser>
     {
         public ApplicationDbContext()
-            : base("EcommerceContext", throwIfV1Schema: false)
+            : base("RestaurantConnectionString", throwIfV1Schema: false)
         {
         }
 

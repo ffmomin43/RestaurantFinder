@@ -1,4 +1,5 @@
-﻿using System;
+﻿using RestaurantFinder.Models;
+using System;
 using System.Collections.Generic;
 using System.Data.Entity;
 using System.Linq;
@@ -13,5 +14,15 @@ namespace RestaurantFinder.Repository
         {
 
         }
+
+        public DbSet<Role> Role { get; set; }
+
+        public DbSet<Permission> Permission { get; set; }
+
+        public DbSet<Models.Action> Action { get; set; }
+
+        public DbSet<User> User { get; set; }
+
+        public DbSet<Restaurant> Restaurant { get; set; }
     }
 }

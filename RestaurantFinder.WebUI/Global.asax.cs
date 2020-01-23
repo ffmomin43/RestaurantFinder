@@ -1,4 +1,5 @@
-﻿using System;
+﻿using RestaurantFinder.WebUI.App_Start;
+using System;
 using System.Collections.Generic;
 using System.Linq;
 using System.Web;
@@ -12,6 +13,8 @@ namespace RestaurantFinder.WebUI
     {
         protected void Application_Start()
         {
+            AutoMapperConfig.Configure();
+            AutofacConfig.ConfigureContainer();
             AreaRegistration.RegisterAllAreas();
             FilterConfig.RegisterGlobalFilters(GlobalFilters.Filters);
             RouteConfig.RegisterRoutes(RouteTable.Routes);
