@@ -20,6 +20,11 @@ namespace RestaurantFinder.WebUI.Controllers
         }
 
         // GET: Restaurant
+        public ActionResult checking()
+        {
+            return View();
+            
+        }
         public ActionResult Index()
         {
             var model = restaurantService.Value.GetAll();
