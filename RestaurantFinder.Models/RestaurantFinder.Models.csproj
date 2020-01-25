@@ -46,6 +46,9 @@
     <Compile Include="BaseModel.cs" />
     <Compile Include="Permission.cs" />
     <Compile Include="Action.cs" />
+    <Compile Include="RestaurantCouponsMaster.cs" />
+    <Compile Include="RestaurantLocation.cs" />
+    <Compile Include="RestaurantTable.cs" />
     <Compile Include="User.cs" />
     <Compile Include="Role.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
