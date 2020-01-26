@@ -7,10 +7,11 @@ using System.Linq;
 using System.Net;
 using System.Net.Http;
 using System.Web.Http;
+using System.Web.Http.Cors;
 
 namespace RestaurantFinder.WebUI.APIController
 {
-    
+    [EnableCors(origins: "*", headers: "*", methods: "*")]
     public class RestaurantController : ApiController
     {
 
@@ -36,8 +37,22 @@ namespace RestaurantFinder.WebUI.APIController
         }
 
         // POST: api/Restaurant
-        public void Post([FromBody]string value)
+        public string Post([FromBody]Restaurant restaurant)
         {
+            try
+            {
+                restaurant.UniqueId = Guid.NewGuid();
+
+                this.restaurantService.Value.Add(restaurant);
+                this.restaurantService.Value.Save();
+
+                return "Record has been successfully Created."; 
+            }
+            catch(Exception ex)
+            {
+                return ex.Message;
+            }
+            
         }
 
         // PUT: api/Restaurant/5

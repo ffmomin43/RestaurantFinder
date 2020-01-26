@@ -47,6 +47,7 @@
     <Compile Include="Permission.cs" />
     <Compile Include="Action.cs" />
     <Compile Include="RestaurantCouponsMaster.cs" />
+    <Compile Include="RestaurantDishes.cs" />
     <Compile Include="RestaurantLocation.cs" />
     <Compile Include="RestaurantTable.cs" />
     <Compile Include="User.cs" />
