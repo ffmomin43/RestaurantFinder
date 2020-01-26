@@ -48,8 +48,21 @@
     <Compile Include="Common\TextReader.cs" />
     <Compile Include="Common\SystemConstants.cs" />
     <Compile Include="Common\IGenericService.cs" />
+    <Compile Include="Impl\PermissionService.cs" />
+    <Compile Include="Impl\RestaurantCouponMasterService.cs" />
+    <Compile Include="Impl\RestaurantLocationService.cs" />
     <Compile Include="Impl\RestaurantService.cs" />
+    <Compile Include="Impl\RestaurantTablesService.cs" />
+    <Compile Include="Impl\RolesService.cs" />
+    <Compile Include="Impl\UsersService.cs" />
+    <Compile Include="Interface\IActionService.cs" />
+    <Compile Include="Interface\IPermissionService.cs" />
+    <Compile Include="Interface\IRestaurantCouponMasterService.cs" />
+    <Compile Include="Interface\IRestaurantLocationService.cs" />
+    <Compile Include="Interface\IRestaurantTablesService.cs" />
     <Compile Include="Interface\IRestaurantService.cs" />
+    <Compile Include="Interface\IRolesService.cs" />
+    <Compile Include="Interface\IUsersService.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
   </ItemGroup>
   <ItemGroup>

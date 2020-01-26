@@ -19,10 +19,15 @@ namespace RestaurantFinder.Repository
 
         public DbSet<Permission> Permission { get; set; }
 
-        public DbSet<Models.Action> Action { get; set; }
+        public DbSet<Models.Action> Actions { get; set; }
 
         public DbSet<User> User { get; set; }
+        
 
         public DbSet<Restaurant> Restaurant { get; set; }
+        public DbSet<RestaurantCouponsMaster> restaurantCouponsMasters { get; set; }
+
+        public DbSet<RestaurantLocation> RestaurantLocations { get; set; }
+        public DbSet<RestaurantTable> RestaurantTables{ get; set; }
     }
 }

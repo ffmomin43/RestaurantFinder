@@ -60,15 +60,25 @@
     <Compile Include="Datatables\Page.cs" />
     <Compile Include="Datatables\ISortCriteria.cs" />
     <Compile Include="Datatables\FieldSortOrder.cs" />
+    <Compile Include="Impl\ActionRepository.cs" />
+    <Compile Include="Impl\PermissionRepository.cs" />
+    <Compile Include="Impl\RestaurantCouponMasterRepository.cs" />
+    <Compile Include="Impl\RestaurantLocationRepository.cs" />
     <Compile Include="Impl\RestaurantRepository.cs" />
+    <Compile Include="Impl\RestaurantTablesRepository.cs" />
+    <Compile Include="Impl\RolesRepository.cs" />
+    <Compile Include="Impl\UsersRepository.cs" />
+    <Compile Include="Interface\IActionRepository.cs" />
+    <Compile Include="Interface\IPermissionRepository.cs" />
+    <Compile Include="Interface\IRolesRepository.cs" />
+    <Compile Include="Interface\IRestaurantCouponMasterRepository.cs" />
     <Compile Include="Interface\IRestaurantRepository.cs" />
-    <Compile Include="Migrations\202001230624559_InitialCreate.cs" />
-    <Compile Include="Migrations\202001230624559_InitialCreate.designer.cs">
-      <DependentUpon>202001230624559_InitialCreate.cs</DependentUpon>
-    </Compile>
-    <Compile Include="Migrations\202001230631381_initial_create.cs" />
-    <Compile Include="Migrations\202001230631381_initial_create.designer.cs">
-      <DependentUpon>202001230631381_initial_create.cs</DependentUpon>
+    <Compile Include="Interface\IRestaurantTableRepository.cs" />
+    <Compile Include="Interface\IRestaurantLocationRepository.cs" />
+    <Compile Include="Interface\IUsersRepository.cs" />
+    <Compile Include="Migrations\202001262103179_Initial.cs" />
+    <Compile Include="Migrations\202001262103179_Initial.designer.cs">
+      <DependentUpon>202001262103179_Initial.cs</DependentUpon>
     </Compile>
     <Compile Include="Migrations\Configuration.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
@@ -84,11 +94,8 @@
     </ProjectReference>
   </ItemGroup>
   <ItemGroup>
-    <EmbeddedResource Include="Migrations\202001230624559_InitialCreate.resx">
-      <DependentUpon>202001230624559_InitialCreate.cs</DependentUpon>
-    </EmbeddedResource>
-    <EmbeddedResource Include="Migrations\202001230631381_initial_create.resx">
-      <DependentUpon>202001230631381_initial_create.cs</DependentUpon>
+    <EmbeddedResource Include="Migrations\202001262103179_Initial.resx">
+      <DependentUpon>202001262103179_Initial.cs</DependentUpon>
     </EmbeddedResource>
   </ItemGroup>
   <Import Project="$(MSBuildToolsPath)\Microsoft.CSharp.targets" />
