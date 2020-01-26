@@ -9,6 +9,9 @@ namespace RestaurantFinder.WebUI
     {
         public static void Register(HttpConfiguration config)
         {
+            // Enable CORS
+            config.EnableCors();
+
             // Web API configuration and services
 
             // Web API routes
