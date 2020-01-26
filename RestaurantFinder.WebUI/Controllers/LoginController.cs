@@ -13,6 +13,14 @@ namespace RestaurantFinder.WebUI.Controllers
         {
             return View();
         }
+        public ActionResult Signup()
+        {
+            return View();
+        }
+        public ActionResult LockScreen()
+        {
+            return View();
+        }
         public ActionResult ResetPassword()
         {
             return View();

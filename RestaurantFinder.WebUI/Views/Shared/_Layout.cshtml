@@ -1,10 +1,10 @@
 ﻿<!DOCTYPE html>
 <html lang="en">
 
-<!-- Mirrored from coderthemes.com/uplon/layouts/vertical/index-dark.html by HTTrack Website Copier/3.x [XR&CO'2014], Tue, 21 Jan 2020 22:09:23 GMT -->
+<!-- Mirrored from coderthemes.com/uplon/layouts/vertical/pages-starter.html by HTTrack Website Copier/3.x [XR&CO'2014], Tue, 21 Jan 2020 22:10:15 GMT -->
 <head>
     <meta charset="utf-8" />
-    <title>FoodyBite</title>
+    <title>Starter Page | Uplon - Responsive Bootstrap 4 Admin Dashboard</title>
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <meta content="Responsive bootstrap 4 admin template" name="description" />
     <meta content="Coderthemes" name="author" />
@@ -12,9 +12,9 @@
     <!-- App favicon -->
     <link rel="shortcut icon" href="/Content/assets/images/favicon.ico">
     <!-- App css -->
-    <link href="/Content/assets/css/bootstrap-dark.min.css" rel="stylesheet" type="text/css" />
+    <link href="/Content/assets/css/bootstrap.min.css" rel="stylesheet" type="text/css" id="bootstrap-stylesheet" />
     <link href="/Content/assets/css/icons.min.css" rel="stylesheet" type="text/css" />
-    <link href="/Content/assets/css/app-dark.min.css" rel="stylesheet" type="text/css" />
+    <link href="/Content/assets/css/app.min.css" rel="stylesheet" type="text/css" id="app-stylesheet" />
 </head>
 <body>
     <!-- Begin page -->
@@ -207,7 +207,7 @@
                             <span>Settings</span>
                         </a>
                         <!-- item-->
-                        <a href="javascript:void(0);" class="dropdown-item notify-item">
+                        <a href="/Login/LockScreen" class="dropdown-item notify-item">
                             <i class="mdi mdi-lock-outline"></i>
                             <span>Lock Screen</span>
                         </a>
@@ -219,26 +219,24 @@
                         </a>
                     </div>
                 </li>
-               
+
             </ul>
             <!-- LOGO -->
             <div class="logo-box">
                 <a href="index.html" class="logo text-center logo-dark">
                     <span class="logo-lg">
-                        <img src="/Content/assets/images/logo.png" alt="" height="22">
+                        <h1 style="color:aqua"> <span>Foody Bites</span></h1>
                         <!-- <span class="logo-lg-text-dark">Uplon</span> -->
                     </span>
                     <span class="logo-sm">
                         <!-- <span class="logo-lg-text-dark">U</span> -->
-                        <img src="/Content/assets/images/logo-sm.png" alt="" height="24">
+                        <h3 style="color:aqua"> <span>Foody Bites</span></h3>
                     </span>
                 </a>
                 <a href="index.html" class="logo text-center logo-light">
-                    <h2>
-                        <span style="color:aqua" class="logo-lg">
-                            FoodyBite
-                    </h2>
-                    <!-- <span class="logo-lg-text-dark">Uplon</span> -->
+                    <span class="logo-lg">
+                        <h1 style="color:aqua"> <span>Foody Bites</span></h1>
+                        <!-- <span class="logo-lg-text-dark">Uplon</span> -->
                     </span>
                     <span class="logo-sm">
                         <!-- <span class="logo-lg-text-dark">U</span> -->
@@ -267,8 +265,7 @@
                         </div>
                     </form>
                 </li>
-              
-            </ul>
+
         </div>
         <!-- end Topbar -->
         <!-- ========== Left Sidebar Start ========== -->
@@ -279,14 +276,11 @@
                     <ul class="metismenu" id="side-menu">
                         <li class="menu-title">Navigation</li>
                         <li>
-                            <a href="index-dark.html">
+                            <a href="">
                                 <i class="mdi mdi-view-dashboard"></i>
                                 <span> Dashboard </span>
                             </a>
                         </li>
-
-
-
                         <li>
                             <a href="javascript: void(0);">
                                 <i class="fab fa-utensils"></i>
@@ -310,14 +304,14 @@
                                 <span class="menu-arrow"></span>
                             </a>
                             @*<ul class="nav-second-level" aria-expanded="false">
-                                <li><a href="pages-starter.html">Starter Page</a></li>
-                                <li><a href="pages-login.html">Login</a></li>
-                                <li><a href="pages-register.html">Register</a></li>
-                                <li><a href="pages-recoverpw.html">Recover Password</a></li>
-                                <li><a href="pages-lock-screen.html">Lock Screen</a></li>
-                                <li><a href="pages-404.html">Error 404</a></li>
-                                <li><a href="pages-500.html">Error 500</a></li>
-                            </ul>*@
+                <li><a href="pages-starter.html">Starter Page</a></li>
+                <li><a href="pages-login.html">Login</a></li>
+                <li><a href="pages-register.html">Register</a></li>
+                <li><a href="pages-recoverpw.html">Recover Password</a></li>
+                <li><a href="pages-lock-screen.html">Lock Screen</a></li>
+                <li><a href="pages-404.html">Error 404</a></li>
+                <li><a href="pages-500.html">Error 500</a></li>
+            </ul>*@
                         </li>
                         <li>
                             <a href="javascript: void(0);">
@@ -351,10 +345,8 @@
                 <li><a href="pages-500.html">Error 500</a></li>
             </ul>*@
                         </li>
-
-
-                       
-
+                      
+                        
                     </ul>
                 </div>
                 <!-- End Sidebar -->
@@ -366,27 +358,57 @@
         <!-- ============================================================== -->
         <!-- Start Page Content here -->
         <!-- ============================================================== -->
-                    <!-- ============================================================== -->
+        <div class="content-page">
+            <div class="content">
+
+                <!-- Start Content-->
+                <div class="container-fluid">
+
+                    <!-- start page title -->
+                    <div class="row">
+                        <div class="col-12">
+                            <div class="page-title-box">
+                                <div class="page-title-right">
+                                    <ol class="breadcrumb m-0">
+                                        <li class="breadcrumb-item"><a href="javascript: void(0);">Uplon</a></li>
+                                        <li class="breadcrumb-item"><a href="javascript: void(0);">Pages</a></li>
+                                        <li class="breadcrumb-item active">Starter</li>
+                                    </ol>
+                                </div>
+                                <h4 class="page-title">Starter page</h4>
+
+                            </div>
+                        </div>
+                    </div>
+                    <!-- end page title -->
+                    <center>
+                        @RenderBody();
+                    </center>
+                </div> <!-- end container-fluid -->
+            </div> <!-- end content -->
+            <!-- Footer Start -->
+            <footer class="footer">
+                <div class="container-fluid">
+                    <div class="row">
+                        <div class="col-md-12">
+                            2019 - 2020 &copy; Uplon theme by <a href="#">Foodybite</a>
+                        </div>
+                    </div>
+                </div>
+            </footer>
+            <!-- end Footer -->
+        </div>
+        <!-- ============================================================== -->
         <!-- End Page content -->
         <!-- ============================================================== -->
-        @RenderBody();
     </div>
     <!-- END wrapper -->
     <!-- Right Sidebar -->
-   
-    <!-- /Right-bar -->
-    <!-- Right bar overlay-->
-    <div class="rightbar-overlay"></div>
     <!-- Vendor js -->
     <script src="/Content/assets/js/vendor.min.js"></script>
-    <!--Morris Chart-->
-    <script src="/Content/assets/libs/morris-js/morris.min.js"></script>
-    <script src="/Content/assets/libs/raphael/raphael.min.js"></script>
-    <!-- Dashboard init js-->
-    <script src="/Content/assets/js/pages/dashboard.init.js"></script>
     <!-- App js -->
     <script src="/Content/assets/js/app.min.js"></script>
 
 </body>
-<!-- Mirrored from coderthemes.com/uplon/layouts/vertical/index-dark.html by HTTrack Website Copier/3.x [XR&CO'2014], Tue, 21 Jan 2020 22:09:54 GMT -->
+<!-- Mirrored from coderthemes.com/uplon/layouts/vertical/pages-starter.html by HTTrack Website Copier/3.x [XR&CO'2014], Tue, 21 Jan 2020 22:10:15 GMT -->
 </html>

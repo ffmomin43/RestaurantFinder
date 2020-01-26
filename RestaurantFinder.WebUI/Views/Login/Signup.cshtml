@@ -1,6 +1,6 @@
 ﻿
 @{
-    ViewBag.Title = "Login";
+    ViewBag.Title = "Signup";
     Layout = "~/Views/Shared/AllheaderClasdDefine.cshtml";
 }
 
@@ -14,38 +14,39 @@
 
                             <div class="text-center">
                                 <div class="my-3">
-                                    <a href="">
-                                        <h1 style="color:aqua"> <span>Foody bite</span></h1>                                    </a>
+                                    <a href="index.html">
+                                        <span><img src="assets/images/logo.png" alt="" height="28"></span>
+                                    </a>
                                 </div>
-                                <h5 class="text-muted text-uppercase py-3 font-16">Sign In</h5>
+                                <h5 class="text-muted text-uppercase py-3 font-16">Sign up</h5>
                             </div>
 
-                            <form action="/Restaurant/checking" class="mt-2">
+                            <form action="Login" class="mt-2">
+                                <div class="form-group mb-3">
+                                    <input class="form-control" type="email" placeholder="Enter your email">
+                                </div>
 
                                 <div class="form-group mb-3">
                                     <input class="form-control" type="text" placeholder="Enter your username">
                                 </div>
 
                                 <div class="form-group mb-3">
-                                    <input class="form-control" type="password"  id="password" placeholder="Enter your password">
+                                    <input class="form-control"   id="password" placeholder="Enter your password">
                                 </div>
 
                                 <div class="form-group mb-3">
                                     <div class="custom-control custom-checkbox">
-                                        <input type="checkbox" class="custom-control-input" id="checkbox-signin" checked>
-                                        <label class="custom-control-label" for="checkbox-signin">Remember me</label>
+                                        <input type="checkbox" class="custom-control-input" id="checkbox-signup" checked>
+                                        <label class="custom-control-label" for="checkbox-signup">I accept <a href="#">Terms and Conditions</a></label>
                                     </div>
                                 </div>
-                                <a href=" /Restaurant/checking">
+                                <a href="login">
                                     <div class="form-group text-center">
-                                        <button class="btn btn-success btn-block waves-effect waves-light" type="submit"> Log In </button>
+                                        <button class="btn btn-success btn-block waves-effect waves-light" type="submit"> Join Now </button>
                                     </div>
-                                </a>
-                                <a href="ResetPassword" class="text-muted"><i class="mdi mdi-lock mr-1"></i> Forgot your password?</a>
-
-                            </form>
+                                </a>                            </form>
                             <div class="text-center mt-4">
-                                <h5 class="text-muted py-2"><b>Sign in with</b></h5>
+                                <h5 class="text-muted py-2"><b>Sign up with</b></h5>
                                 <div class="row">
                                     <div class="col-12">
                                         <button type="button" class="btn btn-facebook waves-effect font-14 waves-light mt-3">
@@ -69,7 +70,7 @@
                 </div>
                 <div class="row mt-3">
                     <div class="col-12 text-center">
-                        <p class="text-white-50">Don't have an account? <a href="signup" class="text-white ml-1"><b>Sign Up</b></a></p>
+                        <p class="text-white-50">Already have account? <a href="pages-login.html" class="text-white ml-1"><b>Sign In</b></a></p>
                     </div> <!-- end col -->
                 </div>
                 <!-- end row -->
