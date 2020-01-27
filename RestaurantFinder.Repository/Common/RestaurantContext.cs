@@ -25,9 +25,9 @@ namespace RestaurantFinder.Repository
         
 
         public DbSet<Restaurant> Restaurant { get; set; }
-        public DbSet<RestaurantCouponsMaster> restaurantCouponsMasters { get; set; }
+        public DbSet<RestaurantCouponsMaster> RestaurantCouponsMasters { get; set; }
 
         public DbSet<RestaurantLocation> RestaurantLocations { get; set; }
-        public DbSet<RestaurantTable> RestaurantTables{ get; set; }
+        public DbSet<RestaurantTable> RestaurantTables { get; set; }
     }
 }
