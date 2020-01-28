@@ -284,6 +284,18 @@
                         <li>
                             <a href="javascript: void(0);">
                                 <i class="fab fa-utensils"></i>
+                                <span> Resturant </span>
+                                <span class="menu-arrow"></span>
+                            </a>
+                            <ul class="nav-second-level" aria-expanded="false">
+                                <li><a href="/Restaurant/Create">Add Resturant Details</a></li>
+                                <li><a href="/Restaurant/Index">Resturant Details</a></li>
+
+                            </ul>
+                        </li>
+                        <li>
+                            <a href="javascript: void(0);">
+                                <i class="fab fa-utensils"></i>
                                 <span> ALL Booking </span>
                                 <span class="menu-arrow"></span>
                             </a>
@@ -345,8 +357,8 @@
                 <li><a href="pages-500.html">Error 500</a></li>
             </ul>*@
                         </li>
-                      
-                        
+
+
                     </ul>
                 </div>
                 <!-- End Sidebar -->
@@ -408,7 +420,9 @@
     <script src="/Content/assets/js/vendor.min.js"></script>
     <!-- App js -->
     <script src="/Content/assets/js/app.min.js"></script>
-
+    @Scripts.Render("~/bundles/jquery")
+    @Scripts.Render("~/bundles/bootstrap")
+    @RenderSection("scripts", required: false)
 </body>
 <!-- Mirrored from coderthemes.com/uplon/layouts/vertical/pages-starter.html by HTTrack Website Copier/3.x [XR&CO'2014], Tue, 21 Jan 2020 22:10:15 GMT -->
 </html>

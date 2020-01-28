@@ -48,7 +48,9 @@
     <Compile Include="Action.cs" />
     <Compile Include="RestaurantCouponsMaster.cs" />
     <Compile Include="RestaurantDishes.cs" />
+    <Compile Include="RestaurantimagesVm.cs" />
     <Compile Include="RestaurantLocation.cs" />
+    <Compile Include="RestaurantsImages.cs" />
     <Compile Include="RestaurantTable.cs" />
     <Compile Include="User.cs" />
     <Compile Include="Role.cs" />

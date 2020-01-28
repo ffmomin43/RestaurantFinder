@@ -1,4 +1,5 @@
 ﻿using RestaurantFinder.BusinessLogic.Interface;
+using RestaurantFinder.Models;
 using RestaurantFinder.WebUI.Common.logger;
 using System;
 using System.Collections.Generic;
@@ -45,18 +46,26 @@ namespace RestaurantFinder.WebUI.Controllers
 
         // POST: Restaurant/Create
         [HttpPost]
-        public ActionResult Create(FormCollection collection)
+        public ActionResult Create(Restaurant restaurant)
+
+
         {
             try
             {
-                // TODO: Add insert logic here
+                restaurant.UniqueId = Guid.NewGuid();
 
-                return RedirectToAction("Index");
+                this.restaurantService.Value.Add(restaurant);
+                this.restaurantService.Value.Save();
+                return RedirectToAction("");
+
+                
             }
-            catch
+            catch (Exception ex)
             {
-                return View();
+                return RedirectToAction("");
+
             }
+
         }
 
         // GET: Restaurant/Edit/5

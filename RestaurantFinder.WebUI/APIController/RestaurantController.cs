@@ -24,16 +24,18 @@ namespace RestaurantFinder.WebUI.APIController
             this.restaurantService = restaurantService;
             this.logger = logger;
         }
-        // GET: api/Restaurant
+        // GET: api/Restaurant 
         public IEnumerable<Restaurant> Get()
         {
-            return this.restaurantService.Value.GetAll();
+
+            return restaurantService.Value.GetAll();
         }
 
         // GET: api/Restaurant/5
-        public string Get(int id)
+        public Restaurant Get(Guid id)
         {
-            return "value";
+           return restaurantService.Value.GetAll().Where(x => x.UniqueId == id).Single();
+            
         }
 
         // POST: api/Restaurant

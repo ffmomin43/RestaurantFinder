@@ -471,6 +471,7 @@
     <Content Include="Views\Login\ResetPassword.cshtml" />
     <Content Include="Views\Login\Signup.cshtml" />
     <Content Include="Views\Login\LockScreen.cshtml" />
+    <Content Include="Views\Restaurant\Create.cshtml" />
   </ItemGroup>
   <ItemGroup>
     <Folder Include="App_Data\" />

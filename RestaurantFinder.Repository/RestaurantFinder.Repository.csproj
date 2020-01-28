@@ -65,20 +65,30 @@
     <Compile Include="Impl\RestaurantCouponMasterRepository.cs" />
     <Compile Include="Impl\RestaurantLocationRepository.cs" />
     <Compile Include="Impl\RestaurantRepository.cs" />
+    <Compile Include="Impl\RestaurantsImagesRepository.cs" />
     <Compile Include="Impl\RestaurantTablesRepository.cs" />
     <Compile Include="Impl\RolesRepository.cs" />
     <Compile Include="Impl\UsersRepository.cs" />
     <Compile Include="Interface\IActionRepository.cs" />
     <Compile Include="Interface\IPermissionRepository.cs" />
+    <Compile Include="Interface\IRestaurantsImagesRepository.cs" />
     <Compile Include="Interface\IRolesRepository.cs" />
     <Compile Include="Interface\IRestaurantCouponMasterRepository.cs" />
     <Compile Include="Interface\IRestaurantRepository.cs" />
     <Compile Include="Interface\IRestaurantTableRepository.cs" />
     <Compile Include="Interface\IRestaurantLocationRepository.cs" />
     <Compile Include="Interface\IUsersRepository.cs" />
-    <Compile Include="Migrations\202001262103179_Initial.cs" />
-    <Compile Include="Migrations\202001262103179_Initial.designer.cs">
-      <DependentUpon>202001262103179_Initial.cs</DependentUpon>
+    <Compile Include="Migrations\202001272329136_intial.cs" />
+    <Compile Include="Migrations\202001272329136_intial.designer.cs">
+      <DependentUpon>202001272329136_intial.cs</DependentUpon>
+    </Compile>
+    <Compile Include="Migrations\202001280652446_AddImagestbl.cs" />
+    <Compile Include="Migrations\202001280652446_AddImagestbl.designer.cs">
+      <DependentUpon>202001280652446_AddImagestbl.cs</DependentUpon>
+    </Compile>
+    <Compile Include="Migrations\202001281229277_updatemodels.cs" />
+    <Compile Include="Migrations\202001281229277_updatemodels.designer.cs">
+      <DependentUpon>202001281229277_updatemodels.cs</DependentUpon>
     </Compile>
     <Compile Include="Migrations\Configuration.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
@@ -94,8 +104,14 @@
     </ProjectReference>
   </ItemGroup>
   <ItemGroup>
-    <EmbeddedResource Include="Migrations\202001262103179_Initial.resx">
-      <DependentUpon>202001262103179_Initial.cs</DependentUpon>
+    <EmbeddedResource Include="Migrations\202001272329136_intial.resx">
+      <DependentUpon>202001272329136_intial.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Migrations\202001280652446_AddImagestbl.resx">
+      <DependentUpon>202001280652446_AddImagestbl.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Migrations\202001281229277_updatemodels.resx">
+      <DependentUpon>202001281229277_updatemodels.cs</DependentUpon>
     </EmbeddedResource>
   </ItemGroup>
   <Import Project="$(MSBuildToolsPath)\Microsoft.CSharp.targets" />
