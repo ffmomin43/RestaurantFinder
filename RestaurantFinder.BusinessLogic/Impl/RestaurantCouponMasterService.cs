@@ -9,8 +9,9 @@ using System.Threading.Tasks;
 
 namespace RestaurantFinder.BusinessLogic.Impl
 {
-    class RestaurantCouponMasterService: IRestaurantCouponMasterService
+ public class RestaurantCouponMasterService: IRestaurantCouponMasterService
     {
+
         private readonly Lazy<IRestaurantCouponMasterRepository> restaurantCouponMasterRepository;
 
         public RestaurantCouponMasterService(Lazy<IRestaurantCouponMasterRepository> restaurantCouponMasterRepository)

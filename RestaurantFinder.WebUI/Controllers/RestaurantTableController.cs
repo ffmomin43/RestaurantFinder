@@ -9,26 +9,26 @@ using System.Web.Mvc;
 
 namespace RestaurantFinder.WebUI.Controllers
 {
-    public class RestaurantController : Controller
+    public class RestaurantTableController : Controller
     {
         private readonly Lazy<IRestaurantService> restaurantService;
-        private readonly Lazy<ILoggerFacade<RestaurantController>> logger;
+        private readonly Lazy<IRestaurantTablesService> restaurantTablesService;
+        private readonly Lazy<ILoggerFacade<RestaurantTableController>> logger;
 
-        public RestaurantController(Lazy<IRestaurantService> restaurantService, Lazy<ILoggerFacade<RestaurantController>> logger)
+        public RestaurantTableController(Lazy<IRestaurantTablesService> restaurantTablesService,Lazy<IRestaurantService>restaurantService, Lazy<ILoggerFacade<RestaurantTableController>> logger)
         {
+            this.restaurantTablesService =restaurantTablesService;
             this.restaurantService = restaurantService;
             this.logger = logger;
         }
 
         // GET: Restaurant
-        public ActionResult checking()
-        {
-            return View();
-
-        }
+       
         public ActionResult Index()
+
         {
-            var model = restaurantService.Value.GetAll();
+            
+            var model = restaurantTablesService.Value.GetAll();
             return View(model);
         }
 
@@ -40,22 +40,24 @@ namespace RestaurantFinder.WebUI.Controllers
 
         // GET: Restaurant/Create
         public ActionResult Create()
+
         {
+            ViewBag.resturant = restaurantService.Value.GetAll();
             return View();
         }
 
         // POST: Restaurant/Create
         [HttpPost]
-        public ActionResult Create(Restaurant restaurant)
+        public ActionResult Create(RestaurantTable restaurantTable)
 
 
         {
             try
             {
-                restaurant.UniqueId = Guid.NewGuid();
+               restaurantTable.UniqueId = Guid.NewGuid();
 
-                this.restaurantService.Value.Add(restaurant);
-                this.restaurantService.Value.Save();
+                this.restaurantTablesService.Value.Add(restaurantTable);
+                this.restaurantTablesService.Value.Save();
                 return RedirectToAction("");
 
 
@@ -71,18 +73,18 @@ namespace RestaurantFinder.WebUI.Controllers
         // GET: Restaurant/Edit/5
         public ActionResult Edit(int id)
         {
-            var resturant = restaurantService.Value.GetAll().Where(x => x.ID == id).SingleOrDefault();
-            return View(resturant);
+            var resturanttable = restaurantTablesService.Value.GetAll().Where(x => x.ID == id).SingleOrDefault();
+            return View(resturanttable);
         }
 
         // POST: Restaurant/Edit/5
         [HttpPost]
-        public ActionResult Edit(Restaurant restaurant)
+        public ActionResult Edit(RestaurantTable restaurantTable)
         {
             try
             {
-                this.restaurantService.Value.Edit(restaurant);
-                this.restaurantService.Value.Save();
+                this.restaurantTablesService.Value.Edit(restaurantTable);
+                this.restaurantTablesService.Value.Save();
                 return RedirectToAction("Index");
             }
             catch
@@ -96,19 +98,19 @@ namespace RestaurantFinder.WebUI.Controllers
         [HttpGet]
         public ActionResult Delete(int id)
         {
-            var resturant = restaurantService.Value.GetAll().Where(x => x.ID == id).SingleOrDefault() ;
+            var resturanttable = restaurantTablesService.Value.GetAll().Where(x => x.ID == id).SingleOrDefault();
 
-            return View(resturant);
+            return View(resturanttable);
         }
 
         // POST: Restaurant/Delete/5
         [HttpPost]
-        public ActionResult Delete(Restaurant restaurant)
+        public ActionResult Delete(RestaurantTable restaurantTable)
         {
             try
             {
-                this.restaurantService.Value.Delete(restaurant);
-                this.restaurantService.Value.Save();
+                this.restaurantTablesService.Value.Delete(restaurantTable);
+                this.restaurantTablesService.Value.Save();
                 return RedirectToAction("Index");
             }
             catch

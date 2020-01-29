@@ -90,6 +90,14 @@
     <Compile Include="Migrations\202001281229277_updatemodels.designer.cs">
       <DependentUpon>202001281229277_updatemodels.cs</DependentUpon>
     </Compile>
+    <Compile Include="Migrations\202001282124521_update.cs" />
+    <Compile Include="Migrations\202001282124521_update.designer.cs">
+      <DependentUpon>202001282124521_update.cs</DependentUpon>
+    </Compile>
+    <Compile Include="Migrations\202001282137126_updatemodel.cs" />
+    <Compile Include="Migrations\202001282137126_updatemodel.designer.cs">
+      <DependentUpon>202001282137126_updatemodel.cs</DependentUpon>
+    </Compile>
     <Compile Include="Migrations\Configuration.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
   </ItemGroup>
@@ -112,6 +120,12 @@
     </EmbeddedResource>
     <EmbeddedResource Include="Migrations\202001281229277_updatemodels.resx">
       <DependentUpon>202001281229277_updatemodels.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Migrations\202001282124521_update.resx">
+      <DependentUpon>202001282124521_update.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Migrations\202001282137126_updatemodel.resx">
+      <DependentUpon>202001282137126_updatemodel.cs</DependentUpon>
     </EmbeddedResource>
   </ItemGroup>
   <Import Project="$(MSBuildToolsPath)\Microsoft.CSharp.targets" />

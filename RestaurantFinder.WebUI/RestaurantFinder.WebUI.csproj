@@ -182,6 +182,8 @@
     <Compile Include="Controllers\HomeController.cs" />
     <Compile Include="Controllers\LoginController.cs" />
     <Compile Include="Controllers\RestaurantController.cs" />
+    <Compile Include="Controllers\RestaurantCoupunsController.cs" />
+    <Compile Include="Controllers\RestaurantTableController.cs" />
     <Compile Include="Global.asax.cs">
       <DependentUpon>Global.asax</DependentUpon>
     </Compile>
@@ -472,6 +474,19 @@
     <Content Include="Views\Login\Signup.cshtml" />
     <Content Include="Views\Login\LockScreen.cshtml" />
     <Content Include="Views\Restaurant\Create.cshtml" />
+    <Content Include="Views\Restaurant\Edit.cshtml" />
+    <Content Include="Views\Restaurant\Delete.cshtml" />
+    <Content Include="Views\RestaurantTable\Index.cshtml" />
+    <Content Include="Views\RestaurantTable\Create.cshtml" />
+    <Content Include="Views\RestaurantTable\Edit.cshtml" />
+    <Content Include="Views\RestaurantTable\Delete.cshtml" />
+    <Content Include="Views\RestaurantCoupons\Index.cshtml" />
+    <Content Include="Views\RestaurantCoupons\Create.cshtml" />
+    <Content Include="Views\CoupounsResturant\Index.cshtml" />
+    <Content Include="Views\RestaurantCoupuns\Index.cshtml" />
+    <Content Include="Views\RestaurantCoupuns\Create.cshtml" />
+    <Content Include="Views\RestaurantCoupuns\Edit.cshtml" />
+    <Content Include="Views\RestaurantCoupuns\Delete.cshtml" />
   </ItemGroup>
   <ItemGroup>
     <Folder Include="App_Data\" />

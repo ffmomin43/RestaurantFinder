@@ -9,7 +9,7 @@ using System.Threading.Tasks;
 
 namespace RestaurantFinder.BusinessLogic.Impl
 {
-    class RestaurantLocationService: IRestaurantLocationService
+  public  class RestaurantLocationService: IRestaurantLocationService
     {
         private readonly Lazy<IRestaurantLocationRepository> restaurantLocationRepository;
 

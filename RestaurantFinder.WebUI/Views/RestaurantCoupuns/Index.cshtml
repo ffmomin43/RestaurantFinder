@@ -1,0 +1,86 @@
+﻿@model IEnumerable<RestaurantFinder.Models.RestaurantCouponsMaster>
+
+@{
+    ViewBag.Title = "Index";
+}
+
+
+
+
+
+<div class="row">
+    <div class="col-12">
+        <div class="card-box">
+            <h4 class="header-title">ALL Coupons Details </h4>
+            <p class="sub-header">
+
+            </p>
+            <table id="datatable-buttons" class="table table-striped table-bordered dt-responsive nowrap" style="border-collapse: collapse; border-spacing: 0; width: 100%;">
+                <thead>
+                    <tr>
+                        <th>CouponName</th>
+                        <th>CouponCode</th>
+                        <th>StartDate</th>
+                        <th>EndDate</th>
+                        <th>Action</th>
+
+
+
+                    </tr>
+                </thead>
+
+                <tbody>
+                    @foreach (var item in Model)
+                    {
+                        <tr>
+                            <td>@item.CouponName</td>
+                            <td>@item.CouponCode</td>
+                            <td>@item.StartDate</td>
+                            <td>@item.EndDate</td>
+
+
+                          <td>
+
+                                <a href="@Url.Action("Edit","RestaurantCoupuns" , new { id = item.ID })" class="btn btn-danger">
+                                    <span class="fas fa-edit mr-2"></span>
+
+                                </a>
+                                |
+                                <a href="@Url.Action("Delete","RestaurantCoupuns" , new { id = item.ID})" class="btn btn-danger">
+                                    <span class="fas fa-trash mr-2"></span>
+
+                                </a>
+                                |
+                                <a href="@Url.Action("Index","RestaurantCoupuns" , new { id = item.ID })" class="btn btn-danger">
+                                    <span class="fas fa-list mr-2"></span>
+
+                                </a>
+
+
+
+                            </td>
+                        </tr>
+
+                    }
+
+
+
+
+                </tbody>
+            </table>
+        </div>
+    </div>
+</div> <!-- end row -->
+
+
+
+
+
+
+@section scripts
+{
+
+    <script>
+        $(document).ready(function () {
+            $('#myTable').DataTable();
+        });</script>}

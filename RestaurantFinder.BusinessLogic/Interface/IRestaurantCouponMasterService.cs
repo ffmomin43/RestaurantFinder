@@ -8,7 +8,8 @@ using System.Threading.Tasks;
 
 namespace RestaurantFinder.BusinessLogic.Interface
 {
-  public  interface IRestaurantCouponMasterService: IGenericService<RestaurantCouponsMaster>
+  public  interface IRestaurantCouponMasterService :IGenericService<RestaurantCouponsMaster>
     {
+
     }
 }

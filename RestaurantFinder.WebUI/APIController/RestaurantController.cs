@@ -16,26 +16,29 @@ namespace RestaurantFinder.WebUI.APIController
     {
 
         private readonly Lazy<IRestaurantService> restaurantService;
-        
+        private readonly Lazy<IRestaurantsImagesService> restaurantsImages;
+
         private readonly Lazy<ILoggerFacade<RestaurantController>> logger;
         
         public RestaurantController(Lazy<IRestaurantService> restaurantService, Lazy<ILoggerFacade<RestaurantController>> logger)
         {
             this.restaurantService = restaurantService;
+            
             this.logger = logger;
         }
-        // GET: api/Restaurant 
+        // GET: api/Restaurant
         public IEnumerable<Restaurant> Get()
         {
-
+            
             return restaurantService.Value.GetAll();
         }
 
         // GET: api/Restaurant/5
         public Restaurant Get(Guid id)
         {
-           return restaurantService.Value.GetAll().Where(x => x.UniqueId == id).Single();
-            
+           
+            return restaurantService.Value.GetAll().Where(x => x.UniqueId == id).Single();
+
         }
 
         // POST: api/Restaurant

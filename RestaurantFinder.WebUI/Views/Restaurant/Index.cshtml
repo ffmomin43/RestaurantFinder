@@ -24,22 +24,43 @@
                         <th>Area</th>
                         <th>PinCode</th>
                         <th>PinCode</th>
+                        <th>Action</th>
 
-                       
+
                     </tr>
                 </thead>
 
                 <tbody>
                     @foreach (var item in Model)
                     {
-                        <tr>
-                            <td>@item.Name</td>
-                            <td>@item.AddressLine1</td>
-                            <td>@item.AddressLine2</td>
-                            <td>@item.Area</td>
-                            <td>@item.PinCode</td>
-                            <td>@item.State</td>
-                        </tr>
+                    <tr>
+                        <td>@item.Name</td>
+                        <td>@item.AddressLine1</td>
+                        <td>@item.AddressLine2</td>
+                        <td>@item.Area</td>
+                        <td>@item.PinCode</td>
+                        <td>@item.State</td>
+                        <td>
+
+                            <a href="@Url.Action("Edit","Restaurant" , new { id = item.ID })" class="btn btn-danger">
+                                <span class="fas fa-edit mr-2"></span>
+
+                            </a>
+                            |
+                            <a href="@Url.Action("Delete","Restaurant" , new { id = item.ID})" class="btn btn-danger">
+                                <span class="fas fa-trash mr-2"></span>
+
+                            </a>
+                            |
+                            <a href="@Url.Action("Index","Restaurant" , new { id = item.ID })" class="btn btn-danger">
+                                <span class="fas fa-list mr-2"></span>
+
+                            </a>
+
+
+
+                        </td>
+                    </tr>
 
                     }
 
