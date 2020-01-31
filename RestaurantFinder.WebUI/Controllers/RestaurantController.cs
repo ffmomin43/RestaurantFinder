@@ -41,7 +41,7 @@ namespace RestaurantFinder.WebUI.Controllers
         // GET: Restaurant/Create
         public ActionResult Create()
         {
-            return View();
+            return PartialView();
         }
 
         // POST: Restaurant/Create
@@ -51,9 +51,15 @@ namespace RestaurantFinder.WebUI.Controllers
 
         {
             try
+                
             {
+                    
                 restaurant.UniqueId = Guid.NewGuid();
+                var picidget =restaurant.restaurantPicture.Split(new char[] { ',' }, StringSplitOptions.RemoveEmptyEntries).Select(Id => int.Parse(Id)).ToList();
+                restaurant.RestaurantsImages = new List<RestaurantsImages>();
+                restaurant.RestaurantsImages.AddRange(picidget.Select(x => new RestaurantsImages { PictureId = x }).ToList());
 
+                
                 this.restaurantService.Value.Add(restaurant);
                 this.restaurantService.Value.Save();
                 return RedirectToAction("");

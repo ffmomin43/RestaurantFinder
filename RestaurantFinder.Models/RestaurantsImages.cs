@@ -10,6 +10,7 @@ namespace RestaurantFinder.Models
     {
         public int RestaurantId { get; set; }
 
-        public string listImageUrl { get; set; }
+        public int PictureId { get; set; }
+        public virtual Picture Picture { get; set; }
     }
 }

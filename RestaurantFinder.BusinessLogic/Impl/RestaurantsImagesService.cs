@@ -29,6 +29,10 @@ namespace RestaurantFinder.BusinessLogic.Impl
             restaurantsImagesRepository.Value.Delete(entity);
         }
 
+        public int insert(Models.RestaurantsImages entity)
+        {
+            return 1;
+        }
         public void Edit(Models.RestaurantsImages entity)
         {
             restaurantsImagesRepository.Value.Edit(entity);

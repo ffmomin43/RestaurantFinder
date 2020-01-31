@@ -24,6 +24,10 @@ namespace RestaurantFinder.BusinessLogic.Impl
             usersRepository.Value.Add(entity);
         }
 
+        public int insert(Models.User entity)
+        {
+            return 1;
+        }
         public void Delete(Models.User entity)
         {
             usersRepository.Value.Delete(entity);

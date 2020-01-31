@@ -28,6 +28,10 @@ namespace RestaurantFinder.BusinessLogic.Impl
         {
             rolesRepository.Value.Delete(entity);
         }
+        public int insert(Models.Role entity)
+        {
+            return 1;
+        }
 
         public void Edit(Models.Role entity)
         {

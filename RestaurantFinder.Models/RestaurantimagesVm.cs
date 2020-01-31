@@ -8,7 +8,8 @@ namespace RestaurantFinder.Models
 {
     public class RestaurantimagesVm : Restaurant
     {
-        public IEnumerable<RestaurantsImages> RestaurantsImages { set; get; }
+        public IEnumerable<RestaurantsImages> RestaurantsImage { set; get; }
+
 
     }
 }

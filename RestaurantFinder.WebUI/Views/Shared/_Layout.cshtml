@@ -12,8 +12,12 @@
     <!-- App favicon -->
     <link rel="shortcut icon" href="/Content/assets/images/favicon.ico">
     <!-- App css -->
+
     <link href="/Content/assets/css/bootstrap.min.css" rel="stylesheet" type="text/css" id="bootstrap-stylesheet" />
     <link href="/Content/assets/css/icons.min.css" rel="stylesheet" type="text/css" />
+
+
+ 
     <link href="/Content/assets/css/app.min.css" rel="stylesheet" type="text/css" id="app-stylesheet" />
 </head>
 <body>
@@ -317,6 +321,34 @@
 
                             </ul>
                         </li>
+                        <li>
+                            <a href="javascript: void(0);">
+                                <i class="fas fa-cog"></i>
+                                <span>  Location Seting </span>
+                                <span class="menu-arrow"></span>
+                            </a>
+                            <ul class="nav-second-level" aria-expanded="false">
+                                <li><a href="/RestaurantLocation/Create">Add Restaurant Location</a></li>
+                                <li><a href="/RestaurantLocation/Index">Location Details</a></li>
+
+                            </ul>
+                        </li>
+                        <li>
+                            <a href="javascript: void(0);">
+                                <i class="fas fa-utensils"></i>
+                                <span> Add  Dishes  </span>
+                                <span class="menu-arrow"></span>
+                            </a>
+                            <ul class="nav-second-level" aria-expanded="false">
+                                <li><a href="/RestaurantDishes/Create">Add Dishes </a></li>
+                                <li><a href="/estaurantDishes/Index"> Dishes Details</a></li>
+
+                            </ul>
+                        </li>
+
+
+
+
 
                         <li>
                             <a href="javascript: void(0);">
@@ -431,7 +463,9 @@
     <script src="/Content/assets/js/app.min.js"></script>
     @Scripts.Render("~/bundles/jquery")
     @Scripts.Render("~/bundles/bootstrap")
+    @Scripts.Render("~/bundles/jqueryval")
     @RenderSection("scripts", required: false)
-</body>
-<!-- Mirrored from coderthemes.com/uplon/layouts/vertical/pages-starter.html by HTTrack Website Copier/3.x [XR&CO'2014], Tue, 21 Jan 2020 22:10:15 GMT -->
-</html>
+    
+</body >
+
+</html >

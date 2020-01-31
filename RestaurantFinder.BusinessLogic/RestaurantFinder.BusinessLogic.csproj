@@ -52,7 +52,9 @@
     <Compile Include="Common\SystemConstants.cs" />
     <Compile Include="Common\IGenericService.cs" />
     <Compile Include="Impl\PermissionService.cs" />
+    <Compile Include="Impl\PictureService.cs" />
     <Compile Include="Impl\RestaurantCouponMasterService.cs" />
+    <Compile Include="Impl\RestaurantDishesService.cs" />
     <Compile Include="Impl\RestaurantLocationService.cs" />
     <Compile Include="Impl\RestaurantService.cs" />
     <Compile Include="Impl\RestaurantsImagesService.cs" />
@@ -60,6 +62,7 @@
     <Compile Include="Impl\RolesService.cs" />
     <Compile Include="Impl\UsersService.cs" />
     <Compile Include="Interface\IActionService.cs" />
+    <Compile Include="Interface\IPictureService.cs" />
     <Compile Include="Interface\IRestaurantCouponMasterService.cs" />
     <Compile Include="Interface\IPermissionService.cs" />
     <Compile Include="Interface\IRestaurantLocationService.cs" />
@@ -68,6 +71,7 @@
     <Compile Include="Interface\IRestaurantService.cs" />
     <Compile Include="Interface\IRolesService.cs" />
     <Compile Include="Interface\IUsersService.cs" />
+    <Compile Include="Interface\IRestaurantDishesService.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
   </ItemGroup>
   <ItemGroup>

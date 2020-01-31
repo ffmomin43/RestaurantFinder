@@ -46,10 +46,13 @@
     <Compile Include="BaseModel.cs" />
     <Compile Include="Permission.cs" />
     <Compile Include="Action.cs" />
+    <Compile Include="Picture.cs" />
     <Compile Include="RestaurantCouponsMaster.cs" />
     <Compile Include="RestaurantDishes.cs" />
+    <Compile Include="RestaurantDishesvm.cs" />
     <Compile Include="RestaurantimagesVm.cs" />
     <Compile Include="RestaurantLocation.cs" />
+    <Compile Include="Restaurantlocationvm.cs" />
     <Compile Include="RestaurantsImages.cs" />
     <Compile Include="RestaurantTable.cs" />
     <Compile Include="User.cs" />
