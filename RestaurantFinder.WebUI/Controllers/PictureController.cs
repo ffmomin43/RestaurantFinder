@@ -23,7 +23,7 @@ namespace RestaurantFinder.WebUI.Controllers
         }
 
         public JsonResult UploadPicture()
-        {
+        {   
             JsonResult Result = new JsonResult();
             List<object> pictureresult = new List<object>();
             var picturess = Request.Files;

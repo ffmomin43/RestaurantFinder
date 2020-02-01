@@ -15,8 +15,7 @@ namespace RestaurantFinder.Models
 
         public string AddressLine2 { get; set; }
         [NotMapped]
-        public string restaurantPicture { get
-                ; set; }
+        public string restaurantPicture { get  ; set; }
         public string Area { get; set; }
 
         public string PinCode { get; set; }

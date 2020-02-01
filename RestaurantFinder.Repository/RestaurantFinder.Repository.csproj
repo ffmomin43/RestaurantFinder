@@ -118,6 +118,10 @@
     <Compile Include="Migrations\202001311055186_savedb.designer.cs">
       <DependentUpon>202001311055186_savedb.cs</DependentUpon>
     </Compile>
+    <Compile Include="Migrations\202001311956284_updatetblResturant.cs" />
+    <Compile Include="Migrations\202001311956284_updatetblResturant.designer.cs">
+      <DependentUpon>202001311956284_updatetblResturant.cs</DependentUpon>
+    </Compile>
     <Compile Include="Migrations\Configuration.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
   </ItemGroup>
@@ -158,6 +162,9 @@
     </EmbeddedResource>
     <EmbeddedResource Include="Migrations\202001311055186_savedb.resx">
       <DependentUpon>202001311055186_savedb.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Migrations\202001311956284_updatetblResturant.resx">
+      <DependentUpon>202001311956284_updatetblResturant.cs</DependentUpon>
     </EmbeddedResource>
   </ItemGroup>
   <Import Project="$(MSBuildToolsPath)\Microsoft.CSharp.targets" />

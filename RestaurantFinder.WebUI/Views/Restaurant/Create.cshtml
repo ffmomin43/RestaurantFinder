@@ -54,12 +54,12 @@
                             </div>
 
                             <label>
-                                Image Upload
+                               Select Pictures
                             </label>
-                            <input id="Auctionpicture" type="file" class="form-control" name="restaurantPicture" multiple />
+                            <input id="Resturantpicture" type="file" class="form-control" name="restaurantPicture" multiple />
                             <br />
                             <div id="picturearea"></div>
-                            <input type="hidden" name="restaurantPicture" id="picid" />
+                            <input type="hidden" name="RestaurantsImages" id="picid" />
                    
                     <div class="form-group text-right mb-0">
                         <button class="btn btn-primary waves-effect waves-light mr-1"  id="save" type="submit">
@@ -80,7 +80,7 @@
 
 
     <div id="imagetemplate" style="display:none">
-        <img class='image img-fluid' src=''  />
+        <img class='image img-fluid' src=''  height="50px" width="50px" />
     </div>
     <!-- end row -->
     @section scripts
@@ -118,7 +118,7 @@
 
     });
 
-    $("#Auctionpicture").change(function () {
+    $("#Resturantpicture").change(function () {
         debugger;
 
         var Pictures = this.files;

@@ -19,13 +19,12 @@ namespace RestaurantFinder.BusinessLogic.Impl
         }
         public int insert(Models.Picture entity)
         {
-            Models.Picture picture = new Models.Picture();
            
             
 
             pictureRepository.Value.Add(entity);
             pictureRepository.Value.Save();
-            return picture.ID;
+            return entity.ID;
         }
         public void Add(Models.Picture entity)
         {

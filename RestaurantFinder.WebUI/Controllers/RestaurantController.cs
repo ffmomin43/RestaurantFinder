@@ -46,26 +46,37 @@ namespace RestaurantFinder.WebUI.Controllers
 
         // POST: Restaurant/Create
         [HttpPost]
-        public ActionResult Create(Restaurant restaurant)
+        public ActionResult Create(RestaurantimagesVm  model)
 
 
         {
             try
                 
             {
+
+                Restaurant restaurant = new Restaurant();
+                restaurant.Name = model.Name;
+                restaurant.AddressLine1 = model.AddressLine1;
+                restaurant.AddressLine1 = model.AddressLine2;
+                restaurant.Area = model.Area;
+                restaurant.City = model.City;
+                restaurant.PinCode = model.PinCode;
+                restaurant.State = model.State;
+               restaurant.RestaurantsImages = new List<RestaurantsImages>();
+
                     
                 restaurant.UniqueId = Guid.NewGuid();
-                var picidget =restaurant.restaurantPicture.Split(new char[] { ',' }, StringSplitOptions.RemoveEmptyEntries).Select(Id => int.Parse(Id)).ToList();
+                var picidget =model.RestaurantsImages.Split(new char[] { ',' }, StringSplitOptions.RemoveEmptyEntries).Select(Id => int.Parse(Id)).ToList();
                 restaurant.RestaurantsImages = new List<RestaurantsImages>();
                 restaurant.RestaurantsImages.AddRange(picidget.Select(x => new RestaurantsImages { PictureId = x }).ToList());
 
                 
                 this.restaurantService.Value.Add(restaurant);
                 this.restaurantService.Value.Save();
-                return RedirectToAction("");
-
+                           return RedirectToAction("Index");
 
             }
+
             catch (Exception ex)
             {
                 return RedirectToAction("");
@@ -78,15 +89,42 @@ namespace RestaurantFinder.WebUI.Controllers
         public ActionResult Edit(int id)
         {
             var resturant = restaurantService.Value.GetAll().Where(x => x.ID == id).SingleOrDefault();
-            return View(resturant);
+            RestaurantimagesVm model = new RestaurantimagesVm();
+            model.Name = resturant.Name;
+            model.AddressLine1 = resturant.AddressLine1;
+            model.AddressLine2 = resturant.AddressLine2;
+            model.Area = resturant.Area;
+            model.City = resturant.City;
+            model.PinCode = resturant.PinCode;
+            model.State = resturant.State;
+            model.restaurantsImage = resturant.RestaurantsImages;
+            model.id = resturant.ID;
+            return View(model);
         }
 
         // POST: Restaurant/Edit/5
         [HttpPost]
-        public ActionResult Edit(Restaurant restaurant)
+        public ActionResult Edit(RestaurantimagesVm model)
         {
             try
             {
+                Restaurant restaurant = new Restaurant();
+                restaurant.ID = model.id;
+                restaurant.Name = model.Name;
+                restaurant.AddressLine1 = model.AddressLine1;
+                restaurant.AddressLine2 = model.AddressLine2;
+                restaurant.Area = model.Area;
+                restaurant.City = model.City;
+                restaurant.State = model.State;
+                restaurant.PinCode = model.PinCode;
+                if (!string.IsNullOrEmpty(model.RestaurantsImages))
+                {
+                    var picidget = model.RestaurantsImages.Split(new char[] { ',' }, StringSplitOptions.RemoveEmptyEntries).Select(Id => int.Parse(Id)).ToList();
+                    restaurant.RestaurantsImages = new List<RestaurantsImages>();
+                    restaurant.RestaurantsImages.AddRange(picidget.Select(x => new RestaurantsImages { PictureId = x }).ToList());
+                }
+
+
                 this.restaurantService.Value.Edit(restaurant);
                 this.restaurantService.Value.Save();
                 return RedirectToAction("Index");
