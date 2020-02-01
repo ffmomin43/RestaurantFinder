@@ -1,4 +1,5 @@
 ﻿using RestaurantFinder.BusinessLogic.Interface;
+using RestaurantFinder.Repository;
 using RestaurantFinder.Repository.Interface;
 using System;
 using System.Collections.Generic;
@@ -9,7 +10,7 @@ using System.Threading.Tasks;
 
 namespace RestaurantFinder.BusinessLogic.Impl
 {
-    class UsersService : IUsersService
+   public class UsersService : IUsersService
     {
         private readonly Lazy<IUsersRepository> usersRepository;
 
@@ -57,6 +58,25 @@ namespace RestaurantFinder.BusinessLogic.Impl
         public void Save()
         {
             usersRepository.Value.Save();
+        }
+
+        public bool Checklogin(string name, string pass)
+        {
+           
+            RestaurantContext restaurantContext = new RestaurantContext();
+            bool isvalid;
+            var count =restaurantContext.User.ToList<Models.User>().Where(x => x.Username == name && x.Password == pass).Count();
+            if (count > 0)
+            {
+                isvalid = true;
+
+            }
+            else
+            {
+
+                isvalid = false;
+            }
+            return isvalid;
         }
     }
 }

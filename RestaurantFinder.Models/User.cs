@@ -29,6 +29,10 @@ namespace RestaurantFinder.Models
         [EmailAddress]
         public string Email { get; set; }
 
+        [StringLength(250)]
+        [Required]
+        public string Password{ get; set; }
+
         public virtual List<Role> Roles { get; set; }
 
         public DateTime CreatedOn { get; set; }

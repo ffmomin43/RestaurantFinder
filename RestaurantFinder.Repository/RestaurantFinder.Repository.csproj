@@ -122,6 +122,18 @@
     <Compile Include="Migrations\202001311956284_updatetblResturant.designer.cs">
       <DependentUpon>202001311956284_updatetblResturant.cs</DependentUpon>
     </Compile>
+    <Compile Include="Migrations\202002010833185_updateusertbl.cs" />
+    <Compile Include="Migrations\202002010833185_updateusertbl.designer.cs">
+      <DependentUpon>202002010833185_updateusertbl.cs</DependentUpon>
+    </Compile>
+    <Compile Include="Migrations\202002010901361_updateuser.cs" />
+    <Compile Include="Migrations\202002010901361_updateuser.designer.cs">
+      <DependentUpon>202002010901361_updateuser.cs</DependentUpon>
+    </Compile>
+    <Compile Include="Migrations\202002010904340_updateuserrelation.cs" />
+    <Compile Include="Migrations\202002010904340_updateuserrelation.designer.cs">
+      <DependentUpon>202002010904340_updateuserrelation.cs</DependentUpon>
+    </Compile>
     <Compile Include="Migrations\Configuration.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
   </ItemGroup>
@@ -165,6 +177,15 @@
     </EmbeddedResource>
     <EmbeddedResource Include="Migrations\202001311956284_updatetblResturant.resx">
       <DependentUpon>202001311956284_updatetblResturant.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Migrations\202002010833185_updateusertbl.resx">
+      <DependentUpon>202002010833185_updateusertbl.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Migrations\202002010901361_updateuser.resx">
+      <DependentUpon>202002010901361_updateuser.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Migrations\202002010904340_updateuserrelation.resx">
+      <DependentUpon>202002010904340_updateuserrelation.cs</DependentUpon>
     </EmbeddedResource>
   </ItemGroup>
   <Import Project="$(MSBuildToolsPath)\Microsoft.CSharp.targets" />

@@ -498,6 +498,7 @@
     <Content Include="Views\RestaurantLocation\Delete.cshtml" />
     <Content Include="Views\RestaurantDishes\Index.cshtml" />
     <Content Include="Views\RestaurantDishes\Create.cshtml" />
+    <Content Include="Views\Login\DashBoard.cshtml" />
   </ItemGroup>
   <ItemGroup>
     <Folder Include="App_Data\" />
