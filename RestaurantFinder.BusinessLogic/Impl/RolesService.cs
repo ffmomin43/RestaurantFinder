@@ -58,6 +58,11 @@ namespace RestaurantFinder.BusinessLogic.Impl
         {
             rolesRepository.Value.Save();
         }
+
+        public bool Checklogin(string name, string pass)
+        {
+            throw new NotImplementedException();
+        }
     }
 }
   

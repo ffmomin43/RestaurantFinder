@@ -13,6 +13,7 @@ namespace RestaurantFinder.BusinessLogic.Common
         void Edit(T entity);
         //add Picture list
         int insert(T entity);
+       
         void Save();
     }
 }

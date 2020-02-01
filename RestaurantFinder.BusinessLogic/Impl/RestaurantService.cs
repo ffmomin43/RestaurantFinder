@@ -59,5 +59,10 @@ namespace RestaurantFinder.BusinessLogic.Impl
         {
             restaurantRepository.Value.Save();
         }
+
+        public bool Checklogin(string name, string pass)
+        {
+            throw new NotImplementedException();
+        }
     }
 }

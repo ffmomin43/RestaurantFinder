@@ -62,10 +62,9 @@ namespace RestaurantFinder.BusinessLogic.Impl
 
         public bool Checklogin(string name, string pass)
         {
-           
             RestaurantContext restaurantContext = new RestaurantContext();
             bool isvalid;
-            var count =restaurantContext.User.ToList<Models.User>().Where(x => x.Username == name && x.Password == pass).Count();
+            var count = restaurantContext.User.ToList<Models.User>().Where(x => x.Username == name && x.Password == pass).Count();
             if (count > 0)
             {
                 isvalid = true;
@@ -80,4 +79,4 @@ namespace RestaurantFinder.BusinessLogic.Impl
         }
     }
 }
-    
+
