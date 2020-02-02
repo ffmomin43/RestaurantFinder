@@ -179,6 +179,7 @@
     <Compile Include="Common\IoC\ServiceModule.cs" />
     <Compile Include="Common\logger\ILoggerFacade.cs" />
     <Compile Include="Common\logger\LoggerFacade.cs" />
+    <Compile Include="Controllers\CategoryMasterController.cs" />
     <Compile Include="Controllers\HomeController.cs" />
     <Compile Include="Controllers\LoginController.cs" />
     <Compile Include="Controllers\PictureController.cs" />
@@ -445,7 +446,6 @@
     <Content Include="Content\assets\fonts\weathericons-regular-webfont.woff2" />
     <Content Include="Content\assets\fonts\weathericons-regular-webfontd41d.eot" />
     <None Include="Properties\PublishProfiles\CustomProfile.pubxml" />
-    <None Include="Properties\PublishProfiles\CustomProfile1.pubxml" />
     <None Include="Properties\PublishProfiles\FolderProfile.pubxml" />
     <None Include="Scripts\jquery-3.3.1.intellisense.js" />
     <Content Include="Scripts\jquery-3.3.1.js" />
@@ -501,8 +501,10 @@
     <Content Include="Views\RestaurantDishes\Index.cshtml" />
     <Content Include="Views\RestaurantDishes\Create.cshtml" />
     <Content Include="Views\Login\DashBoard.cshtml" />
+    <Content Include="Views\CategoryMaster\Index.cshtml" />
   </ItemGroup>
   <ItemGroup>
+    <Folder Include="APIModels\" />
     <Folder Include="App_Data\" />
     <Folder Include="Content\images\" />
     <Folder Include="Views\Picture\" />

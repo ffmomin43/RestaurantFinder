@@ -32,5 +32,7 @@ namespace RestaurantFinder.Repository
         public DbSet<RestaurantDishes> RestaurantDishes { get; set; }
         public DbSet<RestaurantsImages> RestaurantsImages { get; set; }
         public DbSet<Picture> Pictures { get; set; }
+        public DbSet<CategoryMaster> CategoryMasters { get; set; }
+        public DbSet<RestaurantCategoryMapping> RestaurantCategoryMapping { get; set; }
     }
 }

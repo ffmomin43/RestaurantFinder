@@ -62,6 +62,8 @@
     <Compile Include="Datatables\FieldSortOrder.cs" />
     <Compile Include="Impl\ActionRepository.cs" />
     <Compile Include="Impl\RestaurantDishesRepository.cs" />
+    <Compile Include="Impl\CategoryMasterRepository.cs" />
+    <Compile Include="Impl\RestaurantCategoryMappingRepository.cs" />
     <Compile Include="Impl\PermissionRepository.cs" />
     <Compile Include="Impl\PictureRepository.cs" />
     <Compile Include="Impl\RestaurantCouponMasterRepository.cs" />
@@ -71,6 +73,8 @@
     <Compile Include="Impl\RestaurantTablesRepository.cs" />
     <Compile Include="Impl\RolesRepository.cs" />
     <Compile Include="Impl\UsersRepository.cs" />
+    <Compile Include="Interface\IRestaurantCategoryMappingRepository.cs" />
+    <Compile Include="Interface\ICategoryMasterRepository.cs" />
     <Compile Include="Interface\IActionRepository.cs" />
     <Compile Include="Interface\IPictureRepository.cs" />
     <Compile Include="Interface\IPermissionRepository.cs" />
@@ -133,6 +137,17 @@
     <Compile Include="Migrations\202002010904340_updateuserrelation.cs" />
     <Compile Include="Migrations\202002010904340_updateuserrelation.designer.cs">
       <DependentUpon>202002010904340_updateuserrelation.cs</DependentUpon>
+    <Compile Include="Migrations\202002020847306_category-master.cs" />
+    <Compile Include="Migrations\202002020847306_category-master.designer.cs">
+      <DependentUpon>202002020847306_category-master.cs</DependentUpon>
+    </Compile>
+    <Compile Include="Migrations\202002020904043_restaurant-category.cs" />
+    <Compile Include="Migrations\202002020904043_restaurant-category.designer.cs">
+      <DependentUpon>202002020904043_restaurant-category.cs</DependentUpon>
+    </Compile>
+    <Compile Include="Migrations\202002021101149_ThumbnailImageUrl-added.cs" />
+    <Compile Include="Migrations\202002021101149_ThumbnailImageUrl-added.designer.cs">
+      <DependentUpon>202002021101149_ThumbnailImageUrl-added.cs</DependentUpon>
     </Compile>
     <Compile Include="Migrations\Configuration.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
@@ -186,6 +201,14 @@
     </EmbeddedResource>
     <EmbeddedResource Include="Migrations\202002010904340_updateuserrelation.resx">
       <DependentUpon>202002010904340_updateuserrelation.cs</DependentUpon>
+    <EmbeddedResource Include="Migrations\202002020847306_category-master.resx">
+      <DependentUpon>202002020847306_category-master.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Migrations\202002020904043_restaurant-category.resx">
+      <DependentUpon>202002020904043_restaurant-category.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Migrations\202002021101149_ThumbnailImageUrl-added.resx">
+      <DependentUpon>202002021101149_ThumbnailImageUrl-added.cs</DependentUpon>
     </EmbeddedResource>
   </ItemGroup>
   <Import Project="$(MSBuildToolsPath)\Microsoft.CSharp.targets" />

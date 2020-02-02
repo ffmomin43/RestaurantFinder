@@ -44,9 +44,11 @@
   </ItemGroup>
   <ItemGroup>
     <Compile Include="BaseModel.cs" />
+    <Compile Include="CategoryMaster.cs" />
     <Compile Include="Permission.cs" />
     <Compile Include="Action.cs" />
     <Compile Include="Picture.cs" />
+    <Compile Include="RestaurantCategoryMapping.cs" />
     <Compile Include="RestaurantCouponsMaster.cs" />
     <Compile Include="RestaurantDishes.cs" />
     <Compile Include="RestaurantDishesvm.cs" />
