@@ -56,21 +56,23 @@ namespace RestaurantFinder.WebUI.Controllers
 
                 Restaurant restaurant = new Restaurant();
                 restaurant.Name = model.Name;
+                restaurant.UniqueId = Guid.NewGuid();
                 restaurant.AddressLine1 = model.AddressLine1;
-                restaurant.AddressLine1 = model.AddressLine2;
+                restaurant.AddressLine2 = model.AddressLine2;
                 restaurant.Area = model.Area;
                 restaurant.City = model.City;
                 restaurant.PinCode = model.PinCode;
                 restaurant.State = model.State;
                restaurant.RestaurantsImages = new List<RestaurantsImages>();
 
-                    
-                restaurant.UniqueId = Guid.NewGuid();
+                if (!string.IsNullOrEmpty(model.RestaurantsImages))
+                {
+                    restaurant.UniqueId = Guid.NewGuid();
                 var picidget =model.RestaurantsImages.Split(new char[] { ',' }, StringSplitOptions.RemoveEmptyEntries).Select(Id => int.Parse(Id)).ToList();
                 restaurant.RestaurantsImages = new List<RestaurantsImages>();
                 restaurant.RestaurantsImages.AddRange(picidget.Select(x => new RestaurantsImages { PictureId = x }).ToList());
 
-                
+                }
                 this.restaurantService.Value.Add(restaurant);
                 this.restaurantService.Value.Save();
                            return RedirectToAction("Index");
