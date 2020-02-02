@@ -17,15 +17,20 @@ namespace RestaurantFinder.WebUI.APIController
 
         private readonly Lazy<IRestaurantService> restaurantService;
         private readonly Lazy<IRestaurantsImagesService> restaurantsImages;
-
+        private readonly Lazy<ICategoryMasterService> categoryMasterService;
         private readonly Lazy<ILoggerFacade<RestaurantController>> logger;
         
-        public RestaurantController(Lazy<IRestaurantService> restaurantService, Lazy<ILoggerFacade<RestaurantController>> logger)
+        public RestaurantController(
+            Lazy<IRestaurantService> restaurantService, 
+            Lazy<ILoggerFacade<RestaurantController>> logger,
+            Lazy<ICategoryMasterService> categoryMasterService
+            )
         {
             this.restaurantService = restaurantService;
-            
+            this.categoryMasterService = categoryMasterService;
             this.logger = logger;
         }
+
         // GET: api/Restaurant
         public IEnumerable<Restaurant> Get()
         {
@@ -68,6 +73,12 @@ namespace RestaurantFinder.WebUI.APIController
         // DELETE: api/Restaurant/5
         public void Delete(int id)
         {
+        }
+
+        [Route("api/categories")]
+        public IEnumerable<CategoryMaster> GetCategoryMasters()
+        {
+            return categoryMasterService.Value.GetAll();
         }
     }
 }
