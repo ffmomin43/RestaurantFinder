@@ -61,9 +61,11 @@
     <Compile Include="Datatables\ISortCriteria.cs" />
     <Compile Include="Datatables\FieldSortOrder.cs" />
     <Compile Include="Impl\ActionRepository.cs" />
+    <Compile Include="Impl\RestaurantDishesRepository.cs" />
     <Compile Include="Impl\CategoryMasterRepository.cs" />
     <Compile Include="Impl\RestaurantCategoryMappingRepository.cs" />
     <Compile Include="Impl\PermissionRepository.cs" />
+    <Compile Include="Impl\PictureRepository.cs" />
     <Compile Include="Impl\RestaurantCouponMasterRepository.cs" />
     <Compile Include="Impl\RestaurantLocationRepository.cs" />
     <Compile Include="Impl\RestaurantRepository.cs" />
@@ -74,7 +76,9 @@
     <Compile Include="Interface\IRestaurantCategoryMappingRepository.cs" />
     <Compile Include="Interface\ICategoryMasterRepository.cs" />
     <Compile Include="Interface\IActionRepository.cs" />
+    <Compile Include="Interface\IPictureRepository.cs" />
     <Compile Include="Interface\IPermissionRepository.cs" />
+    <Compile Include="Interface\IRestaurantDishesRepository.cs" />
     <Compile Include="Interface\IRestaurantsImagesRepository.cs" />
     <Compile Include="Interface\IRolesRepository.cs" />
     <Compile Include="Interface\IRestaurantCouponMasterRepository.cs" />
@@ -102,6 +106,37 @@
     <Compile Include="Migrations\202001282137126_updatemodel.designer.cs">
       <DependentUpon>202001282137126_updatemodel.cs</DependentUpon>
     </Compile>
+    <Compile Include="Migrations\202001301941041_updatedatabase.cs" />
+    <Compile Include="Migrations\202001301941041_updatedatabase.designer.cs">
+      <DependentUpon>202001301941041_updatedatabase.cs</DependentUpon>
+    </Compile>
+    <Compile Include="Migrations\202001301952405_updatedb.cs" />
+    <Compile Include="Migrations\202001301952405_updatedb.designer.cs">
+      <DependentUpon>202001301952405_updatedb.cs</DependentUpon>
+    </Compile>
+    <Compile Include="Migrations\202001302314043_addtable.cs" />
+    <Compile Include="Migrations\202001302314043_addtable.designer.cs">
+      <DependentUpon>202001302314043_addtable.cs</DependentUpon>
+    </Compile>
+    <Compile Include="Migrations\202001311055186_savedb.cs" />
+    <Compile Include="Migrations\202001311055186_savedb.designer.cs">
+      <DependentUpon>202001311055186_savedb.cs</DependentUpon>
+    </Compile>
+    <Compile Include="Migrations\202001311956284_updatetblResturant.cs" />
+    <Compile Include="Migrations\202001311956284_updatetblResturant.designer.cs">
+      <DependentUpon>202001311956284_updatetblResturant.cs</DependentUpon>
+    </Compile>
+    <Compile Include="Migrations\202002010833185_updateusertbl.cs" />
+    <Compile Include="Migrations\202002010833185_updateusertbl.designer.cs">
+      <DependentUpon>202002010833185_updateusertbl.cs</DependentUpon>
+    </Compile>
+    <Compile Include="Migrations\202002010901361_updateuser.cs" />
+    <Compile Include="Migrations\202002010901361_updateuser.designer.cs">
+      <DependentUpon>202002010901361_updateuser.cs</DependentUpon>
+    </Compile>
+    <Compile Include="Migrations\202002010904340_updateuserrelation.cs" />
+    <Compile Include="Migrations\202002010904340_updateuserrelation.designer.cs">
+      <DependentUpon>202002010904340_updateuserrelation.cs</DependentUpon>
     <Compile Include="Migrations\202002020847306_category-master.cs" />
     <Compile Include="Migrations\202002020847306_category-master.designer.cs">
       <DependentUpon>202002020847306_category-master.cs</DependentUpon>
@@ -143,6 +178,29 @@
     <EmbeddedResource Include="Migrations\202001282137126_updatemodel.resx">
       <DependentUpon>202001282137126_updatemodel.cs</DependentUpon>
     </EmbeddedResource>
+    <EmbeddedResource Include="Migrations\202001301941041_updatedatabase.resx">
+      <DependentUpon>202001301941041_updatedatabase.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Migrations\202001301952405_updatedb.resx">
+      <DependentUpon>202001301952405_updatedb.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Migrations\202001302314043_addtable.resx">
+      <DependentUpon>202001302314043_addtable.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Migrations\202001311055186_savedb.resx">
+      <DependentUpon>202001311055186_savedb.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Migrations\202001311956284_updatetblResturant.resx">
+      <DependentUpon>202001311956284_updatetblResturant.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Migrations\202002010833185_updateusertbl.resx">
+      <DependentUpon>202002010833185_updateusertbl.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Migrations\202002010901361_updateuser.resx">
+      <DependentUpon>202002010901361_updateuser.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Migrations\202002010904340_updateuserrelation.resx">
+      <DependentUpon>202002010904340_updateuserrelation.cs</DependentUpon>
     <EmbeddedResource Include="Migrations\202002020847306_category-master.resx">
       <DependentUpon>202002020847306_category-master.cs</DependentUpon>
     </EmbeddedResource>

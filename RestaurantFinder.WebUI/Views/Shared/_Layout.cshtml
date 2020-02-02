@@ -4,7 +4,7 @@
 <!-- Mirrored from coderthemes.com/uplon/layouts/vertical/pages-starter.html by HTTrack Website Copier/3.x [XR&CO'2014], Tue, 21 Jan 2020 22:10:15 GMT -->
 <head>
     <meta charset="utf-8" />
-    <title>Starter Page | Uplon - Responsive Bootstrap 4 Admin Dashboard</title>
+    <title>FoodyBites</title>
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <meta content="Responsive bootstrap 4 admin template" name="description" />
     <meta content="Coderthemes" name="author" />
@@ -12,8 +12,12 @@
     <!-- App favicon -->
     <link rel="shortcut icon" href="/Content/assets/images/favicon.ico">
     <!-- App css -->
+
     <link href="/Content/assets/css/bootstrap.min.css" rel="stylesheet" type="text/css" id="bootstrap-stylesheet" />
     <link href="/Content/assets/css/icons.min.css" rel="stylesheet" type="text/css" />
+
+
+ 
     <link href="/Content/assets/css/app.min.css" rel="stylesheet" type="text/css" id="app-stylesheet" />
 </head>
 <body>
@@ -185,10 +189,15 @@
                         </a>
                     </div>
                 </li>
+              
                 <li class="dropdown notification-list">
                     <a class="nav-link dropdown-toggle nav-user mr-0 waves-effect waves-light" data-toggle="dropdown" href="#" role="button" aria-haspopup="false" aria-expanded="false">
                         <img src="/Content/assets/images/users/avatar-1.jpg" alt="user-image" class="rounded-circle">
-                        <span class="d-none d-sm-inline-block ml-1 font-weight-medium">Alex M.</span>
+                        @if (User.Identity.IsAuthenticated)
+                        {
+                            <span class="d-none d-sm-inline-block ml-1 font-weight-medium">@User.Identity.Name</span>
+                        }
+                       
                         <i class="mdi mdi-chevron-down d-none d-sm-inline-block"></i>
                     </a>
                     <div class="dropdown-menu dropdown-menu-right profile-dropdown ">
@@ -211,13 +220,19 @@
                             <i class="mdi mdi-lock-outline"></i>
                             <span>Lock Screen</span>
                         </a>
-                        <div class="dropdown-divider"></div>
-                        <!-- item-->
-                        <a href="/Login/Login" class="dropdown-item notify-item">
-                            <i class="mdi mdi-logout-variant"></i>
-                            <span>Logout</span>
-                        </a>
-                    </div>
+                       
+                            <div class="dropdown-divider"></div>
+                            <!-- item-->
+                            <a href="/Login/Logout" class="dropdown-item notify-item">
+                                <i class="mdi mdi-logout-variant"></i>
+                                @if (User.Identity.IsAuthenticated)
+                                {
+                                    <span>Logout</span>
+                                    }
+
+                                </a>
+                        </div>
+                       
                 </li>
 
             </ul>
@@ -317,6 +332,34 @@
 
                             </ul>
                         </li>
+                        <li>
+                            <a href="javascript: void(0);">
+                                <i class="fas fa-cog"></i>
+                                <span>  Location Setting </span>
+                                <span class="menu-arrow"></span>
+                            </a>
+                            <ul class="nav-second-level" aria-expanded="false">
+                                <li><a href="/RestaurantLocation/Create">Add Restaurant Location</a></li>
+                                <li><a href="/RestaurantLocation/Index">Location Details</a></li>
+
+                            </ul>
+                        </li>
+                        <li>
+                            <a href="javascript: void(0);">
+                                <i class="fas fa-utensils"></i>
+                                <span> Add  Dishes  </span>
+                                <span class="menu-arrow"></span>
+                            </a>
+                            <ul class="nav-second-level" aria-expanded="false">
+                                <li><a href="">Add Dishes </a></li>
+                                <li><a href="/RestaurantDishes/Index"> Dishes Details</a></li>
+
+                            </ul>
+                        </li>
+
+
+
+
 
                         <li>
                             <a href="javascript: void(0);">
@@ -447,7 +490,9 @@
     <script src="/Content/assets/js/app.min.js"></script>
     @Scripts.Render("~/bundles/jquery")
     @Scripts.Render("~/bundles/bootstrap")
+    @Scripts.Render("~/bundles/jqueryval")
     @RenderSection("scripts", required: false)
-</body>
-<!-- Mirrored from coderthemes.com/uplon/layouts/vertical/pages-starter.html by HTTrack Website Copier/3.x [XR&CO'2014], Tue, 21 Jan 2020 22:10:15 GMT -->
-</html>
+    
+</body >
+
+</html >

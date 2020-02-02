@@ -182,8 +182,11 @@
     <Compile Include="Controllers\CategoryMasterController.cs" />
     <Compile Include="Controllers\HomeController.cs" />
     <Compile Include="Controllers\LoginController.cs" />
+    <Compile Include="Controllers\PictureController.cs" />
     <Compile Include="Controllers\RestaurantController.cs" />
     <Compile Include="Controllers\RestaurantCoupunsController.cs" />
+    <Compile Include="Controllers\RestaurantDishesController.cs" />
+    <Compile Include="Controllers\RestaurantLocationController.cs" />
     <Compile Include="Controllers\RestaurantTableController.cs" />
     <Compile Include="Global.asax.cs">
       <DependentUpon>Global.asax</DependentUpon>
@@ -388,6 +391,7 @@
     <Content Include="Content\bootstrap-theme.min.css" />
     <Content Include="Content\bootstrap.css" />
     <Content Include="Content\bootstrap.min.css" />
+    <Content Include="Content\jquery.dataTables.min.css" />
     <Content Include="favicon.ico" />
     <Content Include="fonts\glyphicons-halflings-regular.svg" />
     <Content Include="Global.asax" />
@@ -450,6 +454,7 @@
     <Content Include="Scripts\jquery-3.3.1.slim.js" />
     <Content Include="Scripts\jquery-3.3.1.slim.min.js" />
     <None Include="Scripts\jquery.validate-vsdoc.js" />
+    <Content Include="Scripts\jquery.dataTables.min.js" />
     <Content Include="Scripts\jquery.validate.js" />
     <Content Include="Scripts\jquery.validate.min.js" />
     <Content Include="Scripts\jquery.validate.unobtrusive.js" />
@@ -490,12 +495,21 @@
     <Content Include="Views\RestaurantCoupuns\Create.cshtml" />
     <Content Include="Views\RestaurantCoupuns\Edit.cshtml" />
     <Content Include="Views\RestaurantCoupuns\Delete.cshtml" />
+    <Content Include="Views\RestaurantLocation\Index.cshtml" />
+    <Content Include="Views\RestaurantLocation\Create.cshtml" />
+    <Content Include="Views\RestaurantLocation\Edit.cshtml" />
+    <Content Include="Views\RestaurantLocation\Delete.cshtml" />
+    <Content Include="Views\RestaurantDishes\Index.cshtml" />
+    <Content Include="Views\RestaurantDishes\Create.cshtml" />
+    <Content Include="Views\Login\DashBoard.cshtml" />
     <Content Include="Views\CategoryMaster\Index.cshtml" />
     <Content Include="Views\CategoryMaster\Create.cshtml" />
   </ItemGroup>
   <ItemGroup>
     <Folder Include="APIModels\" />
     <Folder Include="App_Data\" />
+    <Folder Include="Content\images\" />
+    <Folder Include="Views\Picture\" />
   </ItemGroup>
   <ItemGroup>
     <Content Include="fonts\glyphicons-halflings-regular.woff2" />

@@ -6,9 +6,26 @@ using System.Threading.Tasks;
 
 namespace RestaurantFinder.Models
 {
-    public class RestaurantimagesVm : Restaurant
+    public class RestaurantimagesVm 
     {
-        public IEnumerable<RestaurantsImages> RestaurantsImages { set; get; }
+        public string Name { get; set; }
+
+        public string AddressLine1 { get; set; }
+
+        public string AddressLine2 { get; set; }
+        
+        public string Area { get; set; }
+
+        public string PinCode { get; set; }
+
+        public string State { get; set; }
+
+        public string City { get; set; }
+        public int id { get; set; }
+        public string RestaurantsImages { get; set; }
+        public List<RestaurantsImages> restaurantsImage { get; set; }
+
+
 
     }
 }

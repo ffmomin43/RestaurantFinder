@@ -30,6 +30,10 @@ namespace RestaurantFinder.BusinessLogic.Impl
             restaurantCouponMasterRepository.Value.Delete(entity);
         }
 
+        public int insert(Models.RestaurantCouponsMaster entity)
+        {
+            return 1;
+        }
         public void Edit(Models.RestaurantCouponsMaster entity)
         {
             restaurantCouponMasterRepository.Value.Edit(entity);
@@ -54,6 +58,11 @@ namespace RestaurantFinder.BusinessLogic.Impl
         public void Save()
         {
             restaurantCouponMasterRepository.Value.Save();
+        }
+
+        public bool Checklogin(string name, string pass)
+        {
+            throw new NotImplementedException();
         }
     }
 }

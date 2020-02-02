@@ -15,7 +15,7 @@
                             .
                         </p>
 
-                        <form  method="post" class="parsley-examples" data-parsley-validate novalidate>
+                        <form   id="createform" method="post" class="parsley-examples" data-parsley-validate novalidate>
                             <div class="form-group">
                                 <label for="userName">Resturant Name<span class="text-danger">*</span></label>
                                 <input type="text" name="Name" parsley-trigger="change" required
@@ -53,20 +53,123 @@
                                        placeholder="City" class="form-control" id="passWord2">
                             </div>
 
-                            <div class="form-group text-right mb-0">
-                                <button class="btn btn-primary waves-effect waves-light mr-1" type="submit">
-                                    Submit
-                                </button>
-                                <button type="reset" class="btn btn-secondary waves-effect">
-                                    Cancel
-                                </button>
-                            </div>
-                        </form>
+                            <label>
+                               Select Pictures
+                            </label>
+                            <input id="Resturantpicture" type="file" class="form-control" name="restaurantPicture" multiple />
+                            <br />
+                            <div id="picturearea"></div>
+                            <input type="hidden" name="RestaurantsImages" id="picid" />
+                   
+                    <div class="form-group text-right mb-0">
+                        <button class="btn btn-primary waves-effect waves-light mr-1"  id="save" type="submit">
+                            Submit
+                        </button>
+                        <button type="reset" class="btn btn-secondary waves-effect">
+                            Cancel
+                        </button>
                     </div>
+                    </form>
                 </div>
-               
-        
-        </div>
-    </div><!-- end col-->
-</div>
-<!-- end row -->
+                </div>
+
+
+            </div>
+        </div><!-- end col-->
+    </div>
+
+
+    <div id="imagetemplate" style="display:none">
+        <img class='image img-fluid' src=''  height="50px" width="50px" />
+    </div>
+    <!-- end row -->
+    @section scripts
+
+    {
+
+        <script>
+
+
+    $("#save").click(function () {
+        debugger
+        var images = [];
+        $("#picturearea .image").each(function ()
+         {
+            var imageid = $(this).attr("data-id");
+           images.push(imageid);
+
+
+
+        });
+        $("#picid").val(images.join());
+        $.ajax({
+
+                url: "@Url.Action("Create","Restaurant")",
+            method: "post",
+            data: $("#createform").serialize()
+        })
+            .done(function (response) {
+
+                $("#Area").html(response);
+                    
+                    
+            });
+
+
+    });
+
+    $("#Resturantpicture").change(function () {
+        debugger;
+
+        var Pictures = this.files;
+        var PicsData = new FormData();
+        for (var i = 0; i < Pictures.length; i++) {
+            PicsData.append("Picture", Pictures[i]);
+        }
+
+        $.ajax(
+            {
+                url:"@Url.Action("UploadPicture","Picture")",
+                type: "post",
+                data: PicsData,
+                dataType: "json",
+                processData: false,
+                contentType: false
+            })
+            .done(function (responses) {
+
+
+                for (var i = 0; i < responses.length; i++) {
+                    var picresponse = responses[i];
+                    addnewimage(picresponse.Urlpic, picresponse.Id);
+
+                    //var imgurl = "<img class='img-fluid' src='/Content/images/" + picresponse.Urlpic + "'/>";
+                    // $newimagehtml = $("#imagetemplate").clone();
+                    //$("#picturearea").append(imgurl); picid = picid + "," + picresponse.Id;
+                }
+
+
+        });
+    });
+    function addnewimage(url, id)
+
+    {
+        $newimagehtml = $("#imagetemplate").clone();
+        $newimagehtml.find(".image").attr("src", "/Content/images/" + url);
+        $newimagehtml.find(".image").attr("data-id", id);
+
+        $("#picturearea").append($newimagehtml.html());
+        Removeimage()
+    }
+    function Removeimage()
+    {
+        $("#picturearea .image").click(function()
+            {
+            $(this).remove();
+        });
+
+    }
+        </script>
+
+
+    }
