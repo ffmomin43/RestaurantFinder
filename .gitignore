@@ -21,6 +21,7 @@
 bld/
 [Bb]in/
 [Oo]bj/
+categories/
 
 # Visual Studio 2015 cache/options directory
 .vs/
@@ -240,4 +241,4 @@ ModelManifest.xml
 
 # FAKE - F# Make
 .fake/
-Ecommerce.WebUI/images/products/
+

@@ -392,6 +392,7 @@
     <Content Include="fonts\glyphicons-halflings-regular.svg" />
     <Content Include="Global.asax" />
     <Content Include="Content\Site.css" />
+    <Content Include="Images\categories\images1.jpg" />
     <Content Include="Scripts\bootstrap.js" />
     <Content Include="Scripts\bootstrap.min.js" />
     <Content Include="Log4Net.config" />
@@ -490,6 +491,7 @@
     <Content Include="Views\RestaurantCoupuns\Edit.cshtml" />
     <Content Include="Views\RestaurantCoupuns\Delete.cshtml" />
     <Content Include="Views\CategoryMaster\Index.cshtml" />
+    <Content Include="Views\CategoryMaster\Create.cshtml" />
   </ItemGroup>
   <ItemGroup>
     <Folder Include="APIModels\" />

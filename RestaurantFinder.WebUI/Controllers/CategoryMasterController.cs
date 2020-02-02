@@ -1,4 +1,5 @@
 ﻿using RestaurantFinder.BusinessLogic.Interface;
+using RestaurantFinder.Models;
 using System;
 using System.Collections.Generic;
 using System.Linq;
@@ -39,11 +40,15 @@ namespace RestaurantFinder.WebUI.Controllers
 
         // POST: CategoryMaster/Create
         [HttpPost]
-        public ActionResult Create(FormCollection collection)
+        public ActionResult Create(CategoryMaster categoryMaster)
         {
             try
             {
                 // TODO: Add insert logic here
+                categoryMaster.UniqueId = Guid.NewGuid();
+                categoryMaster.CreatedBy = "System";
+                categoryMasterService.Value.Add(categoryMaster);
+                categoryMasterService.Value.Save();
 
                 return RedirectToAction("Index");
             }
