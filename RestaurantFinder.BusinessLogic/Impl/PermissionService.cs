@@ -28,6 +28,10 @@ namespace RestaurantFinder.BusinessLogic.Impl
         {
              permissionRepository.Value.Delete(entity);
         }
+        public int insert(Models.Permission entity)
+        {
+            return 1;
+        }
 
         public void Edit(Models.Permission entity)
         {
@@ -53,6 +57,11 @@ namespace RestaurantFinder.BusinessLogic.Impl
         public void Save()
         {
              permissionRepository.Value.Save();
+        }
+
+        public bool Checklogin(string name, string pass)
+        {
+            throw new NotImplementedException();
         }
     }
 }

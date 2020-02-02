@@ -23,7 +23,10 @@ namespace RestaurantFinder.BusinessLogic.Impl
 
             restaurantLocationRepository.Value.Add(entity);
         }
-
+        public int insert(Models.RestaurantLocation entity)
+        {
+            return 1;
+        }
         public void Delete(Models.RestaurantLocation entity)
         {
             restaurantLocationRepository.Value.Delete(entity);
@@ -53,6 +56,11 @@ namespace RestaurantFinder.BusinessLogic.Impl
         public void Save()
         {
             restaurantLocationRepository.Value.Save();
+        }
+
+        public bool Checklogin(string name, string pass)
+        {
+            throw new NotImplementedException();
         }
     }
 }

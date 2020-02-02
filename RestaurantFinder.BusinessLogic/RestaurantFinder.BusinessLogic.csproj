@@ -31,6 +31,7 @@
     <WarningLevel>4</WarningLevel>
   </PropertyGroup>
   <ItemGroup>
+    <Reference Include="EntityFramework, Version=6.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089" />
     <Reference Include="Newtonsoft.Json, Version=6.0.0.0, Culture=neutral, PublicKeyToken=30ad4fe6b2a6aeed, processorArchitecture=MSIL">
       <HintPath>..\packages\Newtonsoft.Json.6.0.4\lib\net45\Newtonsoft.Json.dll</HintPath>
     </Reference>
@@ -51,15 +52,22 @@
     <Compile Include="Common\TextReader.cs" />
     <Compile Include="Common\SystemConstants.cs" />
     <Compile Include="Common\IGenericService.cs" />
+    <Compile Include="Impl\CategoryMasterService.cs" />
+    <Compile Include="Impl\RestaurantCategoryMappingService.cs" />
     <Compile Include="Impl\PermissionService.cs" />
+    <Compile Include="Impl\PictureService.cs" />
     <Compile Include="Impl\RestaurantCouponMasterService.cs" />
+    <Compile Include="Impl\RestaurantDishesService.cs" />
     <Compile Include="Impl\RestaurantLocationService.cs" />
     <Compile Include="Impl\RestaurantService.cs" />
     <Compile Include="Impl\RestaurantsImagesService.cs" />
     <Compile Include="Impl\RestaurantTablesService.cs" />
     <Compile Include="Impl\RolesService.cs" />
     <Compile Include="Impl\UsersService.cs" />
+    <Compile Include="Interface\IRestaurantCategoryMappingService.cs" />
+    <Compile Include="Interface\ICategoryMasterService.cs" />
     <Compile Include="Interface\IActionService.cs" />
+    <Compile Include="Interface\IPictureService.cs" />
     <Compile Include="Interface\IRestaurantCouponMasterService.cs" />
     <Compile Include="Interface\IPermissionService.cs" />
     <Compile Include="Interface\IRestaurantLocationService.cs" />
@@ -68,6 +76,7 @@
     <Compile Include="Interface\IRestaurantService.cs" />
     <Compile Include="Interface\IRolesService.cs" />
     <Compile Include="Interface\IUsersService.cs" />
+    <Compile Include="Interface\IRestaurantDishesService.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
   </ItemGroup>
   <ItemGroup>

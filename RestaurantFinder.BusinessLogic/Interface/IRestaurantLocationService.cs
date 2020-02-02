@@ -8,7 +8,7 @@ using System.Threading.Tasks;
 
 namespace RestaurantFinder.BusinessLogic.Interface
 {
-    interface IRestaurantLocationService :IGenericService<RestaurantLocation>
+   public interface IRestaurantLocationService :IGenericService<RestaurantLocation>
     {
 
 }

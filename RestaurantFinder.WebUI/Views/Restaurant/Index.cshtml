@@ -6,77 +6,82 @@
 
 
 
+    @if (Model.Count()>0)
+    {
+    <div class="row">
+        <div class="col-12">
+            <div class="card-box">
+                <h4 class="header-title">All Resturant </h4>
+                <p class="sub-header">
+
+                </p>
+                <table id="datatable-buttons" class="table table-striped table-bordered dt-responsive nowrap" style="border-collapse: collapse; border-spacing: 0; width: 100%;">
+                    <thead>
+                        <tr>
+                            <th>Name</th>
+                            <th>AddressLine1</th>
+                            <th>AddressLine12</th>
+                            <th>Area</th>
+                            <th>PinCode</th>
+                            <th>PinCode</th>
+                            <th>Action</th>
 
 
-<div class="row">
-    <div class="col-12">
-        <div class="card-box">
-            <h4 class="header-title">All Resturant </h4>
-            <p class="sub-header">
-              
-            </p>
-            <table id="datatable-buttons" class="table table-striped table-bordered dt-responsive nowrap" style="border-collapse: collapse; border-spacing: 0; width: 100%;">
-                <thead>
-                    <tr>
-                        <th>Name</th>
-                        <th>AddressLine1</th>
-                        <th>AddressLine12</th>
-                        <th>Area</th>
-                        <th>PinCode</th>
-                        <th>PinCode</th>
-                        <th>Action</th>
+                        </tr>
+                    </thead>
 
+                    <tbody>
+                        @foreach (var item in Model)
+                        {
+                            <tr>
+                                <td>@item.Name</td>
+                                <td>@item.AddressLine1</td>
+                                <td>@item.AddressLine2</td>
+                                <td>@item.Area</td>
+                                <td>@item.PinCode</td>
+                                <td>@item.State</td>
+                                <td>
 
-                    </tr>
-                </thead>
+                                    <a href="@Url.Action("Edit", "Restaurant", new { id = item.ID })" class="btn btn-danger">
+                                        <span class="fas fa-edit mr-2"></span>
 
-                <tbody>
-                    @foreach (var item in Model)
-                    {
-                    <tr>
-                        <td>@item.Name</td>
-                        <td>@item.AddressLine1</td>
-                        <td>@item.AddressLine2</td>
-                        <td>@item.Area</td>
-                        <td>@item.PinCode</td>
-                        <td>@item.State</td>
-                        <td>
+                                    </a>
+                                    |
+                                    <a href="@Url.Action("Delete", "Restaurant", new { id = item.ID })" class="btn btn-danger">
+                                        <span class="fas fa-trash mr-2"></span>
 
-                            <a href="@Url.Action("Edit","Restaurant" , new { id = item.ID })" class="btn btn-danger">
-                                <span class="fas fa-edit mr-2"></span>
+                                    </a>
+                                    |
+                                    <a href="@Url.Action("Index", "Restaurant", new { id = item.ID })" class="btn btn-danger">
+                                        <span class="fas fa-list mr-2"></span>
 
-                            </a>
-                            |
-                            <a href="@Url.Action("Delete","Restaurant" , new { id = item.ID})" class="btn btn-danger">
-                                <span class="fas fa-trash mr-2"></span>
-
-                            </a>
-                            |
-                            <a href="@Url.Action("Index","Restaurant" , new { id = item.ID })" class="btn btn-danger">
-                                <span class="fas fa-list mr-2"></span>
-
-                            </a>
+                                    </a>
 
 
 
-                        </td>
-                    </tr>
+                                </td>
+                            </tr>
 
-                    }
+                        }
 
 
 
 
                     </tbody>
-            </table>
+                </table>
+            </div>
         </div>
+    </div> <!-- end row -->
+}
+
+
+
+else
+{
+    <div class="alert alert-info" role="alert">
+      Record Not Found
     </div>
-</div> <!-- end row -->
-
-
-
-
-
+}
 
 @section scripts
 {
