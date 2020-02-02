@@ -47,6 +47,7 @@
     <Compile Include="CategoryMaster.cs" />
     <Compile Include="Permission.cs" />
     <Compile Include="Action.cs" />
+    <Compile Include="RestaurantCategoryMapping.cs" />
     <Compile Include="RestaurantCouponsMaster.cs" />
     <Compile Include="RestaurantDishes.cs" />
     <Compile Include="RestaurantimagesVm.cs" />

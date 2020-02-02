@@ -6,9 +6,10 @@ using System.Threading.Tasks;
 
 namespace RestaurantFinder.Models
 {
-    public class CategoryMaster: BaseModel
+    public class RestaurantCategoryMapping: BaseModel
     {
-        public string Name { get; set; }
+        public int RestaurantId { get; set; }
 
+        public int CategoryId { get; set; }
     }
 }
