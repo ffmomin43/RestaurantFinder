@@ -10,5 +10,6 @@ namespace RestaurantFinder.Models
     {
         public string Name { get; set; }
 
+        public string ThumbnailImageUrl { get; set; }
     }
 }
