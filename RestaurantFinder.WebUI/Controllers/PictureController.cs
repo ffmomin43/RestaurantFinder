@@ -35,7 +35,7 @@ namespace RestaurantFinder.WebUI.Controllers
                 pic.SaveAs(path);
                 var dbpic = new Picture();
                 dbpic.url = picname;
-                int picid =pictureService.Value.insert(dbpic);
+                int picid =pictureService.Value.inserted(dbpic);
 
                 pictureresult.Add(new { Id = picid, Urlpic = picname });
             }
