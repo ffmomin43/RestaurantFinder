@@ -61,6 +61,7 @@
     <Compile Include="Datatables\ISortCriteria.cs" />
     <Compile Include="Datatables\FieldSortOrder.cs" />
     <Compile Include="Impl\ActionRepository.cs" />
+    <Compile Include="Impl\CategoryMasterRepository.cs" />
     <Compile Include="Impl\PermissionRepository.cs" />
     <Compile Include="Impl\RestaurantCouponMasterRepository.cs" />
     <Compile Include="Impl\RestaurantLocationRepository.cs" />
@@ -69,6 +70,7 @@
     <Compile Include="Impl\RestaurantTablesRepository.cs" />
     <Compile Include="Impl\RolesRepository.cs" />
     <Compile Include="Impl\UsersRepository.cs" />
+    <Compile Include="Interface\ICategoryMasterRepository.cs" />
     <Compile Include="Interface\IActionRepository.cs" />
     <Compile Include="Interface\IPermissionRepository.cs" />
     <Compile Include="Interface\IRestaurantsImagesRepository.cs" />
