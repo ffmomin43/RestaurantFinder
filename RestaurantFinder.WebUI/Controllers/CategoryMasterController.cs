@@ -1,6 +1,8 @@
 ﻿using RestaurantFinder.BusinessLogic.Interface;
+using RestaurantFinder.Models;
 using System;
 using System.Collections.Generic;
+using System.IO;
 using System.Linq;
 using System.Web;
 using System.Web.Mvc;
@@ -34,16 +36,31 @@ namespace RestaurantFinder.WebUI.Controllers
         // GET: CategoryMaster/Create
         public ActionResult Create()
         {
+
             return View();
         }
 
         // POST: CategoryMaster/Create
         [HttpPost]
-        public ActionResult Create(FormCollection collection)
+        public ActionResult Create(CategoryMaster categoryMaster)
         {
             try
             {
-                // TODO: Add insert logic here
+
+                if (categoryMaster.imagefile != null)
+                {
+                    string filename = Path.GetFileNameWithoutExtension(categoryMaster.imagefile.FileName);
+                    string extentsion = Path.GetExtension(categoryMaster.imagefile.FileName);
+                    filename = filename + DateTime.Now.ToString("yymmssfff") + extentsion;
+                    categoryMaster.ThumbnailImageUrl = "/Content/images/" + filename;
+                    filename = Path.Combine(Server.MapPath("~/Content/images/"), filename);
+                    categoryMaster.imagefile.SaveAs(filename);
+                    
+
+
+                    this.categoryMasterService.Value.Add(categoryMaster);
+                    this.categoryMasterService.Value.Save();
+                }
 
                 return RedirectToAction("Index");
             }

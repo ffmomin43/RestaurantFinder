@@ -32,6 +32,7 @@ namespace RestaurantFinder.WebUI.APIController
         }
 
         // GET: api/Restaurant
+        [Route("api/Restaurant")]
         public IEnumerable<Restaurant> Get()
         {
             
