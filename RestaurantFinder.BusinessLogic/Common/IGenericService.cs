@@ -11,8 +11,7 @@ namespace RestaurantFinder.BusinessLogic.Common
         void Add(T entity);
         void Delete(T entity);
         void Edit(T entity);
-        //add Picture list
-        int insert(T entity);
+        
        
         void Save();
     }

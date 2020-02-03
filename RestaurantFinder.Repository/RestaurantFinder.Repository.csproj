@@ -137,6 +137,7 @@
     <Compile Include="Migrations\202002010904340_updateuserrelation.cs" />
     <Compile Include="Migrations\202002010904340_updateuserrelation.designer.cs">
       <DependentUpon>202002010904340_updateuserrelation.cs</DependentUpon>
+    </Compile>
     <Compile Include="Migrations\202002020847306_category-master.cs" />
     <Compile Include="Migrations\202002020847306_category-master.designer.cs">
       <DependentUpon>202002020847306_category-master.cs</DependentUpon>
@@ -201,6 +202,7 @@
     </EmbeddedResource>
     <EmbeddedResource Include="Migrations\202002010904340_updateuserrelation.resx">
       <DependentUpon>202002010904340_updateuserrelation.cs</DependentUpon>
+    </EmbeddedResource>
     <EmbeddedResource Include="Migrations\202002020847306_category-master.resx">
       <DependentUpon>202002020847306_category-master.cs</DependentUpon>
     </EmbeddedResource>

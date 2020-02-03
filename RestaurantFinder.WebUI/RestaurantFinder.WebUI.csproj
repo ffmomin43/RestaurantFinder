@@ -526,7 +526,7 @@
   </ItemGroup>
   <ItemGroup>
     <ProjectReference Include="..\RestaurantFinder.BusinessLogic\RestaurantFinder.BusinessLogic.csproj">
-      <Project>{EDFB83B5-BF2B-490E-BB51-5654DFC635A0}</Project>
+      <Project>{edfb83b5-bf2b-490e-bb51-5654dfc635a0}</Project>
       <Name>RestaurantFinder.BusinessLogic</Name>
     </ProjectReference>
     <ProjectReference Include="..\RestaurantFinder.Models\RestaurantFinder.Models.csproj">
@@ -534,7 +534,7 @@
       <Name>RestaurantFinder.Models</Name>
     </ProjectReference>
     <ProjectReference Include="..\RestaurantFinder.Repository\RestaurantFinder.Repository.csproj">
-      <Project>{1B2B1EE3-D380-49E1-BE2D-DA8ABC43CC79}</Project>
+      <Project>{1b2b1ee3-d380-49e1-be2d-da8abc43cc79}</Project>
       <Name>RestaurantFinder.Repository</Name>
     </ProjectReference>
   </ItemGroup>

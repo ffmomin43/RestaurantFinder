@@ -80,6 +80,9 @@
     <Compile Include="Properties\AssemblyInfo.cs" />
   </ItemGroup>
   <ItemGroup>
+    <None Include="packages.config" />
+  </ItemGroup>
+  <ItemGroup>
     <ProjectReference Include="..\RestaurantFinder.Models\RestaurantFinder.Models.csproj">
       <Project>{144fb94f-ba6b-4afd-869b-732447511553}</Project>
       <Name>RestaurantFinder.Models</Name>
@@ -88,9 +91,6 @@
       <Project>{1b2b1ee3-d380-49e1-be2d-da8abc43cc79}</Project>
       <Name>RestaurantFinder.Repository</Name>
     </ProjectReference>
-  </ItemGroup>
-  <ItemGroup>
-    <None Include="packages.config" />
   </ItemGroup>
   <Import Project="$(MSBuildToolsPath)\Microsoft.CSharp.targets" />
 </Project>
