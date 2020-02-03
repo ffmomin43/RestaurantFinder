@@ -1,4 +1,5 @@
 ﻿using RestaurantFinder.BusinessLogic.Interface;
+
 using RestaurantFinder.Repository.Interface;
 using System;
 using System.Collections.Generic;
@@ -44,6 +45,8 @@ namespace RestaurantFinder.BusinessLogic.Impl
         {
             return restaurantCategoryMappingRepository.Value.GetAll();
         }
+
+       
 
         public bool IsExist(int restaurantId, int categoryId)
         {
