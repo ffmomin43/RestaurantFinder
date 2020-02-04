@@ -57,8 +57,8 @@ namespace RestaurantFinder.WebUI.Controllers
                     string filename = Path.GetFileNameWithoutExtension(categoryMaster.imagefile.FileName);
                     string extentsion = Path.GetExtension(categoryMaster.imagefile.FileName);
                     filename = filename + DateTime.Now.ToString("yymmssfff") + extentsion;
-                    categoryMaster.ThumbnailImageUrl = "/Content/images/" + filename;
-                    filename = Path.Combine(Server.MapPath("~/Content/images/"), filename);
+                    categoryMaster.ThumbnailImageUrl = "Images/categories/" + filename;
+                    filename = Path.Combine(Server.MapPath("Images/categories/"), filename);
                     categoryMaster.imagefile.SaveAs(filename);
                     
 
