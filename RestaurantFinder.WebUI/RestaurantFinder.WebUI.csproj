@@ -510,6 +510,7 @@
     <Folder Include="APIModels\" />
     <Folder Include="App_Data\" />
     <Folder Include="Content\images\" />
+    <Folder Include="Images\Restaurant\" />
     <Folder Include="Views\Picture\" />
   </ItemGroup>
   <ItemGroup>

@@ -45,13 +45,14 @@ namespace RestaurantFinder.WebUI.APIController
         {
 
             {
-                var get = from n in restaurantService.Value.GetAll()
+                var get = from  n in  restaurantService.Value.GetAll()
                           join s in restaurantsImage.Value.GetAll() on n.ID equals s.RestaurantId
                           join p in pictureService.Value.GetAll() on s.PictureId equals p.ID
                           select new RestaurantimagesVm
                           {
                               AddressLine1 = n.AddressLine1,
-                              RestaurantsImages = p.url,
+                              id = n.ID,
+                              RestaurantsImages ="/Images/Restaurant/" + p.url,
 
 
                           };
