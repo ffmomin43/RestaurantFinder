@@ -16,6 +16,7 @@ namespace RestaurantFinder.WebUI.APIController
     {
 
         private readonly Lazy<IRestaurantService> restaurantService;
+        private readonly Lazy<IUsersService> usersService;
         private readonly Lazy<IRestaurantsImagesService> restaurantsImages;
         private readonly Lazy<ICategoryMasterService> categoryMasterService;
         private readonly Lazy<ILoggerFacade<RestaurantController>> logger;
@@ -23,15 +24,18 @@ namespace RestaurantFinder.WebUI.APIController
         public RestaurantController(
             Lazy<IRestaurantService> restaurantService, 
             Lazy<ILoggerFacade<RestaurantController>> logger,
-            Lazy<ICategoryMasterService> categoryMasterService
+            Lazy<ICategoryMasterService> categoryMasterService,
+                        Lazy<IUsersService> usersService          
             )
         {
             this.restaurantService = restaurantService;
             this.categoryMasterService = categoryMasterService;
+            this.usersService = usersService;
             this.logger = logger;
         }
 
         // GET: api/Restaurant
+        [Route("api/Restaurant")]
         public IEnumerable<Restaurant> Get()
         {
             
@@ -80,5 +84,23 @@ namespace RestaurantFinder.WebUI.APIController
         {
             return categoryMasterService.Value.GetAll();
         }
+        [Route("api/login")]
+        public bool Get(string user,string pass)
+        {
+           if( usersService.Value.Checklogin(user, pass))
+            {
+
+                return true;
+
+            }
+           else
+            {
+
+                return false;
+            }
+        }
+
     }
+
+
 }
