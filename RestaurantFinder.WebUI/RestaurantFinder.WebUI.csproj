@@ -504,6 +504,7 @@
     <Content Include="Views\Login\DashBoard.cshtml" />
     <Content Include="Views\CategoryMaster\Index.cshtml" />
     <Content Include="Views\CategoryMaster\Create.cshtml" />
+    <Content Include="Views\CategoryMaster\Edit.cshtml" />
   </ItemGroup>
   <ItemGroup>
     <Folder Include="APIModels\" />
