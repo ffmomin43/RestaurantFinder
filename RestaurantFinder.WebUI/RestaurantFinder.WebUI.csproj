@@ -98,11 +98,11 @@
     <Reference Include="System.Web.Http, Version=5.2.7.0, Culture=neutral, PublicKeyToken=31bf3856ad364e35, processorArchitecture=MSIL">
       <HintPath>..\packages\Microsoft.AspNet.WebApi.Core.5.2.7\lib\net45\System.Web.Http.dll</HintPath>
     </Reference>
-    <Reference Include="System.Web.Http.Cors, Version=5.2.7.0, Culture=neutral, PublicKeyToken=31bf3856ad364e35, processorArchitecture=MSIL">
-      <HintPath>..\packages\Microsoft.AspNet.WebApi.Cors.5.2.7\lib\net45\System.Web.Http.Cors.dll</HintPath>
+    <Reference Include="System.Web.Http.Cors, Version=5.2.6.0, Culture=neutral, PublicKeyToken=31bf3856ad364e35, processorArchitecture=MSIL">
+      <HintPath>..\packages\Microsoft.AspNet.WebApi.Cors.5.2.6\lib\net45\System.Web.Http.Cors.dll</HintPath>
     </Reference>
-    <Reference Include="System.Web.Http.WebHost, Version=5.2.7.0, Culture=neutral, PublicKeyToken=31bf3856ad364e35, processorArchitecture=MSIL">
-      <HintPath>..\packages\Microsoft.AspNet.WebApi.WebHost.5.2.7\lib\net45\System.Web.Http.WebHost.dll</HintPath>
+    <Reference Include="System.Web.Http.WebHost, Version=5.2.6.0, Culture=neutral, PublicKeyToken=31bf3856ad364e35, processorArchitecture=MSIL">
+      <HintPath>..\packages\Microsoft.AspNet.WebApi.WebHost.5.2.6\lib\net45\System.Web.Http.WebHost.dll</HintPath>
     </Reference>
     <Reference Include="System.Xml.Linq" />
     <Reference Include="System.Web" />
@@ -504,11 +504,13 @@
     <Content Include="Views\Login\DashBoard.cshtml" />
     <Content Include="Views\CategoryMaster\Index.cshtml" />
     <Content Include="Views\CategoryMaster\Create.cshtml" />
+    <Content Include="Views\CategoryMaster\Edit.cshtml" />
   </ItemGroup>
   <ItemGroup>
     <Folder Include="APIModels\" />
     <Folder Include="App_Data\" />
     <Folder Include="Content\images\" />
+    <Folder Include="Images\Restaurant\" />
     <Folder Include="Views\Picture\" />
   </ItemGroup>
   <ItemGroup>
@@ -526,7 +528,7 @@
   </ItemGroup>
   <ItemGroup>
     <ProjectReference Include="..\RestaurantFinder.BusinessLogic\RestaurantFinder.BusinessLogic.csproj">
-      <Project>{EDFB83B5-BF2B-490E-BB51-5654DFC635A0}</Project>
+      <Project>{edfb83b5-bf2b-490e-bb51-5654dfc635a0}</Project>
       <Name>RestaurantFinder.BusinessLogic</Name>
     </ProjectReference>
     <ProjectReference Include="..\RestaurantFinder.Models\RestaurantFinder.Models.csproj">
@@ -534,7 +536,7 @@
       <Name>RestaurantFinder.Models</Name>
     </ProjectReference>
     <ProjectReference Include="..\RestaurantFinder.Repository\RestaurantFinder.Repository.csproj">
-      <Project>{1B2B1EE3-D380-49E1-BE2D-DA8ABC43CC79}</Project>
+      <Project>{1b2b1ee3-d380-49e1-be2d-da8abc43cc79}</Project>
       <Name>RestaurantFinder.Repository</Name>
     </ProjectReference>
   </ItemGroup>

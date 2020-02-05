@@ -10,5 +10,6 @@ namespace RestaurantFinder.BusinessLogic.Interface
 {
  public   interface IPictureService : IGenericService<Picture>
     {
+        int inserted(Picture picture);
     }
 }

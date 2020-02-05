@@ -16,38 +16,83 @@ namespace RestaurantFinder.WebUI.APIController
     {
 
         private readonly Lazy<IRestaurantService> restaurantService;
-        private readonly Lazy<IRestaurantsImagesService> restaurantsImages;
+        private readonly Lazy<IUsersService> usersService;
+        private readonly Lazy<IRestaurantsImagesService> restaurantsImage;
         private readonly Lazy<ICategoryMasterService> categoryMasterService;
+        private readonly Lazy<IPictureService> pictureService;
         private readonly Lazy<ILoggerFacade<RestaurantController>> logger;
-        
+
         public RestaurantController(
-            Lazy<IRestaurantService> restaurantService, 
+            Lazy<IRestaurantService> restaurantService,
             Lazy<ILoggerFacade<RestaurantController>> logger,
-            Lazy<ICategoryMasterService> categoryMasterService
+            Lazy<ICategoryMasterService> categoryMasterService,
+            Lazy<IRestaurantsImagesService> restaurantsImage,
+             Lazy<IPictureService> pictureService,
+                        Lazy<IUsersService> usersService
             )
         {
             this.restaurantService = restaurantService;
             this.categoryMasterService = categoryMasterService;
+            this.restaurantsImage = restaurantsImage;
+            this.usersService = usersService;
+            this.pictureService = pictureService;
             this.logger = logger;
         }
 
         // GET: api/Restaurant
-        public IEnumerable<Restaurant> Get()
+        [Route("api/Restaurant")]
+        public IEnumerable<RestaurantimagesVm> Get()
         {
-            
-            return restaurantService.Value.GetAll();
-        }
 
+            {
+                var get = from n in restaurantService.Value.GetAll()
+                          join s in restaurantsImage.Value.GetAll() on n.ID equals s.RestaurantId
+                          join p in pictureService.Value.GetAll() on s.PictureId equals p.ID
+                          select new RestaurantimagesVm
+                          {
+                              Name = n.Name,
+                              AddressLine1 = n.AddressLine1,
+                              AddressLine2 = n.AddressLine2,
+                              Area=n.Area,
+                              City=n.City,
+                              PinCode=n.PinCode,
+                              State=n.State,
+                              id = n.ID,
+                              RestaurantsImages ="/Images/Restaurant/" + p.url,
+
+
+                          };
+                return get;
+            }
+        }
         // GET: api/Restaurant/5
-        public Restaurant Get(Guid id)
+        public IEnumerable<RestaurantimagesVm> get(int id)
         {
-           
-            return restaurantService.Value.GetAll().Where(x => x.UniqueId == id).Single();
 
+            {
+                var get = from n in restaurantService.Value.GetAll().Where(x=>x.ID==id)
+                          join s in restaurantsImage.Value.GetAll() on n.ID equals s.RestaurantId
+                          join p in pictureService.Value.GetAll() on s.PictureId equals p.ID
+                          select new RestaurantimagesVm
+                          {
+                              Name = n.Name,
+                              AddressLine1 = n.AddressLine1,
+                              AddressLine2 = n.AddressLine2,
+                              Area = n.Area,
+                              City = n.City,
+                              PinCode = n.PinCode,
+                              State = n.State,
+                              id = n.ID,
+                              RestaurantsImages = "/Images/Restaurant/" + p.url,
+
+
+                          };
+                return get;
+            }
+          
         }
-
-        // POST: api/Restaurant
-        public string Post([FromBody]Restaurant restaurant)
+            // POST: api/Restaurant
+            public string Post([FromBody]Restaurant restaurant)
         {
             try
             {
@@ -80,5 +125,23 @@ namespace RestaurantFinder.WebUI.APIController
         {
             return categoryMasterService.Value.GetAll();
         }
+        [Route("api/login")]
+        public bool Get(string user,string pass)
+        {
+           if( usersService.Value.Checklogin(user, pass))
+            {
+
+                return true;
+
+            }
+           else
+            {
+
+                return false;
+            }
+        }
+
     }
+
+
 }

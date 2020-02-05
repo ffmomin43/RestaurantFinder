@@ -31,11 +31,11 @@ namespace RestaurantFinder.WebUI.Controllers
             {
                 var pic = picturess[i];
                 var picname = Guid.NewGuid() + Path.GetExtension(pic.FileName);
-                var path = Server.MapPath("~/Content/images/") + picname;
+                var path = Server.MapPath("~/Images/Restaurant/") + picname;
                 pic.SaveAs(path);
                 var dbpic = new Picture();
                 dbpic.url = picname;
-                int picid =pictureService.Value.insert(dbpic);
+                int picid =pictureService.Value.inserted(dbpic);
 
                 pictureresult.Add(new { Id = picid, Urlpic = picname });
             }

@@ -17,7 +17,7 @@ namespace RestaurantFinder.BusinessLogic.Impl
         {
             this.pictureRepository = pictureRepository;
         }
-        public int insert(Models.Picture entity)
+        public int inserted(Models.Picture entity)
         {
            
             

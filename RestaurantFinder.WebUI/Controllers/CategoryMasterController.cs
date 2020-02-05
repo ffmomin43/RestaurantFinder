@@ -2,6 +2,7 @@
 using RestaurantFinder.Models;
 using System;
 using System.Collections.Generic;
+using System.IO;
 using System.Linq;
 using System.Web;
 using System.Web.Mvc;
@@ -35,6 +36,7 @@ namespace RestaurantFinder.WebUI.Controllers
         // GET: CategoryMaster/Create
         public ActionResult Create()
         {
+
             return View();
         }
 
@@ -45,10 +47,25 @@ namespace RestaurantFinder.WebUI.Controllers
             try
             {
                 // TODO: Add insert logic here
-                categoryMaster.UniqueId = Guid.NewGuid();
-                categoryMaster.CreatedBy = "System";
-                categoryMasterService.Value.Add(categoryMaster);
-                categoryMasterService.Value.Save();
+               
+                
+
+                if (categoryMaster.imagefile != null)
+                {
+                    categoryMaster.UniqueId = Guid.NewGuid();
+                    categoryMaster.CreatedBy = "System";
+                    string filename = Path.GetFileNameWithoutExtension(categoryMaster.imagefile.FileName);
+                    string extentsion = Path.GetExtension(categoryMaster.imagefile.FileName);
+                    filename = filename + DateTime.Now.ToString("yymmssfff") + extentsion;
+                    categoryMaster.ThumbnailImageUrl = "/Images/categories/" + filename;
+                    filename = Path.Combine(Server.MapPath("~/Images/categories/"), filename);
+                    categoryMaster.imagefile.SaveAs(filename);
+                    
+
+
+                    this.categoryMasterService.Value.Add(categoryMaster);
+                    this.categoryMasterService.Value.Save();
+                }
 
                 return RedirectToAction("Index");
             }
@@ -61,16 +78,33 @@ namespace RestaurantFinder.WebUI.Controllers
         // GET: CategoryMaster/Edit/5
         public ActionResult Edit(int id)
         {
-            return View();
+           var CategoryMaster=categoryMasterService.Value.GetAll().Where(x=>x.ID==id).SingleOrDefault();
+            return View(CategoryMaster);
         }
 
         // POST: CategoryMaster/Edit/5
         [HttpPost]
-        public ActionResult Edit(int id, FormCollection collection)
+        public ActionResult Edit(CategoryMaster categoryMaster)
         {
             try
             {
-                // TODO: Add update logic here
+
+                if (categoryMaster.imagefile != null)
+                {
+                    categoryMaster.UniqueId = Guid.NewGuid();
+                    categoryMaster.CreatedBy = "System";
+                    string filename = Path.GetFileNameWithoutExtension(categoryMaster.imagefile.FileName);
+                    string extentsion = Path.GetExtension(categoryMaster.imagefile.FileName);
+                    filename = filename + DateTime.Now.ToString("yymmssfff") + extentsion;
+                    categoryMaster.ThumbnailImageUrl = "/Images/categories/" + filename;
+                    filename = Path.Combine(Server.MapPath("~/Images/categories/"), filename);
+                    categoryMaster.imagefile.SaveAs(filename);
+
+
+
+                    this.categoryMasterService.Value.Edit(categoryMaster);
+                    this.categoryMasterService.Value.Save();
+                }
 
                 return RedirectToAction("Index");
             }
