@@ -16,6 +16,7 @@ namespace RestaurantFinder.WebUI.APIController
     {
 
         private readonly Lazy<IRestaurantService> restaurantService;
+        private readonly Lazy<IRestaurantLocationService> restaurantLocationService;
         private readonly Lazy<IUsersService> usersService;
         private readonly Lazy<IRestaurantsImagesService> restaurantsImage;
         private readonly Lazy<ICategoryMasterService> categoryMasterService;
@@ -28,13 +29,16 @@ namespace RestaurantFinder.WebUI.APIController
             Lazy<ICategoryMasterService> categoryMasterService,
             Lazy<IRestaurantsImagesService> restaurantsImage,
              Lazy<IPictureService> pictureService,
+              Lazy<IRestaurantLocationService> restaurantLocationService,
                         Lazy<IUsersService> usersService
             )
         {
             this.restaurantService = restaurantService;
             this.categoryMasterService = categoryMasterService;
             this.restaurantsImage = restaurantsImage;
+            this.restaurantLocationService = restaurantLocationService;
             this.usersService = usersService;
+
             this.pictureService = pictureService;
             this.logger = logger;
         }
@@ -111,8 +115,16 @@ namespace RestaurantFinder.WebUI.APIController
         }
 
         // PUT: api/Restaurant/5
-        public void Put(int id, [FromBody]string value)
+        [Route("api/updatelocation")]
+        public void Put(int id, [FromBody]RestaurantLocation restaurantLocation)
         {
+
+      var res =   restaurantLocationService.Value.GetAll().Where(x => x.ID==id).SingleOrDefault();
+            res.RestaurantId = restaurantLocation.RestaurantId;
+            res.Longitude = restaurantLocation.Longitude;
+            res.Latitude = restaurantLocation.Latitude;
+            restaurantLocationService.Value.Edit(restaurantLocation);
+            restaurantLocationService.Value.Save();
         }
 
         // DELETE: api/Restaurant/5
