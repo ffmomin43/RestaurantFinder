@@ -154,6 +154,10 @@
     <Compile Include="Migrations\202002021932496_saveall.designer.cs">
       <DependentUpon>202002021932496_saveall.cs</DependentUpon>
     </Compile>
+    <Compile Include="Migrations\202002051324364_resto-thumbnail-added.cs" />
+    <Compile Include="Migrations\202002051324364_resto-thumbnail-added.designer.cs">
+      <DependentUpon>202002051324364_resto-thumbnail-added.cs</DependentUpon>
+    </Compile>
     <Compile Include="Migrations\Configuration.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
   </ItemGroup>
@@ -218,6 +222,9 @@
     </EmbeddedResource>
     <EmbeddedResource Include="Migrations\202002021932496_saveall.resx">
       <DependentUpon>202002021932496_saveall.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Migrations\202002051324364_resto-thumbnail-added.resx">
+      <DependentUpon>202002051324364_resto-thumbnail-added.cs</DependentUpon>
     </EmbeddedResource>
   </ItemGroup>
   <Import Project="$(MSBuildToolsPath)\Microsoft.CSharp.targets" />

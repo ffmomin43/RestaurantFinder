@@ -3,6 +3,7 @@ using RestaurantFinder.Models;
 using RestaurantFinder.WebUI.Common.logger;
 using System;
 using System.Collections.Generic;
+using System.IO;
 using System.Linq;
 using System.Web;
 using System.Web.Mvc;
@@ -46,9 +47,7 @@ namespace RestaurantFinder.WebUI.Controllers
 
         // POST: Restaurant/Create
         [HttpPost]
-        public ActionResult Create(RestaurantimagesVm  model)
-
-
+        public ActionResult Create(Restaurant  model)
         {
             try
                 
@@ -63,19 +62,31 @@ namespace RestaurantFinder.WebUI.Controllers
                 restaurant.City = model.City;
                 restaurant.PinCode = model.PinCode;
                 restaurant.State = model.State;
-               restaurant.RestaurantsImages = new List<RestaurantsImages>();
 
-                if (!string.IsNullOrEmpty(model.RestaurantsImages))
-                {
-                    restaurant.UniqueId = Guid.NewGuid();
-                var picidget =model.RestaurantsImages.Split(new char[] { ',' }, StringSplitOptions.RemoveEmptyEntries).Select(Id => int.Parse(Id)).ToList();
-                restaurant.RestaurantsImages = new List<RestaurantsImages>();
-                restaurant.RestaurantsImages.AddRange(picidget.Select(x => new RestaurantsImages { PictureId = x }).ToList());
+                string filename = Path.GetFileNameWithoutExtension(model.imagefile.FileName);
+                string extentsion = Path.GetExtension(model.imagefile.FileName);
+                filename = filename + DateTime.Now.ToString("yymmssfff") + extentsion;
 
-                }
+                restaurant.ThumbnailImageUrl = "/Images/RestaurantBanners/" + filename;
+                filename = Path.Combine(Server.MapPath("~/Images/RestaurantBanners/"), filename);
+
+                model.imagefile.SaveAs(filename);
+
+                //restaurant.RestaurantsImages = new List<RestaurantsImages>();
+
+                //if (!string.IsNullOrEmpty(model.RestaurantsImages))
+                //{
+                //    restaurant.UniqueId = Guid.NewGuid();
+                //var picidget =model.RestaurantsImages.Split(new char[] { ',' }, StringSplitOptions.RemoveEmptyEntries).Select(Id => int.Parse(Id)).ToList();
+                //restaurant.RestaurantsImages = new List<RestaurantsImages>();
+                //restaurant.RestaurantsImages.AddRange(picidget.Select(x => new RestaurantsImages { PictureId = x }).ToList());
+
+                //}
+
                 this.restaurantService.Value.Add(restaurant);
                 this.restaurantService.Value.Save();
-                           return RedirectToAction("Index");
+                           
+                return RedirectToAction("Index");
 
             }
 

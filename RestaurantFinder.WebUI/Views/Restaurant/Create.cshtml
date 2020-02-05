@@ -1,4 +1,4 @@
-﻿
+﻿@model RestaurantFinder.Models.Restaurant
 @{
     ViewBag.Title = "Create";
     Layout = "~/Views/Shared/_Layout.cshtml";
@@ -15,7 +15,7 @@
                             .
                         </p>
 
-                        <form   id="createform" method="post" class="parsley-examples" data-parsley-validate novalidate>
+                        <form   id="createform" method="post" enctype="multipart/form-data" class="parsley-examples" data-parsley-validate novalidate >
                             <div class="form-group">
                                 <label for="userName">Resturant Name<span class="text-danger">*</span></label>
                                 <input type="text" name="Name" parsley-trigger="change" required
@@ -56,7 +56,7 @@
                             <label>
                                Select Pictures
                             </label>
-                            <input id="Resturantpicture" type="file" class="form-control" name="restaurantPicture" multiple />
+                            <input id="Resturantpicture" type="file" class="form-control" name="imagefile" />
                             <br />
                             <div id="picturearea"></div>
                             <input type="hidden" name="RestaurantsImages" id="picid" />

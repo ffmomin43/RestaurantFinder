@@ -3,6 +3,7 @@ using System.Collections.Generic;
 using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
+using System.Web;
 
 namespace RestaurantFinder.Models
 {
@@ -23,6 +24,8 @@ namespace RestaurantFinder.Models
         public string City { get; set; }
         public int id { get; set; }
         public string RestaurantsImages { get; set; }
+
+
         public List<RestaurantsImages> restaurantsImage { get; set; }
 
 

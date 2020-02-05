@@ -4,6 +4,7 @@ using System.ComponentModel.DataAnnotations.Schema;
 using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
+using System.Web;
 
 namespace RestaurantFinder.Models
 {
@@ -23,6 +24,11 @@ namespace RestaurantFinder.Models
         public string State { get; set; }
 
         public string City { get; set; }
+
+        public string ThumbnailImageUrl { get; set; }
+
+        public HttpPostedFileBase imagefile { get; set; }
+
         public virtual List<RestaurantsImages> RestaurantsImages { get; set; }
 
     }
