@@ -145,6 +145,7 @@ namespace RestaurantFinder.WebUI.APIController
             }
         }
 
+
         [Route("api/getbylocation")]
         public IEnumerable<Restaurantlocationvm> GetRestaurants(double restorantLat, double resturantLong)
         {
@@ -166,5 +167,5 @@ namespace RestaurantFinder.WebUI.APIController
 
     }
 
-
+    
 }

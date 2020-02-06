@@ -162,6 +162,10 @@
     <Compile Include="Migrations\202002060708078_pending-migration.designer.cs">
       <DependentUpon>202002060708078_pending-migration.cs</DependentUpon>
     </Compile>
+    <Compile Include="Migrations\202002061315198_latlong-datatype-change.cs" />
+    <Compile Include="Migrations\202002061315198_latlong-datatype-change.designer.cs">
+      <DependentUpon>202002061315198_latlong-datatype-change.cs</DependentUpon>
+    </Compile>
     <Compile Include="Migrations\Configuration.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
   </ItemGroup>
@@ -232,6 +236,9 @@
     </EmbeddedResource>
     <EmbeddedResource Include="Migrations\202002060708078_pending-migration.resx">
       <DependentUpon>202002060708078_pending-migration.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Migrations\202002061315198_latlong-datatype-change.resx">
+      <DependentUpon>202002061315198_latlong-datatype-change.cs</DependentUpon>
     </EmbeddedResource>
   </ItemGroup>
   <Import Project="$(MSBuildToolsPath)\Microsoft.CSharp.targets" />
