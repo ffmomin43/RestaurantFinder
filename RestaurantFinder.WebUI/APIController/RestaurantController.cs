@@ -1,5 +1,6 @@
 ﻿using RestaurantFinder.BusinessLogic.Interface;
 using RestaurantFinder.Models;
+using RestaurantFinder.WebUI.Common.helper;
 using RestaurantFinder.WebUI.Common.logger;
 using System;
 using System.Collections.Generic;
@@ -20,6 +21,7 @@ namespace RestaurantFinder.WebUI.APIController
         private readonly Lazy<IRestaurantsImagesService> restaurantsImage;
         private readonly Lazy<ICategoryMasterService> categoryMasterService;
         private readonly Lazy<IPictureService> pictureService;
+        private readonly Lazy<IRestaurantLocationService> restaurantLocationService;
         private readonly Lazy<ILoggerFacade<RestaurantController>> logger;
 
         public RestaurantController(
@@ -27,8 +29,9 @@ namespace RestaurantFinder.WebUI.APIController
             Lazy<ILoggerFacade<RestaurantController>> logger,
             Lazy<ICategoryMasterService> categoryMasterService,
             Lazy<IRestaurantsImagesService> restaurantsImage,
-             Lazy<IPictureService> pictureService,
-                        Lazy<IUsersService> usersService
+            Lazy<IPictureService> pictureService,
+            Lazy<IRestaurantLocationService> restaurantLocationService,
+            Lazy<IUsersService> usersService
             )
         {
             this.restaurantService = restaurantService;
@@ -36,6 +39,7 @@ namespace RestaurantFinder.WebUI.APIController
             this.restaurantsImage = restaurantsImage;
             this.usersService = usersService;
             this.pictureService = pictureService;
+            this.restaurantLocationService = restaurantLocationService;
             this.logger = logger;
         }
 
@@ -139,6 +143,25 @@ namespace RestaurantFinder.WebUI.APIController
 
                 return false;
             }
+        }
+
+        [Route("api/getbylocation")]
+        public IEnumerable<Restaurantlocationvm> GetRestaurants(double restorantLat, double resturantLong)
+        {
+
+            var model = from res in restaurantService.Value.GetAll()
+                        join loc in restaurantLocationService.Value.GetAll() on res.ID equals loc.RestaurantId
+                        select new Restaurantlocationvm()
+                        {
+                            ID = loc.ID,
+                            Latitude = loc.Latitude,
+                            Longitude = loc.Latitude,
+                            LocationName = loc.LocationName,
+                            //Distance = GeoLocation.GetDistanceBetweenPoints(loc.Latitude, loc.Longitude, restorantLat, resturantLong),
+
+                        };
+
+            return model.ToList().OrderBy(x => x.Distance).Take(5);
         }
 
     }
