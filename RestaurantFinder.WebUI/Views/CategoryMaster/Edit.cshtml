@@ -1,7 +1,7 @@
 ﻿@model RestaurantFinder.Models.CategoryMaster
 
 @{
-    ViewBag.Title = "Edit";
+  
     Layout = "~/Views/Shared/_Layout.cshtml";
 }
 
@@ -21,7 +21,15 @@
                             </p>
 
                             <form method="post" class="parsley-examples" data-parsley-validate novalidate>
-                                <img src="@Url.Content(Model.ThumbnailImageUrl)" height="100 " width="200">
+                                @if (Model.ThumbnailImageUrl == null)
+                                {
+                                    <h2 style="color:red">Please Upload Cateogry Image</h2>
+                                }
+                                else
+                                {
+                                    <img src="@Url.Content(Model.ThumbnailImageUrl)" height="100 " width="200">
+                                }
+
                                 <div class="form-group">
                                     @Html.LabelFor(model => model.Name, htmlAttributes: new { @class = "control-label col-md-2" })
                                     <div class="col-md-10">

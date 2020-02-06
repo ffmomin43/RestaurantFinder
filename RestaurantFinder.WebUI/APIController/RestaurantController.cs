@@ -116,16 +116,18 @@ namespace RestaurantFinder.WebUI.APIController
 
         // PUT: api/Restaurant/5
         [Route("api/updatelocation")]
-        public void Put(int id, [FromBody]RestaurantLocation restaurantLocation)
+        public void Put(int restid,long Longitude, long Latitude)
         {
 
-      var res =   restaurantLocationService.Value.GetAll().Where(x => x.ID==id).SingleOrDefault();
-            res.RestaurantId = restaurantLocation.RestaurantId;
-            res.Longitude = restaurantLocation.Longitude;
-            res.Latitude = restaurantLocation.Latitude;
-            restaurantLocationService.Value.Edit(restaurantLocation);
+      var res =   restaurantLocationService.Value.GetAll().Where(x => x.RestaurantId==restid).SingleOrDefault();
+            res.RestaurantId = restid;
+            res.Longitude = Longitude;
+            res.Latitude = Latitude;
+            res.ID = res.ID;
+           
+            restaurantLocationService.Value.Edit(res);
             restaurantLocationService.Value.Save();
-        }
+                    }
 
         // DELETE: api/Restaurant/5
         public void Delete(int id)
