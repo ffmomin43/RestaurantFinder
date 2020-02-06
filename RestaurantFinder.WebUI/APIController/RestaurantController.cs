@@ -168,7 +168,7 @@ namespace RestaurantFinder.WebUI.APIController
                             Latitude = loc.Latitude,
                             Longitude = loc.Latitude,
                             LocationName = loc.LocationName,
-                            //Distance = GeoLocation.GetDistanceBetweenPoints(loc.Latitude, loc.Longitude, restorantLat, resturantLong),
+                            Distance = GeoLocation.GetDistanceBetweenPoints(loc.Latitude, loc.Longitude, restorantLat, resturantLong),
 
                         };
 
