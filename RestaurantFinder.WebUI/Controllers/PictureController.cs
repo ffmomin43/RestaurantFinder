@@ -31,7 +31,7 @@ namespace RestaurantFinder.WebUI.Controllers
             {
                 var pic = picturess[i];
                 var picname = Guid.NewGuid() + Path.GetExtension(pic.FileName);
-                var path = Server.MapPath("~/Images/Restaurant/") + picname;
+                var path = Server.MapPath("~/Images/categories/") + picname;
                 pic.SaveAs(path);
                 var dbpic = new Picture();
                 dbpic.url = picname;
