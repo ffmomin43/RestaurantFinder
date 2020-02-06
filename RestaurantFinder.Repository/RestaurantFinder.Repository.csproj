@@ -158,6 +158,10 @@
     <Compile Include="Migrations\202002051324364_resto-thumbnail-added.designer.cs">
       <DependentUpon>202002051324364_resto-thumbnail-added.cs</DependentUpon>
     </Compile>
+    <Compile Include="Migrations\202002060708078_pending-migration.cs" />
+    <Compile Include="Migrations\202002060708078_pending-migration.designer.cs">
+      <DependentUpon>202002060708078_pending-migration.cs</DependentUpon>
+    </Compile>
     <Compile Include="Migrations\Configuration.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
   </ItemGroup>
@@ -225,6 +229,9 @@
     </EmbeddedResource>
     <EmbeddedResource Include="Migrations\202002051324364_resto-thumbnail-added.resx">
       <DependentUpon>202002051324364_resto-thumbnail-added.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Migrations\202002060708078_pending-migration.resx">
+      <DependentUpon>202002060708078_pending-migration.cs</DependentUpon>
     </EmbeddedResource>
   </ItemGroup>
   <Import Project="$(MSBuildToolsPath)\Microsoft.CSharp.targets" />

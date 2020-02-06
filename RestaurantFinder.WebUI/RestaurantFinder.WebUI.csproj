@@ -173,6 +173,7 @@
     <Compile Include="App_Start\FilterConfig.cs" />
     <Compile Include="App_Start\RouteConfig.cs" />
     <Compile Include="App_Start\WebApiConfig.cs" />
+    <Compile Include="Common\helper\GeoLocation.cs" />
     <Compile Include="Common\HtmlHelperExtension\HtmlHelperProvider.cs" />
     <Compile Include="Common\IoC\ContextModule.cs" />
     <Compile Include="Common\IoC\RepositoryModule.cs" />
