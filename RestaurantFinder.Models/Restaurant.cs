@@ -26,7 +26,7 @@ namespace RestaurantFinder.Models
         public string City { get; set; }
 
         public string ThumbnailImageUrl { get; set; }
-
+        [NotMapped]
         public HttpPostedFileBase imagefile { get; set; }
 
         public virtual List<RestaurantsImages> RestaurantsImages { get; set; }
