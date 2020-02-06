@@ -117,16 +117,18 @@ namespace RestaurantFinder.WebUI.Controllers
         // GET: CategoryMaster/Delete/5
         public ActionResult Delete(int id)
         {
-            return View();
+          var category =categoryMasterService.Value.GetAll().Where(x => x.ID == id).SingleOrDefault();
+            return View(category);
         }
 
         // POST: CategoryMaster/Delete/5
         [HttpPost]
-        public ActionResult Delete(int id, FormCollection collection)
+        public ActionResult Delete(CategoryMaster category)
         {
             try
             {
-                // TODO: Add delete logic here
+                categoryMasterService.Value.Delete(category);
+                categoryMasterService.Value.Save();
 
                 return RedirectToAction("Index");
             }

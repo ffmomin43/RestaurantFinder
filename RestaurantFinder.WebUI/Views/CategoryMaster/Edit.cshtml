@@ -120,7 +120,7 @@
 
     {
         $newimagehtml = $("#imagetemplate").clone();
-        $newimagehtml.find(".image").attr("src", "/Content/images/" + url);
+        $newimagehtml.find(".image").attr("src", "/Images/categories/" + url);
         $newimagehtml.find(".image").attr("data-id", id);
 
         $("#picturearea").append($newimagehtml.html());
