@@ -140,20 +140,11 @@ namespace RestaurantFinder.WebUI.APIController
         {
             return categoryMasterService.Value.GetAll();
         }
+
         [Route("api/login")]
         public bool Get(string user,string pass)
         {
-           if( usersService.Value.Checklogin(user, pass))
-            {
-
-                return true;
-
-            }
-           else
-            {
-
-                return false;
-            }
+            return usersService.Value.Checklogin(user, pass);
         }
 
 
