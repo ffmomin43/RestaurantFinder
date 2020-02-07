@@ -55,5 +55,12 @@ namespace RestaurantFinder.WebUI.Controllers
             ViewBag.allcate = categoryMasterService.Value.GetAll();
             return View();
         }
+        [HttpPost]
+        public ActionResult Create(RestaurantCategoryMapping restaurantCategoryMapping)
+        {
+            categoryMappingService.Value.Add(restaurantCategoryMapping);
+            categoryMappingService.Value.Save();
+            return RedirectToAction("Index");
+        }
     }
 }
