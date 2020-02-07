@@ -50,6 +50,7 @@
     <Compile Include="Action.cs" />
     <Compile Include="Picture.cs" />
     <Compile Include="RestaurantCategoryMapping.cs" />
+    <Compile Include="RestaurantCategorymappingVm.cs" />
     <Compile Include="RestaurantCouponsMaster.cs" />
     <Compile Include="RestaurantDishes.cs" />
     <Compile Include="RestaurantDishesvm.cs" />

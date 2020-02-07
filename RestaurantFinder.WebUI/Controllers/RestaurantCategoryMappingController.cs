@@ -1,4 +1,5 @@
 ﻿using RestaurantFinder.BusinessLogic.Interface;
+using RestaurantFinder.Models;
 using System;
 using System.Collections.Generic;
 using System.Linq;
@@ -12,22 +13,41 @@ namespace RestaurantFinder.WebUI.Controllers
 
         
         private readonly Lazy<ICategoryMasterService> categoryMasterService;
+        private readonly Lazy<IRestaurantCategoryMappingService> categoryMappingService;
         private readonly Lazy<IRestaurantService> restaurantService;
 
         public RestaurantCategoryMappingController(
             Lazy<ICategoryMasterService> categoryMasterService,
+             Lazy<IRestaurantCategoryMappingService> categoryMappingService,
              Lazy<IRestaurantService> restaurantService
             )
         {
             this.categoryMasterService = categoryMasterService;
+            this.categoryMappingService = categoryMappingService;
             this.restaurantService = restaurantService;
         }
 
         // GET: RestaurantCategoryMapping
         public ActionResult Index()
         {
-            
-            return View();
+     var  list=       from catemapping in categoryMappingService.Value.GetAll()
+            join catemaster in categoryMasterService.Value.GetAll()
+            on catemapping.CategoryId equals catemaster.ID
+            join Res in restaurantService.Value.GetAll() on catemapping.RestaurantId
+            equals Res.ID
+            select new RestaurantCategorymappingVm
+
+            {
+
+                CreateDate = catemapping.CreatedDate,
+                categoryName = catemaster.Name,
+                RestaurantName = Res.Name
+
+
+            };
+
+
+            return View(list);
         }
     }
 }

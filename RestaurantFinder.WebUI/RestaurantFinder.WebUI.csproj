@@ -510,6 +510,7 @@
     <Content Include="Views\CategoryMaster\Create.cshtml" />
     <Content Include="Views\CategoryMaster\Edit.cshtml" />
     <Content Include="Views\CategoryMaster\Delete.cshtml" />
+    <Content Include="Views\RestaurantCategoryMapping\Index.cshtml" />
   </ItemGroup>
   <ItemGroup>
     <Folder Include="APIModels\" />
@@ -517,7 +518,6 @@
     <Folder Include="Content\images\" />
     <Folder Include="Images\Restaurant\" />
     <Folder Include="Views\Picture\" />
-    <Folder Include="Views\RestaurantCategoryMapping\" />
   </ItemGroup>
   <ItemGroup>
     <Content Include="fonts\glyphicons-halflings-regular.woff2" />
