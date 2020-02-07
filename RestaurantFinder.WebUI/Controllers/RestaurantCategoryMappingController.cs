@@ -49,5 +49,11 @@ namespace RestaurantFinder.WebUI.Controllers
 
             return View(list);
         }
+        public ActionResult Create()
+        {
+            ViewBag.allres = restaurantService.Value.GetAll();
+            ViewBag.allcate = categoryMasterService.Value.GetAll();
+            return View();
+        }
     }
 }
