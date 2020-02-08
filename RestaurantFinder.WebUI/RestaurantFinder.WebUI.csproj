@@ -184,6 +184,7 @@
     <Compile Include="Controllers\HomeController.cs" />
     <Compile Include="Controllers\LoginController.cs" />
     <Compile Include="Controllers\PictureController.cs" />
+    <Compile Include="Controllers\RestaurantCategoryMappingController.cs" />
     <Compile Include="Controllers\RestaurantController.cs" />
     <Compile Include="Controllers\RestaurantCoupunsController.cs" />
     <Compile Include="Controllers\RestaurantDishesController.cs" />
@@ -509,6 +510,8 @@
     <Content Include="Views\CategoryMaster\Create.cshtml" />
     <Content Include="Views\CategoryMaster\Edit.cshtml" />
     <Content Include="Views\CategoryMaster\Delete.cshtml" />
+    <Content Include="Views\RestaurantCategoryMapping\Index.cshtml" />
+    <Content Include="Views\RestaurantCategoryMapping\Create.cshtml" />
   </ItemGroup>
   <ItemGroup>
     <Folder Include="APIModels\" />
