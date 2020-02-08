@@ -16,12 +16,13 @@ namespace RestaurantFinder.WebUI.APIController
     public class RestaurantController : ApiController
     {
 
-        private readonly Lazy<IRestaurantService> restaurantService;
+       
         private readonly Lazy<IUsersService> usersService;
         private readonly Lazy<IRestaurantCategoryMappingService> categoryMappingService;
         private readonly Lazy<IRestaurantsImagesService> restaurantsImage;
         private readonly Lazy<ICategoryMasterService> categoryMasterService;
         private readonly Lazy<IPictureService> pictureService;
+        private readonly Lazy<IRestaurantService> restaurantService;
         private readonly Lazy<IRestaurantLocationService> restaurantLocationService;
         private readonly Lazy<IHomeBannerImageService> homeBannerImageService;
         private readonly Lazy<ILoggerFacade<RestaurantController>> logger;
@@ -51,15 +52,15 @@ namespace RestaurantFinder.WebUI.APIController
 
         // GET: api/Restaurant
         [Route("api/Restaurant")]
-        public List<Restaurant> GetRestaurant()
+        public IEnumerable<Restaurant> GetRestaurant()
         {
 
-           
-            return    restaurantService.Value.GetAll().ToList();
 
-            
-               
-            
+            return restaurantService.Value.GetAll();
+
+
+
+
         }
         // GET: api/Restaurant/5
         public IEnumerable<RestaurantImagesVm> get(int id)
@@ -205,7 +206,7 @@ namespace RestaurantFinder.WebUI.APIController
                 PinCode = res.PinCode,
                 //restaurantsImage = res.RestaurantsImages,
                 State = res.State,
-                IsTrending = res.IsTrending
+                //IsTrending = res.IsTrending
             });
 
         }
