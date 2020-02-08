@@ -51,29 +51,15 @@ namespace RestaurantFinder.WebUI.APIController
 
         // GET: api/Restaurant
         [Route("api/Restaurant")]
-        public IEnumerable<RestaurantImagesVm> Get()
+        public List<Restaurant> GetRestaurant()
         {
 
-            {
-                var get = from n in restaurantService.Value.GetAll()
-                          join s in restaurantsImage.Value.GetAll() on n.ID equals s.RestaurantId
-                          join p in pictureService.Value.GetAll() on s.PictureId equals p.ID
-                          select new RestaurantImagesVm
-                          {
-                              Name = n.Name,
-                              AddressLine1 = n.AddressLine1,
-                              AddressLine2 = n.AddressLine2,
-                              Area = n.Area,
-                              City = n.City,
-                              PinCode = n.PinCode,
-                              State = n.State,
-                              RestaurantId = n.ID,
-                              RestaurantsImages = "/Images/Restaurant/" + p.url,
+           
+            return    restaurantService.Value.GetAll().ToList();
 
-
-                          };
-                return get;
-            }
+            
+               
+            
         }
         // GET: api/Restaurant/5
         public IEnumerable<RestaurantImagesVm> get(int id)
