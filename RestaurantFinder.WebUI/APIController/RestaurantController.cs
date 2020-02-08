@@ -23,6 +23,7 @@ namespace RestaurantFinder.WebUI.APIController
         private readonly Lazy<ICategoryMasterService> categoryMasterService;
         private readonly Lazy<IPictureService> pictureService;
         private readonly Lazy<IRestaurantLocationService> restaurantLocationService;
+        private readonly Lazy<IHomeBannerImageService> homeBannerImageService;
         private readonly Lazy<ILoggerFacade<RestaurantController>> logger;
 
         public RestaurantController(
@@ -31,9 +32,10 @@ namespace RestaurantFinder.WebUI.APIController
             Lazy<ICategoryMasterService> categoryMasterService,
             Lazy<IRestaurantsImagesService> restaurantsImage,
             Lazy<IRestaurantCategoryMappingService> categoryMappingService,
-        Lazy<IPictureService> pictureService,
+            Lazy<IPictureService> pictureService,
             Lazy<IRestaurantLocationService> restaurantLocationService,
-            Lazy<IUsersService> usersService
+            Lazy<IHomeBannerImageService> homeBannerImageService,
+        Lazy<IUsersService> usersService
             )
         {
             this.restaurantService = restaurantService;
@@ -43,6 +45,7 @@ namespace RestaurantFinder.WebUI.APIController
             this.pictureService = pictureService;
             this.restaurantLocationService = restaurantLocationService;
             this.categoryMappingService = categoryMappingService;
+            this.homeBannerImageService = homeBannerImageService;
             this.logger = logger;
         }
 
@@ -119,7 +122,7 @@ namespace RestaurantFinder.WebUI.APIController
 
         // PUT: api/Restaurant/5
 
-        [Route("api/updatelocation")]        
+        [Route("api/updatelocation")]
         public string Post(LocationRestoRequest locationRestoRequest)
         {
             try
@@ -186,20 +189,26 @@ namespace RestaurantFinder.WebUI.APIController
                        join Res in restaurantService.Value.GetAll() on catemapping.RestaurantId
                        equals Res.ID
                        select new RestaurantCategorymappingVm
-            {
-                RestaurantName=Res.Name,
-                categoryName=catemaster.Name,
-                id=catemapping.ID,
-                CreateDate=catemapping.CreatedDate
-            };
+                       {
+                           RestaurantName = Res.Name,
+                           categoryName = catemaster.Name,
+                           id = catemapping.ID,
+                           CreateDate = catemapping.CreatedDate
+                       };
 
             return list;
+        }
+
+        [Route("api/banner")]
+        public IEnumerable<HomeBannerImage> GetHomeBannerImages()
+        {
+            return homeBannerImageService.Value.GetAll();
         }
 
         [Route("api/trending")]
         public IEnumerable<RestaurantImagesVm> GetTrendingRestaurants()
         {
-            return restaurantService.Value.GetAll().Select(res =>  new RestaurantImagesVm()
+            return restaurantService.Value.GetAll().Select(res => new RestaurantImagesVm()
             {
                 AddressLine1 = res.AddressLine1,
                 AddressLine2 = res.AddressLine2,
@@ -212,7 +221,7 @@ namespace RestaurantFinder.WebUI.APIController
                 State = res.State,
                 IsTrending = res.IsTrending
             });
-                   
+
         }
     }
 
