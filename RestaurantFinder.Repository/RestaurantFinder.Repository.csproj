@@ -176,6 +176,10 @@
     <Compile Include="Migrations\202002081247582_HomeBannerImages-table-added.designer.cs">
       <DependentUpon>202002081247582_HomeBannerImages-table-added.cs</DependentUpon>
     </Compile>
+    <Compile Include="Migrations\202002082222367_savetblRestaurant.cs" />
+    <Compile Include="Migrations\202002082222367_savetblRestaurant.designer.cs">
+      <DependentUpon>202002082222367_savetblRestaurant.cs</DependentUpon>
+    </Compile>
     <Compile Include="Migrations\Configuration.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
   </ItemGroup>
@@ -255,6 +259,9 @@
     </EmbeddedResource>
     <EmbeddedResource Include="Migrations\202002081247582_HomeBannerImages-table-added.resx">
       <DependentUpon>202002081247582_HomeBannerImages-table-added.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Migrations\202002082222367_savetblRestaurant.resx">
+      <DependentUpon>202002082222367_savetblRestaurant.cs</DependentUpon>
     </EmbeddedResource>
   </ItemGroup>
   <Import Project="$(MSBuildToolsPath)\Microsoft.CSharp.targets" />
