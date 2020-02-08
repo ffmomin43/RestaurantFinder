@@ -7,7 +7,7 @@ using System.Web;
 
 namespace RestaurantFinder.Models
 {
-    public class RestaurantimagesVm 
+    public class RestaurantImagesVm 
     {
         public string Name { get; set; }
 
@@ -22,9 +22,14 @@ namespace RestaurantFinder.Models
         public string State { get; set; }
 
         public string City { get; set; }
-        public int id { get; set; }
+
+        public int RestaurantId { get; set; }
+
         public string RestaurantsImages { get; set; }
 
+        public bool IsTrending { get; set; }
+
+        public IEnumerable<string> ImageUrls { get; set; }
 
         public List<RestaurantsImages> restaurantsImage { get; set; }
 
