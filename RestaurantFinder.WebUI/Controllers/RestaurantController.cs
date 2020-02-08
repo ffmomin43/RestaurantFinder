@@ -102,7 +102,7 @@ namespace RestaurantFinder.WebUI.Controllers
         public ActionResult Edit(int id)
         {
             var resturant = restaurantService.Value.GetAll().Where(x => x.ID == id).SingleOrDefault();
-            RestaurantimagesVm model = new RestaurantimagesVm();
+            RestaurantImagesVm model = new RestaurantImagesVm();
             model.Name = resturant.Name;
             model.AddressLine1 = resturant.AddressLine1;
             model.AddressLine2 = resturant.AddressLine2;
@@ -111,18 +111,18 @@ namespace RestaurantFinder.WebUI.Controllers
             model.PinCode = resturant.PinCode;
             model.State = resturant.State;
             model.restaurantsImage = resturant.RestaurantsImages;
-            model.id = resturant.ID;
+            model.RestaurantId = resturant.ID;
             return View(model);
         }
 
         // POST: Restaurant/Edit/5
         [HttpPost]
-        public ActionResult Edit(RestaurantimagesVm model)
+        public ActionResult Edit(RestaurantImagesVm model)
         {
             try
             {
                 Restaurant restaurant = new Restaurant();
-                restaurant.ID = model.id;
+                restaurant.ID = model.RestaurantId;
                 restaurant.Name = model.Name;
                 restaurant.AddressLine1 = model.AddressLine1;
                 restaurant.AddressLine2 = model.AddressLine2;

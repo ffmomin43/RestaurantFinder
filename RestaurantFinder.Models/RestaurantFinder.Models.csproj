@@ -46,6 +46,7 @@
   <ItemGroup>
     <Compile Include="BaseModel.cs" />
     <Compile Include="CategoryMaster.cs" />
+    <Compile Include="HomeBannerImage.cs" />
     <Compile Include="Permission.cs" />
     <Compile Include="Action.cs" />
     <Compile Include="Picture.cs" />

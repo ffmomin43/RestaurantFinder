@@ -61,6 +61,7 @@
     <Compile Include="Datatables\ISortCriteria.cs" />
     <Compile Include="Datatables\FieldSortOrder.cs" />
     <Compile Include="Impl\ActionRepository.cs" />
+    <Compile Include="Impl\HomeBannerImagesRepository.cs" />
     <Compile Include="Impl\RestaurantDishesRepository.cs" />
     <Compile Include="Impl\CategoryMasterRepository.cs" />
     <Compile Include="Impl\RestaurantCategoryMappingRepository.cs" />
@@ -73,6 +74,7 @@
     <Compile Include="Impl\RestaurantTablesRepository.cs" />
     <Compile Include="Impl\RolesRepository.cs" />
     <Compile Include="Impl\UsersRepository.cs" />
+    <Compile Include="Interface\IHomeBannerImagesRepository.cs" />
     <Compile Include="Interface\IRestaurantCategoryMappingRepository.cs" />
     <Compile Include="Interface\ICategoryMasterRepository.cs" />
     <Compile Include="Interface\IActionRepository.cs" />
@@ -166,6 +168,14 @@
     <Compile Include="Migrations\202002061315198_latlong-datatype-change.designer.cs">
       <DependentUpon>202002061315198_latlong-datatype-change.cs</DependentUpon>
     </Compile>
+    <Compile Include="Migrations\202002081203248_IsTrending-column-added.cs" />
+    <Compile Include="Migrations\202002081203248_IsTrending-column-added.designer.cs">
+      <DependentUpon>202002081203248_IsTrending-column-added.cs</DependentUpon>
+    </Compile>
+    <Compile Include="Migrations\202002081247582_HomeBannerImages-table-added.cs" />
+    <Compile Include="Migrations\202002081247582_HomeBannerImages-table-added.designer.cs">
+      <DependentUpon>202002081247582_HomeBannerImages-table-added.cs</DependentUpon>
+    </Compile>
     <Compile Include="Migrations\Configuration.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
   </ItemGroup>
@@ -239,6 +249,12 @@
     </EmbeddedResource>
     <EmbeddedResource Include="Migrations\202002061315198_latlong-datatype-change.resx">
       <DependentUpon>202002061315198_latlong-datatype-change.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Migrations\202002081203248_IsTrending-column-added.resx">
+      <DependentUpon>202002081203248_IsTrending-column-added.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Migrations\202002081247582_HomeBannerImages-table-added.resx">
+      <DependentUpon>202002081247582_HomeBannerImages-table-added.cs</DependentUpon>
     </EmbeddedResource>
   </ItemGroup>
   <Import Project="$(MSBuildToolsPath)\Microsoft.CSharp.targets" />
