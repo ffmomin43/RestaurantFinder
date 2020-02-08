@@ -399,7 +399,6 @@
     <Content Include="fonts\glyphicons-halflings-regular.svg" />
     <Content Include="Global.asax" />
     <Content Include="Content\Site.css" />
-    <Content Include="Images\categories\images1.jpg" />
     <Content Include="Scripts\bootstrap.js" />
     <Content Include="Scripts\bootstrap.min.js" />
     <Content Include="Log4Net.config" />
@@ -517,6 +516,7 @@
     <Folder Include="APIModels\" />
     <Folder Include="App_Data\" />
     <Folder Include="Content\images\" />
+    <Folder Include="Images\categories\" />
     <Folder Include="Images\Restaurant\" />
     <Folder Include="Views\Picture\" />
   </ItemGroup>
