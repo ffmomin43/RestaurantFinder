@@ -47,104 +47,68 @@ namespace RestaurantFinder.WebUI.Controllers
 
         // POST: Restaurant/Create
         [HttpPost]
-        public ActionResult Create(Restaurant  model)
+        public ActionResult Create(Restaurant  restaurant)
         {
-            try
-                
+
+            if (restaurant.imagefile != null)
             {
-
-                Restaurant restaurant = new Restaurant();
-                restaurant.Name = model.Name;
                 restaurant.UniqueId = Guid.NewGuid();
-                restaurant.AddressLine1 = model.AddressLine1;
-                restaurant.AddressLine2 = model.AddressLine2;
-                restaurant.Area = model.Area;
-                restaurant.City = model.City;
-                restaurant.PinCode = model.PinCode;
-                restaurant.State = model.State;
-
-                string filename = Path.GetFileNameWithoutExtension(model.imagefile.FileName);
-                string extentsion = Path.GetExtension(model.imagefile.FileName);
+                restaurant.CreatedBy = "System";
+                string filename = Path.GetFileNameWithoutExtension(restaurant.imagefile.FileName);
+                string extentsion = Path.GetExtension(restaurant.imagefile.FileName);
                 filename = filename + DateTime.Now.ToString("yymmssfff") + extentsion;
-
                 restaurant.ThumbnailImageUrl = "/Images/RestaurantBanners/" + filename;
                 filename = Path.Combine(Server.MapPath("~/Images/RestaurantBanners/"), filename);
+                restaurant.imagefile.SaveAs(filename);
 
-                model.imagefile.SaveAs(filename);
 
-                //restaurant.RestaurantsImages = new List<RestaurantsImages>();
-
-                //if (!string.IsNullOrEmpty(model.RestaurantsImages))
-                //{
-                //    restaurant.UniqueId = Guid.NewGuid();
-                //var picidget =model.RestaurantsImages.Split(new char[] { ',' }, StringSplitOptions.RemoveEmptyEntries).Select(Id => int.Parse(Id)).ToList();
-                //restaurant.RestaurantsImages = new List<RestaurantsImages>();
-                //restaurant.RestaurantsImages.AddRange(picidget.Select(x => new RestaurantsImages { PictureId = x }).ToList());
-
-                //}
 
                 this.restaurantService.Value.Add(restaurant);
                 this.restaurantService.Value.Save();
-                           
-                return RedirectToAction("Index");
-
             }
 
-            catch (Exception ex)
-            {
-                return RedirectToAction("");
-
-            }
-
+            return RedirectToAction("Index");
         }
+         
 
-        // GET: Restaurant/Edit/5
-        public ActionResult Edit(int id)
+        
+// GET: Restaurant/Edit/5
+public ActionResult Edit(int id)
         {
             var resturant = restaurantService.Value.GetAll().Where(x => x.ID == id).SingleOrDefault();
-            RestaurantImagesVm model = new RestaurantImagesVm();
-            model.Name = resturant.Name;
-            model.AddressLine1 = resturant.AddressLine1;
-            model.AddressLine2 = resturant.AddressLine2;
-            model.Area = resturant.Area;
-            model.City = resturant.City;
-            model.PinCode = resturant.PinCode;
-            model.State = resturant.State;
-            //model.restaurantsImage = resturant.RestaurantsImages;
-            model.RestaurantId = resturant.ID;
-            return View(model);
+           
+            return View(resturant);
         }
 
         // POST: Restaurant/Edit/5
         [HttpPost]
-        public ActionResult Edit(RestaurantImagesVm model)
+        public ActionResult Edit(Restaurant restaurant)
         {
             try
             {
-                Restaurant restaurant = new Restaurant();
-                restaurant.ID = model.RestaurantId;
-                restaurant.Name = model.Name;
-                restaurant.AddressLine1 = model.AddressLine1;
-                restaurant.AddressLine2 = model.AddressLine2;
-                restaurant.Area = model.Area;
-                restaurant.City = model.City;
-                restaurant.State = model.State;
-                restaurant.PinCode = model.PinCode;
-                if (!string.IsNullOrEmpty(model.RestaurantsImages))
+
+                if (restaurant.imagefile != null)
                 {
-                    var picidget = model.RestaurantsImages.Split(new char[] { ',' }, StringSplitOptions.RemoveEmptyEntries).Select(Id => int.Parse(Id)).ToList();
-                    //restaurant.RestaurantsImages = new List<RestaurantsImages>();
-                    //restaurant.RestaurantsImages.AddRange(picidget.Select(x => new RestaurantsImages { PictureId = x }).ToList());
+                    restaurant.UniqueId = Guid.NewGuid();
+                    restaurant.CreatedBy = "System";
+                    string filename = Path.GetFileNameWithoutExtension(restaurant.imagefile.FileName);
+                    string extentsion = Path.GetExtension(restaurant.imagefile.FileName);
+                    filename = filename + DateTime.Now.ToString("yymmssfff") + extentsion;
+                    restaurant.ThumbnailImageUrl = "/Images/RestaurantBanners/" + filename;
+                    filename = Path.Combine(Server.MapPath("~/Images/RestaurantBanners/"), filename);
+                    restaurant.imagefile.SaveAs(filename);
+
+
+
+                    this.restaurantService.Value.Edit(restaurant);
+                    this.restaurantService.Value.Save();
                 }
 
-
-                this.restaurantService.Value.Edit(restaurant);
-                this.restaurantService.Value.Save();
                 return RedirectToAction("Index");
             }
             catch
             {
-                return RedirectToAction("Index");
+                return View();
             }
         }
 
