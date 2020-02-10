@@ -31,7 +31,7 @@ namespace RestaurantFinder.Models
         [NotMapped]
         public HttpPostedFileBase imagefile { get; set; }
 
-        public virtual List<RestaurantsImages> RestaurantsImages { get; set; }
+        //public virtual List<RestaurantsImages> RestaurantsImages { get; set; }
 
     }
 }

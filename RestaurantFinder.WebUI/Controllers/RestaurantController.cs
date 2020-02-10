@@ -110,7 +110,7 @@ namespace RestaurantFinder.WebUI.Controllers
             model.City = resturant.City;
             model.PinCode = resturant.PinCode;
             model.State = resturant.State;
-            model.restaurantsImage = resturant.RestaurantsImages;
+            //model.restaurantsImage = resturant.RestaurantsImages;
             model.RestaurantId = resturant.ID;
             return View(model);
         }
@@ -133,8 +133,8 @@ namespace RestaurantFinder.WebUI.Controllers
                 if (!string.IsNullOrEmpty(model.RestaurantsImages))
                 {
                     var picidget = model.RestaurantsImages.Split(new char[] { ',' }, StringSplitOptions.RemoveEmptyEntries).Select(Id => int.Parse(Id)).ToList();
-                    restaurant.RestaurantsImages = new List<RestaurantsImages>();
-                    restaurant.RestaurantsImages.AddRange(picidget.Select(x => new RestaurantsImages { PictureId = x }).ToList());
+                    //restaurant.RestaurantsImages = new List<RestaurantsImages>();
+                    //restaurant.RestaurantsImages.AddRange(picidget.Select(x => new RestaurantsImages { PictureId = x }).ToList());
                 }
 
 

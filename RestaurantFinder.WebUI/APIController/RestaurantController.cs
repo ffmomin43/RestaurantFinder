@@ -16,12 +16,13 @@ namespace RestaurantFinder.WebUI.APIController
     public class RestaurantController : ApiController
     {
 
-        private readonly Lazy<IRestaurantService> restaurantService;
+       
         private readonly Lazy<IUsersService> usersService;
         private readonly Lazy<IRestaurantCategoryMappingService> categoryMappingService;
         private readonly Lazy<IRestaurantsImagesService> restaurantsImage;
         private readonly Lazy<ICategoryMasterService> categoryMasterService;
         private readonly Lazy<IPictureService> pictureService;
+        private readonly Lazy<IRestaurantService> restaurantService;
         private readonly Lazy<IRestaurantLocationService> restaurantLocationService;
         private readonly Lazy<IHomeBannerImageService> homeBannerImageService;
         private readonly Lazy<ILoggerFacade<RestaurantController>> logger;
@@ -51,29 +52,15 @@ namespace RestaurantFinder.WebUI.APIController
 
         // GET: api/Restaurant
         [Route("api/Restaurant")]
-        public IEnumerable<RestaurantImagesVm> Get()
+        public IEnumerable<Restaurant> GetRestaurant()
         {
 
-            {
-                var get = from n in restaurantService.Value.GetAll()
-                          join s in restaurantsImage.Value.GetAll() on n.ID equals s.RestaurantId
-                          join p in pictureService.Value.GetAll() on s.PictureId equals p.ID
-                          select new RestaurantImagesVm
-                          {
-                              Name = n.Name,
-                              AddressLine1 = n.AddressLine1,
-                              AddressLine2 = n.AddressLine2,
-                              Area = n.Area,
-                              City = n.City,
-                              PinCode = n.PinCode,
-                              State = n.State,
-                              RestaurantId = n.ID,
-                              RestaurantsImages = "/Images/Restaurant/" + p.url,
+
+            return restaurantService.Value.GetAll();
 
 
-                          };
-                return get;
-            }
+
+
         }
         // GET: api/Restaurant/5
         public IEnumerable<RestaurantImagesVm> get(int id)
@@ -165,13 +152,14 @@ namespace RestaurantFinder.WebUI.APIController
         public IEnumerable<Restaurantlocationvm> GetRestaurants(double restorantLat, double resturantLong)
         {
 
-            var model = from res in restaurantService.Value.GetAll()
-                        join loc in restaurantLocationService.Value.GetAll() on res.ID equals loc.RestaurantId
+            var model = from res in restaurantService.Value.GetAll().ToList()
+                        join loc in restaurantLocationService.Value.GetAll().ToList() on res.ID equals loc.RestaurantId
                         select new Restaurantlocationvm()
                         {
                             ID = loc.ID,
+
                             Latitude = loc.Latitude,
-                            Longitude = loc.Latitude,
+                            Longitude = loc.Longitude,
                             LocationName = loc.LocationName,
                             Distance = GeoLocation.GetDistanceBetweenPoints(loc.Latitude, loc.Longitude, restorantLat, resturantLong),
 
@@ -219,7 +207,7 @@ namespace RestaurantFinder.WebUI.APIController
                 PinCode = res.PinCode,
                 //restaurantsImage = res.RestaurantsImages,
                 State = res.State,
-                IsTrending = res.IsTrending
+                //IsTrending = res.IsTrending
             });
 
         }
