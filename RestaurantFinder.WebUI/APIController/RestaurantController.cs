@@ -152,13 +152,14 @@ namespace RestaurantFinder.WebUI.APIController
         public IEnumerable<Restaurantlocationvm> GetRestaurants(double restorantLat, double resturantLong)
         {
 
-            var model = from res in restaurantService.Value.GetAll()
-                        join loc in restaurantLocationService.Value.GetAll() on res.ID equals loc.RestaurantId
+            var model = from res in restaurantService.Value.GetAll().ToList()
+                        join loc in restaurantLocationService.Value.GetAll().ToList() on res.ID equals loc.RestaurantId
                         select new Restaurantlocationvm()
                         {
                             ID = loc.ID,
+
                             Latitude = loc.Latitude,
-                            Longitude = loc.Latitude,
+                            Longitude = loc.Longitude,
                             LocationName = loc.LocationName,
                             Distance = GeoLocation.GetDistanceBetweenPoints(loc.Latitude, loc.Longitude, restorantLat, resturantLong),
 
