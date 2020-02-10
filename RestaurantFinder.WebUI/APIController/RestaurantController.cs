@@ -223,6 +223,12 @@ namespace RestaurantFinder.WebUI.APIController
             });
 
         }
+
+        [Route("api/scan")]
+        public string PostQRCode(string userid, string qrcode)
+        {
+            return "SUCCESS";
+        }
     }
 
     public class LocationRestoRequest
