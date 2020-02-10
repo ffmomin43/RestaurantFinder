@@ -49,25 +49,35 @@ namespace RestaurantFinder.WebUI.Controllers
         [HttpPost]
         public ActionResult Create(Restaurant  restaurant)
         {
-
-            if (restaurant.imagefile != null)
+            if (restaurantService.Value.IsExist(restaurant.Name))
             {
-                restaurant.UniqueId = Guid.NewGuid();
-                restaurant.CreatedBy = "System";
-                string filename = Path.GetFileNameWithoutExtension(restaurant.imagefile.FileName);
-                string extentsion = Path.GetExtension(restaurant.imagefile.FileName);
-                filename = filename + DateTime.Now.ToString("yymmssfff") + extentsion;
-                restaurant.ThumbnailImageUrl = "/Images/RestaurantBanners/" + filename;
-                filename = Path.Combine(Server.MapPath("~/Images/RestaurantBanners/"), filename);
-                restaurant.imagefile.SaveAs(filename);
+              
 
-
-
-                this.restaurantService.Value.Add(restaurant);
-                this.restaurantService.Value.Save();
             }
+            else
+            {
 
-            return RedirectToAction("Index");
+                if (restaurant.imagefile != null)
+                {
+                    restaurant.UniqueId = Guid.NewGuid();
+                    restaurant.CreatedBy = "System";
+                    string filename = Path.GetFileNameWithoutExtension(restaurant.imagefile.FileName);
+                    string extentsion = Path.GetExtension(restaurant.imagefile.FileName);
+                    filename = filename + DateTime.Now.ToString("yymmssfff") + extentsion;
+                    restaurant.ThumbnailImageUrl = "/Images/RestaurantBanners/" + filename;
+                    filename = Path.Combine(Server.MapPath("~/Images/RestaurantBanners/"), filename);
+                    restaurant.imagefile.SaveAs(filename);
+
+
+
+                    this.restaurantService.Value.Add(restaurant);
+                    this.restaurantService.Value.Save();
+                    return RedirectToAction("Index");
+                }
+            }
+            ViewBag.checkname = "Name Already Exist";
+            return View();
+
         }
          
 

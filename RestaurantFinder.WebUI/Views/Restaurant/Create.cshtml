@@ -18,8 +18,10 @@
                         <form   id="createform" method="post" enctype="multipart/form-data" class="parsley-examples" data-parsley-validate novalidate >
                             <div class="form-group">
                                 <label for="userName">Resturant Name<span class="text-danger">*</span></label>
+
                                 <input type="text" name="Name" parsley-trigger="change" required
                                        placeholder="Enter user name" class="form-control" id="userName">
+                                <h4 class="label-danger" style="color:red"> @ViewBag.checkname</h4>
                             </div>
                             <div class="form-group">
                                 <label for="emailAddress">AddressLine1<span class="text-danger">*</span></label>
