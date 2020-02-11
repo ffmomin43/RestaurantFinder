@@ -6,5 +6,6 @@ namespace RestaurantFinder.BusinessLogic.Interface
     public interface IRestaurantService : IGenericService<Restaurant>
     {
         bool IsExist(string name);
+      
     }
 }

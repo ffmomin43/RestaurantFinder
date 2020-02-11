@@ -43,7 +43,9 @@ namespace RestaurantFinder.WebUI.Controllers
             if (usersService.Value.Checklogin(username, Password))
             {
                 FormsAuthentication.SetAuthCookie(username, false);
+                Session["name"] = fc["username"]; 
                 return RedirectToAction("DashBoard");
+
             }
             ViewBag.errorMsg = "Please Check UserName And Password";
             return View();

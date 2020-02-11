@@ -11,6 +11,7 @@ namespace RestaurantFinder.BusinessLogic.Interface
    public interface IUsersService : IGenericService<User>
     {
         bool Checklogin(string name, string pass);
+        int userid(string name);
     }
 
 }

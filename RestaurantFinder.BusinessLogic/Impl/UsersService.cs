@@ -77,6 +77,11 @@ namespace RestaurantFinder.BusinessLogic.Impl
             }
             return isvalid;
         }
+        public int userid(string name)
+        {
+
+            return usersRepository.Value.GetAll().Where(y => y.Name == name).Select(x => x.ID).SingleOrDefault();
+        }
     }
 }
 

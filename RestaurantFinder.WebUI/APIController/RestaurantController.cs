@@ -66,7 +66,7 @@ namespace RestaurantFinder.WebUI.APIController
         public IEnumerable<Restaurant> GetRestaurantListbyuser(string name)
         {
 
-            int id = usersService.Value.GetAll().Where(y => y.Name == name).Select(x => x.ID).SingleOrDefault();
+            int id = usersService.Value.userid(name);
             return restaurantService.Value.GetAll().Where(x=>x.UserId==id);
 
 

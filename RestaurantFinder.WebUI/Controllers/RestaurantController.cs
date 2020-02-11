@@ -13,11 +13,13 @@ namespace RestaurantFinder.WebUI.Controllers
     public class RestaurantController : Controller
     {
         private readonly Lazy<IRestaurantService> restaurantService;
+        private readonly Lazy<IUsersService> usersService;
         private readonly Lazy<ILoggerFacade<RestaurantController>> logger;
 
-        public RestaurantController(Lazy<IRestaurantService> restaurantService, Lazy<ILoggerFacade<RestaurantController>> logger)
+        public RestaurantController(Lazy<IRestaurantService> restaurantService, Lazy<IUsersService> usersService, Lazy<ILoggerFacade<RestaurantController>> logger)
         {
             this.restaurantService = restaurantService;
+            this.usersService = usersService;
             this.logger = logger;
         }
 
@@ -58,21 +60,33 @@ namespace RestaurantFinder.WebUI.Controllers
             {
 
                 if (restaurant.imagefile != null)
+
+
+
                 {
-                    restaurant.UniqueId = Guid.NewGuid();
-                    restaurant.CreatedBy = "System";
-                    string filename = Path.GetFileNameWithoutExtension(restaurant.imagefile.FileName);
-                    string extentsion = Path.GetExtension(restaurant.imagefile.FileName);
-                    filename = filename + DateTime.Now.ToString("yymmssfff") + extentsion;
-                    restaurant.ThumbnailImageUrl = "/Images/RestaurantBanners/" + filename;
-                    filename = Path.Combine(Server.MapPath("~/Images/RestaurantBanners/"), filename);
-                    restaurant.imagefile.SaveAs(filename);
+
+
+                    if (Session["name"] != null)
+                    {
+                        string name = User.Identity.Name;
+                        int id = usersService.Value.userid(name);
+
+                        restaurant.UniqueId = Guid.NewGuid();
+                        restaurant.CreatedBy = "System";
+                        string filename = Path.GetFileNameWithoutExtension(restaurant.imagefile.FileName);
+                        string extentsion = Path.GetExtension(restaurant.imagefile.FileName);
+                        filename = filename + DateTime.Now.ToString("yymmssfff") + extentsion;
+                        restaurant.ThumbnailImageUrl = "/Images/Restaurant/" + filename;
+                        filename = Path.Combine(Server.MapPath("~/Images/Restaurant/"), filename);
+                        restaurant.imagefile.SaveAs(filename);
+                        restaurant.UserId = id;
 
 
 
-                    this.restaurantService.Value.Add(restaurant);
-                    this.restaurantService.Value.Save();
-                    return RedirectToAction("Index");
+                        this.restaurantService.Value.Add(restaurant);
+                        this.restaurantService.Value.Save();
+                        return RedirectToAction("Index");
+                    }
                 }
             }
             ViewBag.checkname = "Name Already Exist";
