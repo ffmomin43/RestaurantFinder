@@ -11,6 +11,7 @@ namespace RestaurantFinder.Models
     public class Restaurant: BaseModel
     {
         public string Name { get; set; }
+        public int UserId { get; set; }
 
         public string AddressLine1 { get; set; }
 
