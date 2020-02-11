@@ -31,7 +31,9 @@ namespace RestaurantFinder.WebUI.Controllers
         }
         public ActionResult Index()
         {
-            var model = restaurantService.Value.GetAll();
+            string name = User.Identity.Name;
+            int id = usersService.Value.userid(name);
+            var model = restaurantService.Value.GetAll().Where(x=>x.UserId==id);
             return View(model);
         }
 
