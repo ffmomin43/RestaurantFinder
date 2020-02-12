@@ -78,11 +78,28 @@ namespace RestaurantFinder.WebUI.Controllers
 
         // POST: HomeBannerImages/Edit/5
         [HttpPost]
-        public ActionResult Edit(int id, FormCollection collection)
+        public ActionResult Edit(HomeBannerImage homeBannerImage)
         {
             try
             {
-                // TODO: Add update logic here
+                if (homeBannerImage.imagefile != null)
+                {
+                    homeBannerImage.UniqueId = Guid.NewGuid();
+                    homeBannerImage.UpdatedDate = DateTime.Now;
+                    homeBannerImage.UpdatedBy = "System";
+                    string filename = Path.GetFileNameWithoutExtension(homeBannerImage.imagefile.FileName);
+                    string extentsion = Path.GetExtension(homeBannerImage.imagefile.FileName);
+                    filename = filename + DateTime.Now.ToString("yymmssfff") + extentsion;
+                    homeBannerImage.Url = "/Images/RestaurantBanners/" + filename;
+                    filename = Path.Combine(Server.MapPath("~/Images/RestaurantBanners/"), filename);
+                    homeBannerImage.imagefile.SaveAs(filename);
+
+
+
+                    this.homeBannerImageService.Value.Edit(homeBannerImage);
+                    this.homeBannerImageService.Value.Save();
+                }
+
 
                 return RedirectToAction("Index");
             }
@@ -95,16 +112,18 @@ namespace RestaurantFinder.WebUI.Controllers
         // GET: HomeBannerImages/Delete/5
         public ActionResult Delete(int id)
         {
-            return View();
+          var list=  homeBannerImageService.Value.GetAll().Where(x => x.ID == id);
+            return View(list);
         }
 
         // POST: HomeBannerImages/Delete/5
         [HttpPost]
-        public ActionResult Delete(int id, FormCollection collection)
+        public ActionResult Delete(HomeBannerImage homeBannerImage)
         {
             try
             {
-                // TODO: Add delete logic here
+                homeBannerImageService.Value.Delete(homeBannerImage);
+                homeBannerImageService.Value.Save();
 
                 return RedirectToAction("Index");
             }

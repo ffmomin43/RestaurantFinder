@@ -1,0 +1,147 @@
+﻿@model RestaurantFinder.Models.HomeBannerImage
+
+@{
+
+    Layout = "~/Views/Shared/_Layout.cshtml";
+}
+
+<h2>Edit</h2>
+
+@using (Html.BeginForm("Edit", "HomeBannerImages", FormMethod.Post, new { enctype = "multipart/form-data" }))
+{
+    <div class="row">
+        <div class="col-12">
+            <div class="card-box">
+                <div class="row">
+                    <div class="col-lg-6">
+                        <div>
+                            <h4 class="header-title">Update HomeBannerImages</h4>
+                            <p class="sub-header">
+                                .
+                            </p>
+
+                            <form method="post" class="parsley-examples" data-parsley-validate novalidate>
+                                @if (Model.Url == null)
+                                {
+                                    <h2 style="color:red">Please Upload Cateogry Image</h2>
+                                }
+                                else
+                                {
+                                    <img src="@Url.Content(Model.Url)" height="100 " width="200">
+                                }
+
+                                <div class="form-group">
+                                    @Html.LabelFor(model => model.HeadingText, htmlAttributes: new { @class = "control-label col-md-2" })
+                                    <div class="col-md-10">
+                                        @Html.EditorFor(model => model.HeadingText, new { htmlAttributes = new { @class = "form-control" } })
+                                        @Html.ValidationMessageFor(model => model.HeadingText, "", new { @class = "text-danger" })
+                                    </div>
+                                </div>
+                                <div class="form-group">
+                                    @Html.LabelFor(model => model.Description, htmlAttributes: new { @class = "control-label col-md-2" })
+                                    <div class="col-md-10">
+                                        @Html.EditorFor(model => model.Description, new { htmlAttributes = new { @class = "form-control" } })
+                                        @Html.ValidationMessageFor(model => model.Description, "", new { @class = "text-danger" })
+                                    </div>
+                                </div>
+
+                                <div class="form-group">
+
+                                    <label>
+                                        Select Pictures
+                                    </label>
+                                    <input id="Resturantpicture" type="file" class="form-control" name="imagefile" />
+                                    <br />
+                                </div>
+
+                                <div id="picturearea"></div>
+                                <input type="hidden" name="RestaurantsImages" id="picid" />
+
+
+                                <div class="form-group text-right mb-0">
+                                    <button class="btn btn-primary waves-effect waves-light mr-1" type="submit">
+                                        Submit
+                                    </button>
+
+                                </div>
+                            </form>
+                            <button type="reset" class="btn btn-secondary waves-effect">
+                                Cancel
+                            </button>
+                        </div>
+                    </div>
+
+
+                </div>
+            </div><!-- end col-->
+        </div>
+    </div>
+}
+
+<div id="imagetemplate" style="display:none">
+    <img class='image img-fluid' src='' height="50px" width="50px" />
+</div>
+<!-- end row -->
+<!-- end row -->
+@section scripts
+
+    {
+
+    <script>
+
+
+    $("#Resturantpicture").change(function () {
+        debugger;
+
+        var Pictures = this.files;
+        var PicsData = new FormData();
+        for (var i = 0; i < Pictures.length; i++) {
+            PicsData.append("Picture", Pictures[i]);
+        }
+
+        $.ajax(
+            {
+                url:"@Url.Action("UploadPicture","Picture")",
+                type: "post",
+                data: PicsData,
+                dataType: "json",
+                processData: false,
+                contentType: false
+            })
+            .done(function (responses) {
+
+
+                for (var i = 0; i < responses.length; i++) {
+                    var picresponse = responses[i];
+                    addnewimage(picresponse.Urlpic, picresponse.Id);
+
+                    //var imgurl = "<img class='img-fluid' src='/Content/images/" + picresponse.Urlpic + "'/>";
+                    // $newimagehtml = $("#imagetemplate").clone();
+                    //$("#picturearea").append(imgurl); picid = picid + "," + picresponse.Id;
+                }
+
+
+        });
+    });
+    function addnewimage(url, id)
+
+    {
+        $newimagehtml = $("#imagetemplate").clone();
+        $newimagehtml.find(".image").attr("src", "/Images/RestaurantBanners/" + url);
+        $newimagehtml.find(".image").attr("data-id", id);
+
+        $("#picturearea").append($newimagehtml.html());
+        Removeimage()
+    }
+    function Removeimage()
+    {
+        $("#picturearea .image").click(function()
+            {
+            $(this).remove();
+        });
+
+    }
+    </script>
+
+
+}
