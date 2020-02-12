@@ -181,6 +181,7 @@
     <Compile Include="Common\logger\ILoggerFacade.cs" />
     <Compile Include="Common\logger\LoggerFacade.cs" />
     <Compile Include="Controllers\CategoryMasterController.cs" />
+    <Compile Include="Controllers\HomeBannerImagesController.cs" />
     <Compile Include="Controllers\HomeController.cs" />
     <Compile Include="Controllers\LoginController.cs" />
     <Compile Include="Controllers\PictureController.cs" />
@@ -522,6 +523,7 @@
     <Folder Include="Images\categories\" />
     <Folder Include="Images\RestaurantBanners\" />
     <Folder Include="Images\Restaurant\" />
+    <Folder Include="Views\HomeBannerImages\" />
     <Folder Include="Views\Picture\" />
     <Folder Include="Views\RestaurantPicture\" />
   </ItemGroup>

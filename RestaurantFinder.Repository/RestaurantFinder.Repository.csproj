@@ -74,7 +74,6 @@
     <Compile Include="Impl\RestaurantTablesRepository.cs" />
     <Compile Include="Impl\RolesRepository.cs" />
     <Compile Include="Impl\UsersRepository.cs" />
-    <Compile Include="Interface\HomeBannerImageRepository.cs" />
     <Compile Include="Interface\IHomeBannerImagesRepository.cs" />
     <Compile Include="Interface\IRestaurantCategoryMappingRepository.cs" />
     <Compile Include="Interface\ICategoryMasterRepository.cs" />
