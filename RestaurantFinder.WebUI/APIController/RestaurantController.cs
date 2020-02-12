@@ -121,23 +121,24 @@ namespace RestaurantFinder.WebUI.APIController
         // PUT: api/Restaurant/5
 
         [Route("api/updatelocation")]
-        public string Post(LocationRestoRequest locationRestoRequest)
+        public string Post(int RestoId,double Longitude,double Latitude)
         {
             try
             {
-                var res = restaurantLocationService.Value.GetAll().Where(x => x.RestaurantId == locationRestoRequest.RestoId).SingleOrDefault();
+                var res = restaurantLocationService.Value.GetAll().Where(x => x.RestaurantId == RestoId).SingleOrDefault();
 
-                res.Longitude = locationRestoRequest.Longitude;
-                res.Latitude = locationRestoRequest.Latitude;
-
+                res.Longitude =Longitude;
+                res.Latitude =Latitude;
+                
                 restaurantLocationService.Value.Edit(res);
                 restaurantLocationService.Value.Save();
 
                 return "SUCCESS";
+                
             }
             catch (Exception ex)
             {
-                return "Failed: " + ex.Message;
+                return "Please Enter Loction Restaurant Location not Exist  " + ex.Message;
             }
         }
 
@@ -232,6 +233,7 @@ namespace RestaurantFinder.WebUI.APIController
 
     public class LocationRestoRequest
     {
+      
         public int RestoId { get; set; }
 
         public double Longitude { get; set; }

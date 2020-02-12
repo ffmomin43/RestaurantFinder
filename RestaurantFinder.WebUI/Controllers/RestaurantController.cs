@@ -33,7 +33,7 @@ namespace RestaurantFinder.WebUI.Controllers
         {
             string name = User.Identity.Name;
             int id = usersService.Value.userid(name);
-            var model = restaurantService.Value.GetAll().Where(x=>x.UserId==id);
+            var model = restaurantService.Value.GetAll();
             return View(model);
         }
 
@@ -55,11 +55,13 @@ namespace RestaurantFinder.WebUI.Controllers
         {
             if (restaurantService.Value.IsExist(restaurant.Name))
             {
-              
+                ViewBag.checkname = "Name Already Exist";
 
             }
             else
             {
+
+
 
                 if (restaurant.imagefile != null)
 
@@ -68,8 +70,7 @@ namespace RestaurantFinder.WebUI.Controllers
                 {
 
 
-                    if (Session["name"] != null)
-                    {
+                    
                         string name = User.Identity.Name;
                         int id = usersService.Value.userid(name);
 
@@ -81,17 +82,17 @@ namespace RestaurantFinder.WebUI.Controllers
                         restaurant.ThumbnailImageUrl = "/Images/Restaurant/" + filename;
                         filename = Path.Combine(Server.MapPath("~/Images/Restaurant/"), filename);
                         restaurant.imagefile.SaveAs(filename);
-                        restaurant.UserId = id;
+                    restaurant.UserId = id;
 
 
 
-                        this.restaurantService.Value.Add(restaurant);
+                    this.restaurantService.Value.Add(restaurant);
                         this.restaurantService.Value.Save();
                         return RedirectToAction("Index");
-                    }
+                    
                 }
             }
-            ViewBag.checkname = "Name Already Exist";
+            
             return View();
 
         }
@@ -115,14 +116,18 @@ public ActionResult Edit(int id)
 
                 if (restaurant.imagefile != null)
                 {
+                    string name = User.Identity.Name;
+                    int id = usersService.Value.userid(name);
+
                     restaurant.UniqueId = Guid.NewGuid();
                     restaurant.CreatedBy = "System";
                     string filename = Path.GetFileNameWithoutExtension(restaurant.imagefile.FileName);
                     string extentsion = Path.GetExtension(restaurant.imagefile.FileName);
                     filename = filename + DateTime.Now.ToString("yymmssfff") + extentsion;
-                    restaurant.ThumbnailImageUrl = "/Images/RestaurantBanners/" + filename;
-                    filename = Path.Combine(Server.MapPath("~/Images/RestaurantBanners/"), filename);
+                    restaurant.ThumbnailImageUrl = "/Images/Restaurant/" + filename;
+                    filename = Path.Combine(Server.MapPath("~/Images/Restaurant/"), filename);
                     restaurant.imagefile.SaveAs(filename);
+                    restaurant.UserId = id;
 
 
 
