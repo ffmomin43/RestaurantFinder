@@ -112,7 +112,7 @@ namespace RestaurantFinder.WebUI.Controllers
         // GET: HomeBannerImages/Delete/5
         public ActionResult Delete(int id)
         {
-          var list=  homeBannerImageService.Value.GetAll().Where(x => x.ID == id);
+          var list=  homeBannerImageService.Value.GetAll().Where(x => x.ID == id).SingleOrDefault();
             return View(list);
         }
 
