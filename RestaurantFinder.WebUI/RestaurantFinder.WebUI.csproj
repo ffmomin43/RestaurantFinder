@@ -180,6 +180,7 @@
     <Compile Include="Common\IoC\ServiceModule.cs" />
     <Compile Include="Common\logger\ILoggerFacade.cs" />
     <Compile Include="Common\logger\LoggerFacade.cs" />
+    <Compile Include="Controllers\BannerPictureControllerController.cs" />
     <Compile Include="Controllers\CategoryMasterController.cs" />
     <Compile Include="Controllers\HomeBannerImagesController.cs" />
     <Compile Include="Controllers\HomeController.cs" />
@@ -525,6 +526,7 @@
     <Folder Include="Images\categories\" />
     <Folder Include="Images\RestaurantBanners\" />
     <Folder Include="Images\Restaurant\" />
+    <Folder Include="Views\BannerPictureController\" />
     <Folder Include="Views\Picture\" />
     <Folder Include="Views\RestaurantPicture\" />
   </ItemGroup>

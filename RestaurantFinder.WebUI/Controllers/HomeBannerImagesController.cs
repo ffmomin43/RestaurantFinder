@@ -1,6 +1,8 @@
 ﻿using RestaurantFinder.BusinessLogic.Interface;
+using RestaurantFinder.Models;
 using System;
 using System.Collections.Generic;
+using System.IO;
 using System.Linq;
 using System.Web;
 using System.Web.Mvc;
@@ -38,12 +40,27 @@ namespace RestaurantFinder.WebUI.Controllers
 
         // POST: HomeBannerImages/Create
         [HttpPost]
-        public ActionResult Create(FormCollection collection)
+        public ActionResult Create(HomeBannerImage homeBannerImage)
         {
             try
             {
-                // TODO: Add insert logic here
+                if (homeBannerImage.imagefile != null)
+                {
+                    homeBannerImage.UniqueId = Guid.NewGuid();
+                    homeBannerImage.CreatedBy = "System";
+                    string filename = Path.GetFileNameWithoutExtension(homeBannerImage.imagefile.FileName);
+                    string extentsion = Path.GetExtension(homeBannerImage.imagefile.FileName);
+                    filename = filename + DateTime.Now.ToString("yymmssfff") + extentsion;
+                    homeBannerImage.Url = "/Images/RestaurantBanners/" + filename;
+                    filename = Path.Combine(Server.MapPath("~/Images/RestaurantBanners/"), filename);
+                    homeBannerImage.imagefile.SaveAs(filename);
 
+
+
+                    this.homeBannerImageService.Value.Add(homeBannerImage);
+                    this.homeBannerImageService.Value.Save();
+                }
+                
                 return RedirectToAction("Index");
             }
             catch
@@ -55,7 +72,8 @@ namespace RestaurantFinder.WebUI.Controllers
         // GET: HomeBannerImages/Edit/5
         public ActionResult Edit(int id)
         {
-            return View();
+         var list=   homeBannerImageService.Value.GetAll().Where(x => x.ID == id).SingleOrDefault();
+            return View(list);
         }
 
         // POST: HomeBannerImages/Edit/5
