@@ -9,7 +9,8 @@ using System.Net;
 using System.Net.Http;
 using System.Web.Http;
 using System.Web.Http.Cors;
-
+using System.Configuration;
+using System.Collections.Specialized;
 namespace RestaurantFinder.WebUI.APIController
 {
     [EnableCors(origins: "*", headers: "*", methods: "*")]
@@ -202,7 +203,8 @@ namespace RestaurantFinder.WebUI.APIController
         [Route("api/banner")]
         public IEnumerable<HomeBannerImage> GetHomeBannerImages()
         {
-            return homeBannerImageService.Value.GetAll();
+            int id =Convert.ToInt32( (ConfigurationManager.AppSettings.Get("Key"))); 
+            return homeBannerImageService.Value.GetAll().OrderByDescending(x=>x.CreatedDate).Take(id);
         }
 
         [Route("api/trending")]
