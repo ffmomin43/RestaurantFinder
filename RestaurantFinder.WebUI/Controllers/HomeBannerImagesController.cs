@@ -1,4 +1,5 @@
-﻿using System;
+﻿using RestaurantFinder.BusinessLogic.Interface;
+using System;
 using System.Collections.Generic;
 using System.Linq;
 using System.Web;
@@ -8,10 +9,19 @@ namespace RestaurantFinder.WebUI.Controllers
 {
     public class HomeBannerImagesController : Controller
     {
+        private readonly Lazy<IHomeBannerImageService> homeBannerImageService;
+
+        public HomeBannerImagesController(
+           Lazy<IHomeBannerImageService> homeBannerImageService
+            )
+        {
+            this.homeBannerImageService =homeBannerImageService;
+        }
         // GET: HomeBannerImages
         public ActionResult Index()
         {
-            return View();
+            var Banner = homeBannerImageService.Value.GetAll();
+            return View(Banner);
         }
 
         // GET: HomeBannerImages/Details/5

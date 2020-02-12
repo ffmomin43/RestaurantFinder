@@ -1,0 +1,96 @@
+﻿@model IEnumerable<RestaurantFinder.Models.HomeBannerImage>
+
+@{
+    ViewBag.Title = "Index";
+}
+
+
+
+@if (Model.Count() > 0)
+{
+    <div class="row">
+        <div class="col-12">
+            <div class="card-box">
+                <h4 class="header-title">All  Home Banner </h4>
+                <p class="sub-header">
+
+                </p>
+                <table id="datatable-buttons" class="table table-striped table-bordered dt-responsive nowrap" style="border-collapse: collapse; border-spacing: 0; width: 100%;">
+                    <thead>
+                        <tr>
+                            <th>Heading Text</th>
+                            <th>Discription</th>
+                            <th>Banner image</th>
+
+
+                        </tr>
+                    </thead>
+
+                    <tbody>
+                        @foreach (var item in Model)
+                        {
+                        <tr>
+                            <td>@item.HeadingText</td>
+                            <td>@item.Description</td>
+                            <td>
+                                @if (item.Url == null)
+                                {
+                                    <h2 style="color:red">Please Upload Cateogry Image</h2>
+                                }
+                                else
+                                {
+                                    <img src="@Url.Content(item.Url)" height="50 " width="100">
+                                }
+                            </td>
+
+                            <td>
+
+                                <a href="@Url.Action("Edit", "HomeBannerImages", new { id = item.ID })" class="btn btn-danger">
+                                    <span class="fas fa-edit mr-2"></span>
+
+                                </a>
+                                |
+                                <a href="@Url.Action("Delete", "HomeBannerImages", new { id = item.ID })" class="btn btn-danger">
+                                    <span class="fas fa-trash mr-2"></span>
+
+                                </a>
+                                |
+                                <a href="@Url.Action("Index", "HomeBannerImages", new { id = item.ID })" class="btn btn-danger">
+                                    <span class="fas fa-list mr-2"></span>
+
+                                </a>
+
+
+
+                            </td>
+                        </tr>
+
+                        }
+
+
+
+
+                    </tbody>
+                </table>
+            </div>
+        </div>
+    </div> <!-- end row -->
+}
+
+
+
+else
+{
+    <div class="alert alert-info" role="alert">
+        Record Not Found
+    </div>
+}
+
+@section scripts
+{
+
+    <script>
+        $(document).ready(function () {
+            $('#myTable').DataTable();
+        });</script>
+}
