@@ -203,14 +203,19 @@ namespace RestaurantFinder.WebUI.APIController
         [Route("api/banner")]
         public IEnumerable<HomeBannerImage> GetHomeBannerImages()
         {
-            int id =Convert.ToInt32( (ConfigurationManager.AppSettings.Get("Key"))); 
-            return homeBannerImageService.Value.GetAll().OrderByDescending(x=>x.CreatedDate).Take(id);
+            string bannerImageCountString = ConfigurationManager.AppSettings.Get("homepage:banner-image-count");
+            int bannerImageCount = !string.IsNullOrEmpty(bannerImageCountString)?Convert.ToInt32(bannerImageCountString) : 0; 
+            
+            return homeBannerImageService.Value.GetAll().OrderByDescending(x=>x.CreatedDate).Take(bannerImageCount);
         }
 
         [Route("api/trending")]
         public IEnumerable<RestaurantImagesVm> GetTrendingRestaurants()
         {
-            return restaurantService.Value.GetAll().Select(res => new RestaurantImagesVm()
+            string trendingCountString = ConfigurationManager.AppSettings.Get("homepage:trending-count");
+            int trendingCount = !string.IsNullOrEmpty(trendingCountString) ? Convert.ToInt32(trendingCountString) : 0;
+
+            return restaurantService.Value.GetAll().Where(x=>x.IsTrending==true).Take(trendingCount).Select(res => new RestaurantImagesVm()
             {
                 AddressLine1 = res.AddressLine1,
                 AddressLine2 = res.AddressLine2,
@@ -218,10 +223,9 @@ namespace RestaurantFinder.WebUI.APIController
                 RestaurantId = res.ID,
                 City = res.City,
                 Name = res.Name,
-                PinCode = res.PinCode,
-                //restaurantsImage = res.RestaurantsImages,
+                PinCode = res.PinCode,                
                 State = res.State,
-                //IsTrending = res.IsTrending
+                IsTrending = res.IsTrending
             });
 
         }
