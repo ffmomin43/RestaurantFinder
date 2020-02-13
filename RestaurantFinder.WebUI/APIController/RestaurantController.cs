@@ -139,7 +139,7 @@ namespace RestaurantFinder.WebUI.APIController
             }
             catch (Exception ex)
             {
-                return "Please Enter Loction Restaurant Location not Exist  " + ex.Message;
+                return "Please Enter Loction Restaurant Location does not Exist  " + ex.Message;
             }
         }
 
