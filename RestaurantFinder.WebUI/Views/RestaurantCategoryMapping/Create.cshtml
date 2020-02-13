@@ -1,6 +1,6 @@
 ﻿@model RestaurantFinder.Models.RestaurantCategoryMapping
 @{
-    ViewBag.Title = "Create";
+    @ViewBag.title= "Create";
     Layout = "~/Views/Shared/Admin_Layout.cshtml";
 }
 
@@ -20,7 +20,7 @@
                                 @Html.DropDownListFor(x => x.RestaurantId, new SelectList(ViewBag.allres, "ID", "Name"), "Select Resturant", new { @class = "form-control" })
                             </div>
                             <div class="form-group">
-                               @Html.DropDownListFor(x=>x.CategoryId,new SelectList(ViewBag.allcate,"ID","Name"),"Select category",new {@class="form-control" })
+                                @Html.DropDownListFor(x => x.CategoryId, new SelectList(ViewBag.allcate, "ID", "Name"), "Select category", new { @class = "form-control" })
                             </div>
 
 
