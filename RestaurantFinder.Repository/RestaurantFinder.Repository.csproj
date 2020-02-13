@@ -192,6 +192,14 @@
     <Compile Include="Migrations\202002131006143_savealldatabase.designer.cs">
       <DependentUpon>202002131006143_savealldatabase.cs</DependentUpon>
     </Compile>
+    <Compile Include="Migrations\202002132240549_updateRestaurantTable.cs" />
+    <Compile Include="Migrations\202002132240549_updateRestaurantTable.designer.cs">
+      <DependentUpon>202002132240549_updateRestaurantTable.cs</DependentUpon>
+    </Compile>
+    <Compile Include="Migrations\202002132300261_savetblRestaurantDayDayMasterRestaurantSlot.cs" />
+    <Compile Include="Migrations\202002132300261_savetblRestaurantDayDayMasterRestaurantSlot.designer.cs">
+      <DependentUpon>202002132300261_savetblRestaurantDayDayMasterRestaurantSlot.cs</DependentUpon>
+    </Compile>
     <Compile Include="Migrations\Configuration.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
   </ItemGroup>
@@ -283,6 +291,12 @@
     </EmbeddedResource>
     <EmbeddedResource Include="Migrations\202002131006143_savealldatabase.resx">
       <DependentUpon>202002131006143_savealldatabase.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Migrations\202002132240549_updateRestaurantTable.resx">
+      <DependentUpon>202002132240549_updateRestaurantTable.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Migrations\202002132300261_savetblRestaurantDayDayMasterRestaurantSlot.resx">
+      <DependentUpon>202002132300261_savetblRestaurantDayDayMasterRestaurantSlot.cs</DependentUpon>
     </EmbeddedResource>
   </ItemGroup>
   <Import Project="$(MSBuildToolsPath)\Microsoft.CSharp.targets" />

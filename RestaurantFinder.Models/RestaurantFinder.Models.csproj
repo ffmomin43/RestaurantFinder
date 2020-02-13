@@ -46,10 +46,12 @@
   <ItemGroup>
     <Compile Include="BaseModel.cs" />
     <Compile Include="CategoryMaster.cs" />
+    <Compile Include="DayMaster.cs" />
     <Compile Include="HomeBannerImage.cs" />
     <Compile Include="Permission.cs" />
     <Compile Include="Action.cs" />
     <Compile Include="Picture.cs" />
+    <Compile Include="RestaruantDay.cs" />
     <Compile Include="RestaurantCategoryMapping.cs" />
     <Compile Include="RestaurantCategorymappingVm.cs" />
     <Compile Include="RestaurantCouponsMaster.cs" />
@@ -59,6 +61,7 @@
     <Compile Include="RestaurantLocation.cs" />
     <Compile Include="Restaurantlocationvm.cs" />
     <Compile Include="RestaurantsImages.cs" />
+    <Compile Include="RestaurantSlot.cs" />
     <Compile Include="RestaurantTable.cs" />
     <Compile Include="User.cs" />
     <Compile Include="Role.cs" />
