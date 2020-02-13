@@ -188,6 +188,10 @@
     <Compile Include="Migrations\202002111923589_updateusertbl1.designer.cs">
       <DependentUpon>202002111923589_updateusertbl1.cs</DependentUpon>
     </Compile>
+    <Compile Include="Migrations\202002131006143_savealldatabase.cs" />
+    <Compile Include="Migrations\202002131006143_savealldatabase.designer.cs">
+      <DependentUpon>202002131006143_savealldatabase.cs</DependentUpon>
+    </Compile>
     <Compile Include="Migrations\Configuration.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
   </ItemGroup>
@@ -276,6 +280,9 @@
     </EmbeddedResource>
     <EmbeddedResource Include="Migrations\202002111923589_updateusertbl1.resx">
       <DependentUpon>202002111923589_updateusertbl1.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Migrations\202002131006143_savealldatabase.resx">
+      <DependentUpon>202002131006143_savealldatabase.cs</DependentUpon>
     </EmbeddedResource>
   </ItemGroup>
   <Import Project="$(MSBuildToolsPath)\Microsoft.CSharp.targets" />

@@ -1,6 +1,9 @@
 ﻿@model IEnumerable<RestaurantFinder.Models.RestaurantCategorymappingVm>
 
 @{
+    Layout = "~/Views/Shared/Admin_Layout.cshtml";
+
+    
     ViewBag.Title = "Index";
 }
 
@@ -31,36 +34,36 @@
                     <tbody>
                         @foreach (var item in Model)
                         {
-                        <tr>
-                            <td>@item.categoryName</td>
-                            <td>
-                                @item.RestaurantName
-                            </td>
-                            <td>
-                                @item.CreateDate
-                            </td>
+                            <tr>
+                                <td>@item.categoryName</td>
+                                <td>
+                                    @item.RestaurantName
+                                </td>
+                                <td>
+                                    @item.CreateDate
+                                </td>
 
-                            <td>
+                                <td>
 
-                                <a href="@Url.Action("Edit", "RestaurantCategoryMapping", new { id = item.id })" class="btn btn-danger">
-                                    <span class="fas fa-edit mr-2"></span>
+                                    <a href="@Url.Action("Edit", "RestaurantCategoryMapping", new { id = item.id })" class="btn btn-danger">
+                                        <span class="fas fa-edit mr-2"></span>
 
-                                </a>
-                                |
-                                <a href="@Url.Action("Delete", "RestaurantCategoryMapping", new { id = item.id })" class="btn btn-danger">
-                                    <span class="fas fa-trash mr-2"></span>
+                                    </a>
+                                    |
+                                    <a href="@Url.Action("Delete", "RestaurantCategoryMapping", new { id = item.id })" class="btn btn-danger">
+                                        <span class="fas fa-trash mr-2"></span>
 
-                                </a>
-                                |
-                                <a href="@Url.Action("Index", "RestaurantCategoryMapping", new { id = item.id })" class="btn btn-danger">
-                                    <span class="fas fa-list mr-2"></span>
+                                    </a>
+                                    |
+                                    <a href="@Url.Action("Index", "RestaurantCategoryMapping", new { id = item.id })" class="btn btn-danger">
+                                        <span class="fas fa-list mr-2"></span>
 
-                                </a>
+                                    </a>
 
 
 
-                            </td>
-                        </tr>
+                                </td>
+                            </tr>
 
                         }
 

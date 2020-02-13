@@ -180,6 +180,7 @@
     <Compile Include="Common\IoC\ServiceModule.cs" />
     <Compile Include="Common\logger\ILoggerFacade.cs" />
     <Compile Include="Common\logger\LoggerFacade.cs" />
+    <Compile Include="Common\helper\WebRoleProvider.cs" />
     <Compile Include="Controllers\BannerPictureControllerController.cs" />
     <Compile Include="Controllers\CategoryMasterController.cs" />
     <Compile Include="Controllers\HomeBannerImagesController.cs" />
@@ -398,6 +399,13 @@
     <Content Include="Content\bootstrap.min.css" />
     <Content Include="Content\Custom.css" />
     <Content Include="Content\jquery.dataTables.min.css" />
+    <Content Include="Content\SuperAdmin\assets\demo\chart-area-demo.js" />
+    <Content Include="Content\SuperAdmin\assets\demo\chart-bar-demo.js" />
+    <Content Include="Content\SuperAdmin\assets\demo\chart-pie-demo.js" />
+    <Content Include="Content\SuperAdmin\assets\demo\datatables-demo.js" />
+    <Content Include="Content\SuperAdmin\assets\img\error-404-monochrome.svg" />
+    <Content Include="Content\SuperAdmin\css\styles.css" />
+    <Content Include="Content\SuperAdmin\js\scripts.js" />
     <Content Include="favicon.ico" />
     <Content Include="fonts\glyphicons-halflings-regular.svg" />
     <Content Include="Global.asax" />
@@ -520,6 +528,7 @@
     <Content Include="Views\HomeBannerImages\Create.cshtml" />
     <Content Include="Views\HomeBannerImages\Edit.cshtml" />
     <Content Include="Views\HomeBannerImages\Delete.cshtml" />
+    <Content Include="Views\Shared\Admin_Layout.cshtml" />
   </ItemGroup>
   <ItemGroup>
     <Folder Include="APIModels\" />
