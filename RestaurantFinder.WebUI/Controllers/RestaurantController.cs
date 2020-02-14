@@ -33,7 +33,7 @@ namespace RestaurantFinder.WebUI.Controllers
         {
             string name = User.Identity.Name;
             int id = usersService.Value.userid(name);
-            var model = restaurantService.Value.GetAll();
+            var model = restaurantService.Value.GetAll().Where(x=>x.UserId==id);
             return View(model);
         }
 
@@ -167,6 +167,44 @@ public ActionResult Edit(int id)
             {
                 return View();
             }
+
+
+           
+        }
+        public ActionResult RestaurantListAdmin()
+        {
+            string name = User.Identity.Name;
+            int id = usersService.Value.userid(name);
+            var model = restaurantService.Value.GetAll();
+            return View(model);
+        }
+        public ActionResult EditRestaurantByAdmin(int id)
+        {
+            ViewBag.istrending = restaurantService.Value.GetAll().Where(x => x.ID == id).SingleOrDefault();
+
+            var resturant = restaurantService.Value.GetAll().Where(x => x.ID == id).SingleOrDefault();
+
+            return View(resturant);
+        }
+        [HttpPost]
+        public ActionResult EditRestaurantByAdmin(Restaurant restaurant)
+        {
+            if(restaurant.IsTrending==true)
+            {
+
+                restaurant.IsTrending = true;
+                restaurantService.Value.Edit(restaurant);
+                restaurantService.Value.Save();
+
+            }
+            else { 
+            restaurantService.Value.Edit(restaurant);
+            restaurantService.Value.Save();
+            }
+            return RedirectToAction("RestaurantListAdmin");
+           
         }
     }
+
+
 }
