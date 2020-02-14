@@ -14,11 +14,13 @@ namespace RestaurantFinder.WebUI.Controllers
     public class LoginController : Controller
     {
         private readonly Lazy<IUsersService> usersService;
+        private readonly Lazy<IRestaurantService> restaurantService;
         private readonly Lazy<ILoggerFacade<LoginController>> logger;
 
-        public LoginController(Lazy<IUsersService> usersService, Lazy<ILoggerFacade<LoginController>> logger)
+        public LoginController(Lazy<IUsersService> usersService, Lazy<IRestaurantService> restaurantService, Lazy<ILoggerFacade<LoginController>> logger)
         {
             this.usersService = usersService;
+            this.restaurantService = restaurantService;
             this.logger = logger;
         }
 
@@ -43,8 +45,22 @@ namespace RestaurantFinder.WebUI.Controllers
             if (usersService.Value.Checklogin(username, Password))
             {
                 FormsAuthentication.SetAuthCookie(username, false);
-                Session["name"] = fc["username"]; 
-                return RedirectToAction("DashBoard");
+                Session["name"] = fc["username"];
+                string name = User.Identity.Name;
+                int id = usersService.Value.userid(name);
+                //check Restaurant list login user
+              var list=  restaurantService.Value.GetAll().Where(x => x.UserId == id).ToList();
+                //if user found then if work
+                if (list.Count() > 0)
+                {
+                    return RedirectToAction("DashBoard");
+                }
+                else
+
+                {
+                    return RedirectToAction("/Restaurant/Create/");
+
+                }
 
             }
             ViewBag.errorMsg = "Please Check UserName And Password";

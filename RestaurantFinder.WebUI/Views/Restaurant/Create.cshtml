@@ -15,7 +15,7 @@
                             .
                         </p>
 
-                        <form   id="createform" method="post" enctype="multipart/form-data" class="parsley-examples" data-parsley-validate novalidate >
+                        <form id="createform" method="post" enctype="multipart/form-data" class="parsley-examples" data-parsley-validate novalidate>
                             <div class="form-group">
                                 <label for="userName">Resturant Name<span class="text-danger">*</span></label>
 
@@ -56,23 +56,23 @@
                             </div>
 
                             <label>
-                               Select Pictures
+                                Select Pictures
                             </label>
                             <input id="Resturantpicture" type="file" class="form-control" name="imagefile" />
                             <br />
                             <div id="picturearea"></div>
                             <input type="hidden" name="RestaurantsImages" id="picid" />
-                   
-                    <div class="form-group text-right mb-0">
-                        <button class="btn btn-primary waves-effect waves-light mr-1"  id="save" type="submit">
-                            Submit
-                        </button>
-                        <button type="reset" class="btn btn-secondary waves-effect">
-                            Cancel
-                        </button>
+
+                            <div class="form-group text-right mb-0">
+                                <button class="btn btn-primary waves-effect waves-light mr-1" id="save" type="submit">
+                                    Next
+                                </button>
+                                <button type="reset" class="btn btn-secondary waves-effect">
+                                    Cancel
+                                </button>
+                            </div>
+                        </form>
                     </div>
-                    </form>
-                </div>
                 </div>
 
 
@@ -82,12 +82,18 @@
 
 
     <div id="imagetemplate" style="display:none">
-        <img class='image img-fluid' src=''  height="50px" width="50px" />
+        <img class='image img-fluid' src='' height="50px" width="50px" />
     </div>
     <!-- end row -->
     @section scripts
 
     {
+        <script>    $("document").ready(function () {
+        let isBoss = confirm("Are you the boss?");
+
+        alert(isBoss); // true if OK is pressed
+            });
+    </script>
 
         <script>
 
@@ -113,8 +119,8 @@
             .done(function (response) {
 
                 $("#Area").html(response);
-                    
-                    
+
+
             });
 
 
@@ -175,3 +181,6 @@
 
 
     }
+    
+
+    

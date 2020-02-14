@@ -16,9 +16,9 @@
                         </p>
 
                         <form method="post" class="parsley-examples" data-parsley-validate novalidate>
-                            <div class="form-group">
+                            @*<div class="form-group">
                                 @Html.DropDownListFor(x => x.RestaurantId, new SelectList(ViewBag.allres, "ID", "Name"), "Select Resturant", new { @class = "form-control" })
-                            </div>
+                            </div>*@
                             <div class="form-group">
                                 @Html.DropDownListFor(x => x.CategoryId, new SelectList(ViewBag.allcate, "ID", "Name"), "Select category", new { @class = "form-control" })
                             </div>

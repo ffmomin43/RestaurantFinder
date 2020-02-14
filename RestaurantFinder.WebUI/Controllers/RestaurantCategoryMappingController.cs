@@ -56,12 +56,13 @@ namespace RestaurantFinder.WebUI.Controllers
             return View();
         }
         [HttpPost]
-        public ActionResult Create(RestaurantCategoryMapping restaurantCategoryMapping)
+        public ActionResult Create(RestaurantCategoryMapping restaurantCategoryMapping,int ? Resid)
         {
+            restaurantCategoryMapping.RestaurantId =Convert.ToInt32(Resid);
             restaurantCategoryMapping.UniqueId = new Guid();
             categoryMappingService.Value.Add(restaurantCategoryMapping);
             categoryMappingService.Value.Save();
-            return RedirectToAction("Index");
+            return RedirectToAction("/Restaurant/Index");
         }
         public ActionResult Edit(int id)
         {
