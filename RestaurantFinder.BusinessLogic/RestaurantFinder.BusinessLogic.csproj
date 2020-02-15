@@ -38,6 +38,7 @@
     <Reference Include="System" />
     <Reference Include="System.Configuration" />
     <Reference Include="System.Core" />
+    <Reference Include="System.Web.ApplicationServices" />
     <Reference Include="System.Xml.Linq" />
     <Reference Include="System.Data.DataSetExtensions" />
     <Reference Include="Microsoft.CSharp" />
@@ -52,6 +53,7 @@
     <Compile Include="Common\TextReader.cs" />
     <Compile Include="Common\SystemConstants.cs" />
     <Compile Include="Common\IGenericService.cs" />
+    <Compile Include="Common\WebRoleProvider.cs" />
     <Compile Include="Impl\CategoryMasterService.cs" />
     <Compile Include="Impl\HomeBannerImageService.cs" />
     <Compile Include="Impl\RestaurantCategoryMappingService.cs" />
