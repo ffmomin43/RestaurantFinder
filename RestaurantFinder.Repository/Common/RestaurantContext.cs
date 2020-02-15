@@ -39,5 +39,6 @@ namespace RestaurantFinder.Repository
         public DbSet<DayMaster> DayMasters { get; set; }
         public DbSet<RestaruantDay> RestaruantDays { get; set; }
         public DbSet<RestaurantSlot> RestaurantSlot { get; set; }
+        public DbSet<UserRole> UserRole { get; set; }
     }
 }

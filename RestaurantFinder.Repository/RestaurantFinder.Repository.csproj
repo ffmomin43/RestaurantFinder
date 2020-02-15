@@ -216,6 +216,10 @@
     <Compile Include="Migrations\202002151711519_savedeloyeerror.designer.cs">
       <DependentUpon>202002151711519_savedeloyeerror.cs</DependentUpon>
     </Compile>
+    <Compile Include="Migrations\202002151928564_UserRolestbl.cs" />
+    <Compile Include="Migrations\202002151928564_UserRolestbl.designer.cs">
+      <DependentUpon>202002151928564_UserRolestbl.cs</DependentUpon>
+    </Compile>
     <Compile Include="Migrations\Configuration.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
   </ItemGroup>
@@ -325,6 +329,9 @@
     </EmbeddedResource>
     <EmbeddedResource Include="Migrations\202002151711519_savedeloyeerror.resx">
       <DependentUpon>202002151711519_savedeloyeerror.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Migrations\202002151928564_UserRolestbl.resx">
+      <DependentUpon>202002151928564_UserRolestbl.cs</DependentUpon>
     </EmbeddedResource>
   </ItemGroup>
   <Import Project="$(MSBuildToolsPath)\Microsoft.CSharp.targets" />
