@@ -14,12 +14,15 @@ namespace RestaurantFinder.WebUI.Controllers
     public class LoginController : Controller
     {
         private readonly Lazy<IUsersService> usersService;
+        private readonly Lazy<IUserRolesService>userRolesService;
+
         private readonly Lazy<IRestaurantService> restaurantService;
         private readonly Lazy<ILoggerFacade<LoginController>> logger;
 
-        public LoginController(Lazy<IUsersService> usersService, Lazy<IRestaurantService> restaurantService, Lazy<ILoggerFacade<LoginController>> logger)
+        public LoginController(Lazy<IUsersService> usersService, Lazy<IUserRolesService> userRolesService, Lazy<IRestaurantService> restaurantService, Lazy<ILoggerFacade<LoginController>> logger)
         {
             this.usersService = usersService;
+            this.userRolesService = userRolesService;
             this.restaurantService = restaurantService;
             this.logger = logger;
         }
@@ -82,7 +85,12 @@ namespace RestaurantFinder.WebUI.Controllers
 
             {
                 user.CreatedOn= DateTime.Now;
-                usersService.Value.Add(user);
+              int id=  usersService.Value.Insert(user);
+                UserRole userRole = new UserRole();
+                userRole.ID = 2;
+                userRole.UserID = id;
+                userRolesService.Value.Add(userRole);
+                userRolesService.Value.Save();
               
                 usersService.Value.Save();
                 

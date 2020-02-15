@@ -8,11 +8,7 @@ using System.Threading.Tasks;
 
 namespace RestaurantFinder.BusinessLogic.Interface
 {
-   public interface IUsersService : IGenericService<User>
+ public   interface IUserRolesService: IGenericService<UserRole>
     {
-        bool Checklogin(string name, string pass);
-        int userid(string name);
-         int Insert(User entity);
     }
-
 }

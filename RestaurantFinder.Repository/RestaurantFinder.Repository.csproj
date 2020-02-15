@@ -73,6 +73,7 @@
     <Compile Include="Impl\RestaurantsImagesRepository.cs" />
     <Compile Include="Impl\RestaurantTablesRepository.cs" />
     <Compile Include="Impl\RolesRepository.cs" />
+    <Compile Include="Impl\UserRolesRepository.cs" />
     <Compile Include="Impl\UsersRepository.cs" />
     <Compile Include="Interface\IHomeBannerImagesRepository.cs" />
     <Compile Include="Interface\IRestaurantCategoryMappingRepository.cs" />
@@ -87,6 +88,7 @@
     <Compile Include="Interface\IRestaurantRepository.cs" />
     <Compile Include="Interface\IRestaurantTableRepository.cs" />
     <Compile Include="Interface\IRestaurantLocationRepository.cs" />
+    <Compile Include="Interface\IUserRolesRepository.cs" />
     <Compile Include="Interface\IUsersRepository.cs" />
     <Compile Include="Migrations\202001272329136_intial.cs" />
     <Compile Include="Migrations\202001272329136_intial.designer.cs">
