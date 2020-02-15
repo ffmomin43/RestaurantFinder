@@ -93,6 +93,7 @@ namespace RestaurantFinder.WebUI.Controllers
             ViewBag.errorMsg = "Please Check UserName And Password";
             return View();
         }
+        [Authorize(Roles = "Admin")]
         public ActionResult Signup()
         {
             return View();

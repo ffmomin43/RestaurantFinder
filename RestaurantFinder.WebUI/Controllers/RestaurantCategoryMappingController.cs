@@ -8,6 +8,7 @@ using System.Web.Mvc;
 
 namespace RestaurantFinder.WebUI.Controllers
 {
+    [Authorize]
     public class RestaurantCategoryMappingController : Controller
     {
 

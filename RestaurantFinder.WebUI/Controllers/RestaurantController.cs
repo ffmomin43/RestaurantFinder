@@ -171,6 +171,7 @@ public ActionResult Edit(int id)
 
            
         }
+        [Authorize(Roles = "Admin")]
         public ActionResult RestaurantListAdmin()
         {
             string name = User.Identity.Name;
@@ -178,6 +179,7 @@ public ActionResult Edit(int id)
             var model = restaurantService.Value.GetAll();
             return View(model);
         }
+        [Authorize(Roles = "Admin")]
         public ActionResult EditRestaurantByAdmin(int id)
         {
             ViewBag.istrending = restaurantService.Value.GetAll().Where(x => x.ID == id).SingleOrDefault();

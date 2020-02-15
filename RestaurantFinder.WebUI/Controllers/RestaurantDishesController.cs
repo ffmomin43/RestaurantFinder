@@ -9,6 +9,7 @@ using System.Web.Mvc;
 
 namespace RestaurantFinder.WebUI.Controllers
 {
+    [Authorize]
     public class RestaurantDishesController : Controller
     {
         private readonly Lazy<IRestaurantDishesService> restaurantDishesService;

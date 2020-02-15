@@ -8,7 +8,8 @@ using System.Web;
 using System.Web.Mvc;
 
 namespace RestaurantFinder.WebUI.Controllers
-{   [Authorize]
+{
+    [Authorize(Roles = "Admin")]
     public class CategoryMasterController : Controller
     {
         private readonly Lazy<ICategoryMasterService> categoryMasterService;

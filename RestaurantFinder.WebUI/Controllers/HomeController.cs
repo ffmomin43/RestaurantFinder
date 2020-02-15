@@ -6,6 +6,8 @@ using System.Web.Mvc;
 
 namespace RestaurantFinder.WebUI.Controllers
 {
+        [Authorize]
+   
     public class HomeController : Controller
     {
         public ActionResult Index()
