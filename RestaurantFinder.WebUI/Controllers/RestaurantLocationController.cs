@@ -49,7 +49,7 @@ namespace RestaurantFinder.WebUI.Controllers
         }
 
         // GET: RestaurantLocation/Create
-        public ActionResult Create(int Resid)
+        public ActionResult Create(int ? Resid)
         {
             ViewBag.resturant = restaurantService.Value.GetAll();
             return View();
@@ -65,7 +65,7 @@ namespace RestaurantFinder.WebUI.Controllers
                 restaurantLocationService.Value.Add(restaurantLocation);
                 restaurantLocationService.Value.Save();
 
-                return RedirectToAction("/RestaurantCategoryMapping/Create/",Resid);
+                return RedirectToAction("Create","RestaurantCategoryMapping",new {Resid=restaurantLocation.RestaurantId });
             }
             catch
             {

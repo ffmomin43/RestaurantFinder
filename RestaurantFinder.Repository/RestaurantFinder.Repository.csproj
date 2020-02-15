@@ -200,6 +200,14 @@
     <Compile Include="Migrations\202002132300261_savetblRestaurantDayDayMasterRestaurantSlot.designer.cs">
       <DependentUpon>202002132300261_savetblRestaurantDayDayMasterRestaurantSlot.cs</DependentUpon>
     </Compile>
+    <Compile Include="Migrations\202002150942504_RestaurantCategoryMappingupdate.cs" />
+    <Compile Include="Migrations\202002150942504_RestaurantCategoryMappingupdate.designer.cs">
+      <DependentUpon>202002150942504_RestaurantCategoryMappingupdate.cs</DependentUpon>
+    </Compile>
+    <Compile Include="Migrations\202002151037545_RestaurantCategoryMappingupdates.cs" />
+    <Compile Include="Migrations\202002151037545_RestaurantCategoryMappingupdates.designer.cs">
+      <DependentUpon>202002151037545_RestaurantCategoryMappingupdates.cs</DependentUpon>
+    </Compile>
     <Compile Include="Migrations\Configuration.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
   </ItemGroup>
@@ -297,6 +305,12 @@
     </EmbeddedResource>
     <EmbeddedResource Include="Migrations\202002132300261_savetblRestaurantDayDayMasterRestaurantSlot.resx">
       <DependentUpon>202002132300261_savetblRestaurantDayDayMasterRestaurantSlot.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Migrations\202002150942504_RestaurantCategoryMappingupdate.resx">
+      <DependentUpon>202002150942504_RestaurantCategoryMappingupdate.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Migrations\202002151037545_RestaurantCategoryMappingupdates.resx">
+      <DependentUpon>202002151037545_RestaurantCategoryMappingupdates.cs</DependentUpon>
     </EmbeddedResource>
   </ItemGroup>
   <Import Project="$(MSBuildToolsPath)\Microsoft.CSharp.targets" />

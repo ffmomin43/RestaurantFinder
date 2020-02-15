@@ -51,18 +51,46 @@ namespace RestaurantFinder.WebUI.Controllers
         }
         public ActionResult Create()
         {
-            ViewBag.allres = restaurantService.Value.GetAll();
-            ViewBag.allcate = categoryMasterService.Value.GetAll();
+
+
+            ViewBag.cate = categoryMasterService.Value.GetAll();
             return View();
         }
         [HttpPost]
-        public ActionResult Create(RestaurantCategoryMapping restaurantCategoryMapping,int ? Resid)
+        public ActionResult Create(FormCollection fc,int ? Resid)
         {
-            restaurantCategoryMapping.RestaurantId =Convert.ToInt32(Resid);
-            restaurantCategoryMapping.UniqueId = new Guid();
-            categoryMappingService.Value.Add(restaurantCategoryMapping);
-            categoryMappingService.Value.Save();
-            return RedirectToAction("/Restaurant/Index");
+            if(fc.Count>0)
+            { 
+            string[] ids = fc["CategoryId"].Split(',');
+           
+            foreach (var item in ids)
+            {
+
+                RestaurantCategoryMapping restaurantCategoryMapping = new RestaurantCategoryMapping();
+                restaurantCategoryMapping.RestaurantId = Convert.ToInt32(Resid);
+                restaurantCategoryMapping.UniqueId = new Guid();
+                restaurantCategoryMapping.CategoryId =Convert.ToInt32(item);
+                restaurantCategoryMapping.UniqueId = new Guid();
+                categoryMappingService.Value.Add(restaurantCategoryMapping);
+                categoryMappingService.Value.Save();
+
+
+            }
+            }
+            else
+
+
+            {
+
+                RestaurantCategoryMapping restaurantCategoryMapping = new RestaurantCategoryMapping();
+                restaurantCategoryMapping.RestaurantId = Convert.ToInt32(Resid);
+                restaurantCategoryMapping.UniqueId = new Guid();
+                
+                restaurantCategoryMapping.UniqueId = new Guid();
+                categoryMappingService.Value.Add(restaurantCategoryMapping);
+                categoryMappingService.Value.Save();
+            }
+            return RedirectToAction("Index","Restaurant");
         }
         public ActionResult Edit(int id)
         {

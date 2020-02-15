@@ -1,7 +1,6 @@
 ﻿@model RestaurantFinder.Models.RestaurantCategoryMapping
 @{
-    @ViewBag.title= "Create";
-    Layout = "~/Views/Shared/Admin_Layout.cshtml";
+    Layout = "~/Views/Shared/_Layout.cshtml";
 }
 
 <div class="row">
@@ -19,9 +18,15 @@
                             @*<div class="form-group">
                                 @Html.DropDownListFor(x => x.RestaurantId, new SelectList(ViewBag.allres, "ID", "Name"), "Select Resturant", new { @class = "form-control" })
                             </div>*@
-                            <div class="form-group">
-                                @Html.DropDownListFor(x => x.CategoryId, new SelectList(ViewBag.allcate, "ID", "Name"), "Select category", new { @class = "form-control" })
+                          @foreach(var item in ViewBag.cate)
+                          {
+                            <div class="checkbox-inline">
+                                <label>@item.Name</label>
+                                <input type="checkbox" class="checkboxid" name="CategoryId" value="@item.ID"  />
+
                             </div>
+                          }
+                            
 
 
 

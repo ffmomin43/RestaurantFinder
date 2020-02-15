@@ -88,7 +88,7 @@ namespace RestaurantFinder.WebUI.Controllers
 
                     this.restaurantService.Value.Add(restaurant);
                         this.restaurantService.Value.Save();
-                        return RedirectToAction("/RestaurantLocation/Create/", new { Resid = restaurant.ID });
+                        return RedirectToAction("Create","RestaurantLocation", new { Resid = restaurant.ID });
                     
                 }
             }

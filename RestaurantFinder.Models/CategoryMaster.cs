@@ -15,5 +15,15 @@ namespace RestaurantFinder.Models
         public string ThumbnailImageUrl { get; set; }
         [NotMapped]
         public HttpPostedFileBase imagefile { get; set; }
+        [NotMapped]
+        public bool ischeck { get; set; }
+
+
+    }
+    public class categorymodel
+    {
+
+
+        public List<CategoryMaster> categoryMasters { get; set; }
     }
 }

@@ -58,7 +58,7 @@ namespace RestaurantFinder.WebUI.Controllers
                 else
 
                 {
-                    return RedirectToAction("/Restaurant/Create/");
+                    return RedirectToAction("Create","Restaurant");
 
                 }
 

@@ -12,4 +12,5 @@ namespace RestaurantFinder.Models
 
         public int CategoryId { get; set; }
     }
+   
 }
