@@ -1,0 +1,43 @@
+﻿
+@{
+    ViewBag.Title = "Create";
+    Layout = "~/Views/Shared/Admin_Layout.cshtml";
+}
+
+<div class="row">
+    <div class="col-xl-3 col-md-6">
+        <div class="card bg-primary text-white mb-4">
+            <div class="card-body">Total Category</div>
+            <div class="card-footer d-flex align-items-center justify-content-between">
+                <h4>   <a class="small text-white stretched-link" href="#"> @ViewBag.totalCategory</a></h4>
+                <div class="small text-white"><i class="fas fa-angle-right"></i></div>
+            </div>
+        </div>
+    </div>
+    <div class="col-xl-3 col-md-6">
+        <div class="card bg-warning text-white mb-4">
+            <div class="card-body">Total Restaurant</div>
+            <div class="card-footer d-flex align-items-center justify-content-between">
+                <h4>   <a class="small text-white stretched-link" href="#">@ViewBag.TotalRestaurant</a></h4>                <div class="small text-white"><i class="fas fa-angle-right"></i></div>
+            </div>
+        </div>
+    </div>
+    <div class="col-xl-3 col-md-6">
+        <div class="card bg-success text-white mb-4">
+            <div class="card-body">Total User</div>
+            <div class="card-footer d-flex align-items-center justify-content-between">
+                <h4>  <a class="small text-white stretched-link" href="#">@ViewBag.User</a></h4>
+                <div class="small text-white"><i class="fas fa-angle-right"></i></div>
+            </div>
+        </div>
+    </div>
+    <div class="col-xl-3 col-md-6">
+        <div class="card bg-danger text-white mb-4">
+            <div class="card-body">Total Banner</div>
+            <div class="card-footer d-flex align-items-center justify-content-between">
+                <h4>   <a class="small text-white stretched-link" href="#">@ViewBag.banner</a></h4>
+                <div class="small text-white"><i class="fas fa-angle-right"></i></div>
+            </div>
+        </div>
+    </div>
+</div>
