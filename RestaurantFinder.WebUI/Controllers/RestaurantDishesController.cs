@@ -19,7 +19,6 @@ namespace RestaurantFinder.WebUI.Controllers
         public RestaurantDishesController(Lazy<IRestaurantDishesService> restaurantDishesService, Lazy<IRestaurantService> restaurantService, Lazy<ILoggerFacade<RestaurantDishesController>> logger)
         {
             this.restaurantDishesService = restaurantDishesService;
-            this.restaurantService = restaurantService;
 
             this.logger = logger;
         }

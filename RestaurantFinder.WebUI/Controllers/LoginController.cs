@@ -53,8 +53,10 @@ namespace RestaurantFinder.WebUI.Controllers
                 //if user found then if work
                 if (list.Count() > 0)
                 {
+                    
                     return RedirectToAction("DashBoard");
                 }
+                
                 else
 
                 {

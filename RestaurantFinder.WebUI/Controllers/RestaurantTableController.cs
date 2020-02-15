@@ -54,8 +54,10 @@ namespace RestaurantFinder.WebUI.Controllers
         {
             try
             {
-               restaurantTable.UniqueId = Guid.NewGuid();
-
+                string name = User.Identity.Name;
+                //int id = usersService.Value.userid(name);
+                restaurantTable.UniqueId = Guid.NewGuid();
+                //restaurant.UserId = id;
                 this.restaurantTablesService.Value.Add(restaurantTable);
                 this.restaurantTablesService.Value.Save();
                 return RedirectToAction("");

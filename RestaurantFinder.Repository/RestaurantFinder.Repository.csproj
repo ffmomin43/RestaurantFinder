@@ -208,6 +208,14 @@
     <Compile Include="Migrations\202002151037545_RestaurantCategoryMappingupdates.designer.cs">
       <DependentUpon>202002151037545_RestaurantCategoryMappingupdates.cs</DependentUpon>
     </Compile>
+    <Compile Include="Migrations\202002151133258_Restauranttbl.cs" />
+    <Compile Include="Migrations\202002151133258_Restauranttbl.designer.cs">
+      <DependentUpon>202002151133258_Restauranttbl.cs</DependentUpon>
+    </Compile>
+    <Compile Include="Migrations\202002151711519_savedeloyeerror.cs" />
+    <Compile Include="Migrations\202002151711519_savedeloyeerror.designer.cs">
+      <DependentUpon>202002151711519_savedeloyeerror.cs</DependentUpon>
+    </Compile>
     <Compile Include="Migrations\Configuration.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
   </ItemGroup>
@@ -311,6 +319,12 @@
     </EmbeddedResource>
     <EmbeddedResource Include="Migrations\202002151037545_RestaurantCategoryMappingupdates.resx">
       <DependentUpon>202002151037545_RestaurantCategoryMappingupdates.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Migrations\202002151133258_Restauranttbl.resx">
+      <DependentUpon>202002151133258_Restauranttbl.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Migrations\202002151711519_savedeloyeerror.resx">
+      <DependentUpon>202002151711519_savedeloyeerror.cs</DependentUpon>
     </EmbeddedResource>
   </ItemGroup>
   <Import Project="$(MSBuildToolsPath)\Microsoft.CSharp.targets" />
