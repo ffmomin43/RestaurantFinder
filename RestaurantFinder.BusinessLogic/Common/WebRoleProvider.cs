@@ -1,4 +1,5 @@
-﻿using System;
+﻿using RestaurantFinder.Repository;
+using System;
 using System.Collections.Generic;
 using System.Linq;
 using System.Text;
@@ -38,8 +39,23 @@ namespace RestaurantFinder.BusinessLogic.Common
 
         public override string[] GetRolesForUser(string username)
         {
-            throw new NotImplementedException();
-        }
+
+            RestaurantContext restaurantContext = new RestaurantContext();
+            {
+                var list = (from user in restaurantContext.User
+                            join rolesuser in restaurantContext.UserRole on user.ID equals rolesuser.UserID
+                            join Role in restaurantContext.Role on rolesuser.RoleID equals Role.ID
+                            where user.Name == username select Role.Name).ToArray();
+                return list;
+                     
+
+                    
+                     
+                     
+
+                    
+                    
+        } }
 
         public override string[] GetUsersInRole(string roleName)
         {
