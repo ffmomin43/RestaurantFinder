@@ -63,35 +63,67 @@ namespace RestaurantFinder.WebUI.Controllers
                 string name = User.Identity.Name;
                 int id = usersService.Value.userid(name);
                 //check Restaurant list login user
-              var list=  restaurantService.Value.GetAll().Where(x => x.UserId == id).ToList();
-                //if user found then if work
-               
-                    if(Request.IsAuthenticated)
-                    {
-                        string[] roles = Roles.GetRolesForUser();
-                        foreach (string role in roles)
-                        {
-                            if (role.Contains("Admin"))
-                            {
+                var list = restaurantService.Value.GetAll().Where(x => x.UserId == id).ToList();
 
-                                return RedirectToAction("DashBoardAdmin","Login");
-                            }
-                        }
-                        return RedirectToAction("DashBoardAdmin","Login");
-                    
-                  
+                //if user found then if work
+
+              if (list.Count()>0)
+                {
+                    return RedirectToAction("DashBoard", "Login");
+
                 }
-                
-                else
+                else if (list.Count()<=0)
 
                 {
-                    return RedirectToAction("Create","Restaurant");
-
+                    return RedirectToAction("Create", "Restaurant");
+                   
                 }
+                
+                
+                  
+                
+            }
+           
+            ViewBag.errorMsg = "Please Check UserName And Password";
+            return View();
 
+
+        }
+        public ActionResult AdminLogin()
+
+        {
+            return View();
+           
+        }
+        [HttpPost]
+        public ActionResult AdminLogin(FormCollection fc)
+
+        {
+
+            string username = fc["username"];
+            string Password = fc["Password"];
+
+            if (usersService.Value.Checklogin(username, Password))
+            {
+                FormsAuthentication.SetAuthCookie(username, false);
+                Session["name"] = fc["username"];
+                string name = User.Identity.Name;
+                int id = usersService.Value.userid(name);
+                //check Restaurant list login user
+                var list = restaurantService.Value.GetAll().Where(x => x.UserId == id).ToList();
+
+
+                if (Roles.IsUserInRole("Admin"))
+                {
+
+                    //if user found then if work
+                    return RedirectToAction("DashBoardAdmin", "Login");
+                }
             }
             ViewBag.errorMsg = "Please Check UserName And Password";
             return View();
+
+
         }
         [Authorize(Roles = "Admin")]
         public ActionResult Signup()
@@ -99,6 +131,7 @@ namespace RestaurantFinder.WebUI.Controllers
             return View();
         }
         [HttpPost]
+       
         public ActionResult Signup(User user)
         {
            
@@ -143,8 +176,8 @@ namespace RestaurantFinder.WebUI.Controllers
         {
             ViewBag.totalCategory =categoryMaster.Value.GetAll().Count();
             ViewBag.TotalRestaurant =restaurantService.Value.GetAll().Count();
-            ViewBag.User =usersService.Value.GetAll().Count();
-            ViewBag.banner =homeBannerImageService.Value.GetAll().Count();
+            ViewBag.User = usersService.Value.GetAll().Count();
+            ViewBag.banner = homeBannerImageService.Value.GetAll().Count();
             return View();
         }
         public ActionResult Logout()

@@ -14,6 +14,6 @@ namespace RestaurantFinder.Models
         public int TableCapacity { get; set; }
 
         public string TableName { get; set; }
-        //public int userid { get; set; }
+        public int userid { get; set; }
     }
 }

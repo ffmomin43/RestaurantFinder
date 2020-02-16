@@ -9,7 +9,7 @@ using System.Web.Mvc;
 
 namespace RestaurantFinder.WebUI.Controllers
 {
-    [Authorize(Roles = "Admin")]
+    
     public class CategoryMasterController : Controller
     {
         private readonly Lazy<ICategoryMasterService> categoryMasterService;
@@ -35,7 +35,7 @@ namespace RestaurantFinder.WebUI.Controllers
         }
 
         // GET: CategoryMaster/Create
-        [Authorize(Roles="Admin")]
+      
         public ActionResult Create()
         {
 

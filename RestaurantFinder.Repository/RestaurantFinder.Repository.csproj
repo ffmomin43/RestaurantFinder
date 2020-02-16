@@ -222,6 +222,10 @@
     <Compile Include="Migrations\202002151928564_UserRolestbl.designer.cs">
       <DependentUpon>202002151928564_UserRolestbl.cs</DependentUpon>
     </Compile>
+    <Compile Include="Migrations\202002161551216_UserRestauranttbl.cs" />
+    <Compile Include="Migrations\202002161551216_UserRestauranttbl.designer.cs">
+      <DependentUpon>202002161551216_UserRestauranttbl.cs</DependentUpon>
+    </Compile>
     <Compile Include="Migrations\Configuration.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
   </ItemGroup>
@@ -334,6 +338,9 @@
     </EmbeddedResource>
     <EmbeddedResource Include="Migrations\202002151928564_UserRolestbl.resx">
       <DependentUpon>202002151928564_UserRolestbl.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Migrations\202002161551216_UserRestauranttbl.resx">
+      <DependentUpon>202002161551216_UserRestauranttbl.cs</DependentUpon>
     </EmbeddedResource>
   </ItemGroup>
   <Import Project="$(MSBuildToolsPath)\Microsoft.CSharp.targets" />

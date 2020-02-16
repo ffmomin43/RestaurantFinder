@@ -535,6 +535,7 @@
     <Content Include="Views\Restaurant\RestaurantListAdmin.cshtml" />
     <Content Include="Views\Restaurant\EditRestaurantByAdmin.cshtml" />
     <Content Include="Views\Login\DashBoardAdmin.cshtml" />
+    <Content Include="Views\Login\AdminLogin.cshtml" />
   </ItemGroup>
   <ItemGroup>
     <Folder Include="APIModels\" />

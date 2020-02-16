@@ -171,7 +171,9 @@ public ActionResult Edit(int id)
 
            
         }
-        [Authorize(Roles = "Admin")]
+        
+        
+        
         public ActionResult RestaurantListAdmin()
         {
             string name = User.Identity.Name;
@@ -179,7 +181,7 @@ public ActionResult Edit(int id)
             var model = restaurantService.Value.GetAll();
             return View(model);
         }
-        [Authorize(Roles = "Admin")]
+        
         public ActionResult EditRestaurantByAdmin(int id)
         {
             ViewBag.istrending = restaurantService.Value.GetAll().Where(x => x.ID == id).SingleOrDefault();
@@ -193,14 +195,15 @@ public ActionResult Edit(int id)
         {
             if(restaurant.IsTrending==true)
             {
-
+                restaurant.UpdatedDate = DateTime.Now;
                 restaurant.IsTrending = true;
                 restaurantService.Value.Edit(restaurant);
                 restaurantService.Value.Save();
 
             }
-            else { 
-            restaurantService.Value.Edit(restaurant);
+            else {
+                restaurant.UpdatedDate = DateTime.Now;
+                restaurantService.Value.Edit(restaurant);
             restaurantService.Value.Save();
             }
             return RedirectToAction("RestaurantListAdmin");

@@ -9,7 +9,7 @@ using System.Web.Mvc;
 
 namespace RestaurantFinder.WebUI.Controllers
 {
-    [Authorize(Roles = "Admin")]
+    
     public class HomeBannerImagesController : Controller
     {
         private readonly Lazy<IHomeBannerImageService> homeBannerImageService;

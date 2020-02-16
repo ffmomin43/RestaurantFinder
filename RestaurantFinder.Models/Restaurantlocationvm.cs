@@ -13,6 +13,7 @@ namespace RestaurantFinder.Models
         public string Name { get; set; }
         public string LocationName { get; set; }
         public double Latitude { get; set; }
+        public string Thumbimageurl { get; set; }
         public double Longitude { get; set; }
         public int ID
         {

@@ -173,8 +173,10 @@ namespace RestaurantFinder.WebUI.APIController
 
                             Latitude = loc.Latitude,
                             Longitude = loc.Longitude,
+                            Thumbimageurl = res.ThumbnailImageUrl,
+                            
                             LocationName = loc.LocationName,
-                            Distance = GeoLocation.GetDistanceBetweenPoints(loc.Latitude, loc.Longitude, restorantLat, resturantLong),
+                            Distance = GeoLocation.GetDistanceBetweenPoints(loc.Latitude, loc.Longitude,restorantLat, resturantLong),
 
                         };
 
@@ -223,6 +225,8 @@ namespace RestaurantFinder.WebUI.APIController
                 RestaurantId = res.ID,
                 City = res.City,
                 Name = res.Name,
+                Thumburl=res.ThumbnailImageUrl,
+               
                 PinCode = res.PinCode,                
                 State = res.State,
                 IsTrending = res.IsTrending

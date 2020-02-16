@@ -30,7 +30,7 @@
                                 <label>IsTrending</label>
                                 <div class="checkbox-inline">
                                     <label for="emailAddress"><span class="text-danger">*</span></label>
-                                    @Html.CheckBoxFor(x => x.IsTrending,Model.IsActive)
+                                    @Html.CheckBoxFor(x => x.IsTrending, Model.IsActive)
 
                                 </div>
                                 <div class="form-group">
@@ -59,17 +59,17 @@
                                     <input data-parsley-equalto="#pass1" name="State" type="text" required
                                            placeholder="State" class="form-control" value="@Model.State" id="passWord2">
                                 </div>
-                                
+
                                 <div class="form-group">
                                     <label for="passWord2">City <span class="text-danger">*</span></label>
                                     <input data-parsley-equalto="#pass1" name="City" value="@Model.City" type="text" required
                                            placeholder="City" class="form-control" id="passWord2">
-                                   
+
                                 </div> @*<label>
-                                    Image Upload
-                                </label>*@
+            Image Upload
+        </label>*@
                                 @*<input id="Resturantpicture" type="file" class="form-control" name="imagefile" multiple />
-                                <br />*@
+        <br />*@
                                 <div id="picturearea">
                                     @if (Model.ThumbnailImageUrl == null)
                                     {
@@ -84,7 +84,11 @@
                                 <input type="hidden" name="RestaurantsImages" id="picid" />
 
 
-
+                                <input type="hidden" value="@Model.UserId" name="UserId" />
+                                <input type="hidden" value="@Model.CreatedDate" name="CreatedDate" />
+                                <input type="hidden" value="@Model.UniqueId" name="UniqueId" />
+                                <input type="hidden" value="@Model.ThumbnailImageUrl" name="ThumbnailImageUrl" />
+                                <br />
                                 <div class="form-group text-right mb-0">
                                     <button class="btn btn-primary waves-effect waves-light mr-1" type="submit">
                                         Submit

@@ -14,12 +14,14 @@ namespace RestaurantFinder.WebUI.Controllers
     {
         private readonly Lazy<IRestaurantService> restaurantService;
         private readonly Lazy<IRestaurantTablesService> restaurantTablesService;
+        private readonly Lazy<IUsersService> usersService;
         private readonly Lazy<ILoggerFacade<RestaurantTableController>> logger;
 
-        public RestaurantTableController(Lazy<IRestaurantTablesService> restaurantTablesService,Lazy<IRestaurantService>restaurantService, Lazy<ILoggerFacade<RestaurantTableController>> logger)
+        public RestaurantTableController(Lazy<IRestaurantTablesService> restaurantTablesService, Lazy<IUsersService> usersService, Lazy<IRestaurantService>restaurantService, Lazy<ILoggerFacade<RestaurantTableController>> logger)
         {
             this.restaurantTablesService =restaurantTablesService;
             this.restaurantService = restaurantService;
+            this.usersService = usersService;
             this.logger = logger;
         }
 
@@ -43,7 +45,9 @@ namespace RestaurantFinder.WebUI.Controllers
         public ActionResult Create()
 
         {
-            ViewBag.resturant = restaurantService.Value.GetAll();
+            string name = User.Identity.Name;
+            int id = usersService.Value.userid(name);
+            ViewBag.resturant = restaurantService.Value.GetAll().Where(x=>x.UserId==id);
             return View();
         }
 
@@ -56,12 +60,12 @@ namespace RestaurantFinder.WebUI.Controllers
             try
             {
                 string name = User.Identity.Name;
-                //int id = usersService.Value.userid(name);
+                int id = usersService.Value.userid(name);
                 restaurantTable.UniqueId = Guid.NewGuid();
-                //restaurant.UserId = id;
+               restaurantTable.userid= id;
                 this.restaurantTablesService.Value.Add(restaurantTable);
                 this.restaurantTablesService.Value.Save();
-                return RedirectToAction("");
+                return RedirectToAction("Index");
 
 
             }
