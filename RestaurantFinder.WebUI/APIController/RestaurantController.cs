@@ -128,8 +128,8 @@ namespace RestaurantFinder.WebUI.APIController
             {
                 var res = restaurantLocationService.Value.GetAll().Where(x => x.RestaurantId == RestoId).SingleOrDefault();
 
-                res.Longitude =Longitude;
-                res.Latitude =Latitude;
+                res.Longitude=Latitude;
+                res.Latitude=Longitude;
                 
                 restaurantLocationService.Value.Edit(res);
                 restaurantLocationService.Value.Save();

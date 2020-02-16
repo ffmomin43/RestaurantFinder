@@ -51,9 +51,9 @@ namespace RestaurantFinder.WebUI.Controllers
                     homeBannerImage.CreatedBy = "System";
                     string filename = Path.GetFileNameWithoutExtension(homeBannerImage.imagefile.FileName);
                     string extentsion = Path.GetExtension(homeBannerImage.imagefile.FileName);
-                    filename = filename + DateTime.Now.ToString("yymmssfff") + extentsion;
-                    homeBannerImage.Url = "/Images/RestaurantBanners/" + filename;
-                    filename = Path.Combine(Server.MapPath("~/Images/RestaurantBanners/"), filename);
+                    filename = filename + DateTime.Now.ToString("yymmssfff")+extentsion;
+                    homeBannerImage.Url = "/Images/RestaurantBanners/"+filename;
+                    filename = Path.Combine(Server.MapPath("~/Images/RestaurantBanners/"),filename);
                     homeBannerImage.imagefile.SaveAs(filename);
 
 
