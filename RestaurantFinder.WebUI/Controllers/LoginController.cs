@@ -125,7 +125,7 @@ namespace RestaurantFinder.WebUI.Controllers
 
 
         }
-        [Authorize(Roles = "Admin")]
+       
         public ActionResult Signup()
         {
             return View();
