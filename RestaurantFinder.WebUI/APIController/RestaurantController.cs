@@ -128,8 +128,8 @@ namespace RestaurantFinder.WebUI.APIController
             {
                 var res = restaurantLocationService.Value.GetAll().Where(x => x.RestaurantId == RestoId).SingleOrDefault();
 
-                res.Longitude=Latitude;
-                res.Latitude=Longitude;
+                res.Longitude=Longitude;
+                res.Latitude=Latitude;
                 
                 restaurantLocationService.Value.Edit(res);
                 restaurantLocationService.Value.Save();
@@ -170,7 +170,7 @@ namespace RestaurantFinder.WebUI.APIController
                         select new Restaurantlocationvm()
                         {
                             ID = loc.ID,
-
+                            Name=loc.LocationName,
                             Latitude = loc.Latitude,
                             Longitude = loc.Longitude,
                             Thumbimageurl = res.ThumbnailImageUrl,
