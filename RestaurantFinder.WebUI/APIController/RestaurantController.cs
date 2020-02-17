@@ -239,6 +239,14 @@ namespace RestaurantFinder.WebUI.APIController
         {
             return "SUCCESS";
         }
+
+        [Route("api/autocomplete")]
+        public IEnumerable<KeyValuePair<int,string>> GetAutocomplete(string searchTerm)
+        {
+
+            return restaurantService.Value.GetAll().Where(x => x.Name.Contains(searchTerm)).ToList().Select(n => new KeyValuePair<int, string>(n.ID, n.Name));
+        }
+
     }
 
     public class LocationRestoRequest
