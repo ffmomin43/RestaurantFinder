@@ -5,6 +5,7 @@ using RestaurantFinder.WebUI.Common.logger;
 using System;
 using System.Collections.Generic;
 using System.Linq;
+using System.Net.Mail;
 using System.Web;
 using System.Web.Mvc;
 using System.Web.Security;
@@ -141,15 +142,17 @@ namespace RestaurantFinder.WebUI.Controllers
 
             {
                 user.CreatedOn= DateTime.Now;
-              int id=  usersService.Value.Insert(user);
+               
+
+
+                int id =  usersService.Value.Insert(user);
                 UserRole userRole = new UserRole();
                 userRole.RoleID= 2;
                 userRole.UserID = id;
                 userRole.CreatedBy="System";
                 userRolesService.Value.Add(userRole);
                 userRolesService.Value.Save();
-
-
+                
 
             }
             catch {
