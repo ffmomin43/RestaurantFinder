@@ -62,6 +62,7 @@ namespace RestaurantFinder.WebUI.Controllers
         {
             try
             {
+                restaurantLocation.UniqueId = new Guid();
                 restaurantLocation.RestaurantId =Convert.ToInt32( Resid);
                 restaurantLocationService.Value.Add(restaurantLocation);
                 restaurantLocationService.Value.Save();

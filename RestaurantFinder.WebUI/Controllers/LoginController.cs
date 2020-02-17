@@ -150,6 +150,7 @@ namespace RestaurantFinder.WebUI.Controllers
                 userRole.RoleID= 2;
                 userRole.UserID = id;
                 userRole.CreatedBy="System";
+                userRole.UniqueId = new Guid();
                 userRolesService.Value.Add(userRole);
                 userRolesService.Value.Save();
                 
