@@ -27,6 +27,8 @@ namespace RestaurantFinder.Models
         public string City { get; set; }
 
         public bool IsTrending { get; set; }
+        public int Number{ get; set; }
+        public string Description { get; set; }
 
         public string ThumbnailImageUrl { get; set; }
         [NotMapped]

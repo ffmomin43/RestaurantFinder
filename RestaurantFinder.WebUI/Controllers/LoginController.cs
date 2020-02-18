@@ -61,28 +61,33 @@ namespace RestaurantFinder.WebUI.Controllers
             {
                 FormsAuthentication.SetAuthCookie(username, false);
                 Session["name"] = fc["username"];
-                string name = User.Identity.Name;
+                string name =Convert.ToString( Session["name"]);
                 int id = usersService.Value.userid(name);
                 //check Restaurant list login user
                 var list = restaurantService.Value.GetAll().Where(x => x.UserId == id).ToList();
+                if(User.IsInRole("Admin"))
+                {
 
+                    return View("DashBoardAdmin");
+                }
+
+       
                 //if user found then if work
 
-              if (list.Count()>0)
+              if (list.Count()>0 && User.IsInRole("Owner"))
                 {
                     return RedirectToAction("DashBoard", "Login");
 
                 }
-                else if (list.Count()<=0)
+                 if(list.Count() == 0 && User.IsInRole("Owner"))
 
                 {
                     return RedirectToAction("Create", "Restaurant");
                    
+                
+
                 }
-                
-                
-                  
-                
+
             }
            
             ViewBag.errorMsg = "Please Check UserName And Password";

@@ -246,6 +246,26 @@ namespace RestaurantFinder.WebUI.APIController
 
             return restaurantService.Value.GetAll().Where(x => x.Name.Contains(searchTerm)).ToList().Select(n => new KeyValuePair<int, string>(n.ID, n.Name));
         }
+        [Route("api/RestaurantDetails")]
+        public IEnumerable<RestaurantDetailsvm> GetRestaurantDeatails(string name)
+        {
+
+            int id = usersService.Value.userid(name);
+            var list = from r in restaurantService.Value.GetAll().Where(x => x.UserId == id)
+                       join c in categoryMappingService.Value.GetAll() on r.ID equals c.RestaurantId
+                       join cs in categoryMasterService.Value.GetAll() on c.CategoryId equals cs.ID
+                       select new RestaurantDetailsvm
+                       {
+
+
+                       };
+            return list;
+
+
+
+
+
+        }
 
     }
 
