@@ -9,7 +9,7 @@ using System.Threading.Tasks;
 
 namespace RestaurantFinder.Repository.Impl
 {
-    class RestaurantSlotRepository:GenericRepository<RestaurantContext, RestaurantSlot>, IRestaurantSlotRepository
+ public   class RestaurantSlotRepository:GenericRepository<RestaurantContext, RestaurantSlot>,IRestaurantSlotRepository
     {
         public RestaurantSlotRepository(RestaurantContext ecommerceContext) : base(ecommerceContext)
     {

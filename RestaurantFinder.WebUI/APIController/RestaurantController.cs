@@ -20,6 +20,8 @@ namespace RestaurantFinder.WebUI.APIController
 
         private readonly Lazy<IUsersService> usersService;
 
+        private readonly Lazy<IRestaurantSlotService> restaurantSlotService;
+
         private readonly Lazy<IRestaurantCategoryMappingService> categoryMappingService;
         private readonly Lazy<IRestaurantsImagesService> restaurantsImage;
         private readonly Lazy<ICategoryMasterService> categoryMasterService;
@@ -33,6 +35,7 @@ namespace RestaurantFinder.WebUI.APIController
             Lazy<IRestaurantService> restaurantService,
             Lazy<ILoggerFacade<RestaurantController>> logger,
             Lazy<ICategoryMasterService> categoryMasterService,
+            Lazy<IRestaurantSlotService> restaurantSlotService,
             Lazy<IRestaurantsImagesService> restaurantsImage,
             Lazy<IRestaurantCategoryMappingService> categoryMappingService,
             Lazy<IPictureService> pictureService,
@@ -45,6 +48,7 @@ namespace RestaurantFinder.WebUI.APIController
             this.categoryMasterService = categoryMasterService;
             this.restaurantsImage = restaurantsImage;
             this.usersService = usersService;
+            this.restaurantSlotService=restaurantSlotService;
             this.pictureService = pictureService;
             this.restaurantLocationService = restaurantLocationService;
             this.categoryMappingService = categoryMappingService;
@@ -231,6 +235,18 @@ namespace RestaurantFinder.WebUI.APIController
                 PinCode = res.PinCode,
                 State = res.State,
                 IsTrending = res.IsTrending
+            });
+
+        }
+        [Route("api/RestaurantBySlot")]
+        public IEnumerable<Restaurantslotvm> GetRestaurantBySlot(int id)
+        {
+            return restaurantSlotService.Value.GetAll().Where(x => x.RestaurantDayId == id).Select(restaurantSlotService => new Restaurantslotvm
+
+            {
+                StartTime = restaurantSlotService.StartTime,
+                EndTime = restaurantSlotService.EndTime,
+
             });
 
         }

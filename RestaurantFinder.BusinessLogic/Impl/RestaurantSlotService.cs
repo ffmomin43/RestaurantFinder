@@ -1,4 +1,5 @@
-﻿using RestaurantFinder.Repository.Interface;
+﻿using RestaurantFinder.BusinessLogic.Interface;
+using RestaurantFinder.Repository.Interface;
 using System;
 using System.Collections.Generic;
 using System.Linq;
@@ -8,7 +9,7 @@ using System.Threading.Tasks;
 
 namespace RestaurantFinder.BusinessLogic.Impl
 {
-   public class RestaurantSlotService
+   public class RestaurantSlotService:IRestaurantSlotService
     {
 
         private readonly Lazy<IRestaurantSlotRepository> restaurantSlotRepository;

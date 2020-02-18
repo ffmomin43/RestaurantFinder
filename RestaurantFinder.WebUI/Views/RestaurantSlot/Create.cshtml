@@ -1,0 +1,122 @@
+﻿@model RestaurantFinder.Models.RestaurantSlot
+@{
+    ViewBag.Title = "Create";
+    Layout = "~/Views/Shared/Admin_Layout.cshtml";
+}
+@using (Html.BeginForm("Create","RestaurantSlot", FormMethod.Post, new { enctype = "multipart/form-data" }))
+{
+    <div class="row">
+        <div class="col-12">
+            <div class="card-box">
+                <div class="row">
+                    <div class="col-lg-6">
+                        <div>
+                            <h4 class="header-title">Add Resturant Category</h4>
+                            <p class="sub-header">
+                                .
+
+                            </p>
+                            <div class="form-group">
+                                <label for="userName">Restaurant Name<span class="text-danger">*</span></label>
+                                <input type="time" name="StartTime" parsley-trigger="change" required
+                                       placeholder="Enter StartTime Slot" class="form-control" id="userName">
+                            </div>
+                            <div class="form-group">
+                                <label for="userName">EndTime<span class="text-danger">*</span></label>
+                                <input type="time" name="EndTime" parsley-trigger="change" required
+                                       placeholder="Enter EndTime" class="form-control" id="userName">
+                            </div>
+                            <div class="form-group">
+                                <label for="userName">RestaurantDayId<span class="text-danger">*</span></label>
+                                <input type="text" name="RestaurantDayId" parsley-trigger="change" required
+                                       placeholder="Enter RestaurantDayId" class="form-control" id="userName">
+                            </div>
+
+
+                            <div id="picturearea"></div>
+                            <input type="hidden" name="RestaurantsImages" id="picid" />
+
+                            <div class="form-group text-right mb-0">
+                                <button class="btn btn-primary waves-effect waves-light mr-1" type="submit">
+                                    Submit
+                                </button>
+                                <button type="reset" class="btn btn-secondary waves-effect">
+                                    Cancel
+                                </button>
+                            </div>
+
+                        </div>
+                    </div>
+
+
+                </div>
+            </div><!-- end col-->
+        </div>
+    </div>
+}
+<div id="imagetemplate" style="display:none">
+    <img class='image img-fluid' src='' height="50px" width="50px" />
+</div>
+<!-- end row -->
+@section scripts
+
+    {
+
+    <script>
+
+
+    $("#Resturantpicture").change(function () {
+        debugger;
+
+        var Pictures = this.files;
+        var PicsData = new FormData();
+        for (var i = 0; i < Pictures.length; i++) {
+            PicsData.append("Picture", Pictures[i]);
+        }
+
+        $.ajax(
+            {
+                url:"@Url.Action("UploadPicture","Picture")",
+                type: "post",
+                data: PicsData,
+                dataType: "json",
+                processData: false,
+                contentType: false
+            })
+            .done(function (responses) {
+
+
+                for (var i = 0; i < responses.length; i++) {
+                    var picresponse = responses[i];
+                    addnewimage(picresponse.Urlpic, picresponse.Id);
+
+                    //var imgurl = "<img class='img-fluid' src='/Content/images/" + picresponse.Urlpic + "'/>";
+                    // $newimagehtml = $("#imagetemplate").clone();
+                    //$("#picturearea").append(imgurl); picid = picid + "," + picresponse.Id;
+                }
+
+
+        });
+    });
+    function addnewimage(url, id)
+
+    {
+        $newimagehtml = $("#imagetemplate").clone();
+        $newimagehtml.find(".image").attr("src", "/Images/categories/" + url);
+        $newimagehtml.find(".image").attr("data-id", id);
+
+        $("#picturearea").append($newimagehtml.html());
+        Removeimage()
+    }
+    function Removeimage()
+    {
+        $("#picturearea .image").click(function()
+            {
+            $(this).remove();
+        });
+
+    }
+    </script>
+
+
+}
