@@ -226,6 +226,10 @@
     <Compile Include="Migrations\202002161551216_UserRestauranttbl.designer.cs">
       <DependentUpon>202002161551216_UserRestauranttbl.cs</DependentUpon>
     </Compile>
+    <Compile Include="Migrations\202002180759285_Restauranrtbladd.cs" />
+    <Compile Include="Migrations\202002180759285_Restauranrtbladd.designer.cs">
+      <DependentUpon>202002180759285_Restauranrtbladd.cs</DependentUpon>
+    </Compile>
     <Compile Include="Migrations\Configuration.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
   </ItemGroup>
@@ -341,6 +345,9 @@
     </EmbeddedResource>
     <EmbeddedResource Include="Migrations\202002161551216_UserRestauranttbl.resx">
       <DependentUpon>202002161551216_UserRestauranttbl.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Migrations\202002180759285_Restauranrtbladd.resx">
+      <DependentUpon>202002180759285_Restauranrtbladd.cs</DependentUpon>
     </EmbeddedResource>
   </ItemGroup>
   <Import Project="$(MSBuildToolsPath)\Microsoft.CSharp.targets" />

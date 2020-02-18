@@ -65,21 +65,21 @@ namespace RestaurantFinder.WebUI.Controllers
                 int id = usersService.Value.userid(name);
                 //check Restaurant list login user
                 var list = restaurantService.Value.GetAll().Where(x => x.UserId == id).ToList();
-                if(User.IsInRole("Admin"))
-                {
+                //if(User.IsInRole("Admin"))
+                //{
 
-                    return View("DashBoardAdmin");
-                }
+                //    return View("DashBoardAdmin");
+                //}
 
        
                 //if user found then if work
 
-              if (list.Count()>0 && User.IsInRole("Owner"))
+              if (list.Count()>0 /*&& User.IsInRole("Owner")*/)
                 {
                     return RedirectToAction("DashBoard", "Login");
 
                 }
-                 if(list.Count() == 0 && User.IsInRole("Owner"))
+                 if(list.Count() == 0 /*&& User.IsInRole("Owner")*/)
 
                 {
                     return RedirectToAction("Create", "Restaurant");

@@ -9,7 +9,10 @@ namespace RestaurantFinder.Models
     public class RestaurantDetailsvm
     {
 
-        public int MyProperty { get; set; }
+        public int Number { get; set; }
+        public string Description { get; set; }
+        public decimal Price { get; set; }
+        public string CategoryName { get; set; }
     }
 }
 
