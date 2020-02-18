@@ -48,7 +48,7 @@ namespace RestaurantFinder.WebUI.APIController
             this.categoryMasterService = categoryMasterService;
             this.restaurantsImage = restaurantsImage;
             this.usersService = usersService;
-            this.restaurantSlotService=restaurantSlotService;
+            this.restaurantSlotService = restaurantSlotService;
             this.pictureService = pictureService;
             this.restaurantLocationService = restaurantLocationService;
             this.categoryMappingService = categoryMappingService;

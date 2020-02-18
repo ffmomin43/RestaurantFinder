@@ -1,5 +1,6 @@
 ﻿using System;
 using System.Collections.Generic;
+using System.ComponentModel.DataAnnotations;
 using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
@@ -8,9 +9,13 @@ namespace RestaurantFinder.Models
 {
   public  class RestaurantSlot:BaseModel
     {
-        public TimeSpan StartTime { get; set; }
+        [DataType(DataType.Time)]
+        [DisplayFormat(DataFormatString = "{0:HH:mm:ss}", ApplyFormatInEditMode = true)]
 
-        public TimeSpan EndTime { get; set; }
+        public DateTime StartTime { get; set; }
+
+        [DataType(DataType.Time)]
+        public DateTime EndTime { get; set; }
 
         public int RestaurantDayId { get; set; }
     }

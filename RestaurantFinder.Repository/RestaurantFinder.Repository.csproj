@@ -236,6 +236,18 @@
     <Compile Include="Migrations\202002182032082_Restaurantslottblupdate.designer.cs">
       <DependentUpon>202002182032082_Restaurantslottblupdate.cs</DependentUpon>
     </Compile>
+    <Compile Include="Migrations\202002182151474_Restaurantslottblupdates.cs" />
+    <Compile Include="Migrations\202002182151474_Restaurantslottblupdates.designer.cs">
+      <DependentUpon>202002182151474_Restaurantslottblupdates.cs</DependentUpon>
+    </Compile>
+    <Compile Include="Migrations\202002182208550_Restaurantslottblupdatestest.cs" />
+    <Compile Include="Migrations\202002182208550_Restaurantslottblupdatestest.designer.cs">
+      <DependentUpon>202002182208550_Restaurantslottblupdatestest.cs</DependentUpon>
+    </Compile>
+    <Compile Include="Migrations\202002182222179_Restaurantslottblupdateschageing.cs" />
+    <Compile Include="Migrations\202002182222179_Restaurantslottblupdateschageing.designer.cs">
+      <DependentUpon>202002182222179_Restaurantslottblupdateschageing.cs</DependentUpon>
+    </Compile>
     <Compile Include="Migrations\Configuration.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
   </ItemGroup>
@@ -357,6 +369,15 @@
     </EmbeddedResource>
     <EmbeddedResource Include="Migrations\202002182032082_Restaurantslottblupdate.resx">
       <DependentUpon>202002182032082_Restaurantslottblupdate.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Migrations\202002182151474_Restaurantslottblupdates.resx">
+      <DependentUpon>202002182151474_Restaurantslottblupdates.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Migrations\202002182208550_Restaurantslottblupdatestest.resx">
+      <DependentUpon>202002182208550_Restaurantslottblupdatestest.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Migrations\202002182222179_Restaurantslottblupdateschageing.resx">
+      <DependentUpon>202002182222179_Restaurantslottblupdateschageing.cs</DependentUpon>
     </EmbeddedResource>
   </ItemGroup>
   <Import Project="$(MSBuildToolsPath)\Microsoft.CSharp.targets" />
