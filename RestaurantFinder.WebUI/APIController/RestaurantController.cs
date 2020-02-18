@@ -17,8 +17,9 @@ namespace RestaurantFinder.WebUI.APIController
     public class RestaurantController : ApiController
     {
 
-       
+
         private readonly Lazy<IUsersService> usersService;
+
         private readonly Lazy<IRestaurantCategoryMappingService> categoryMappingService;
         private readonly Lazy<IRestaurantsImagesService> restaurantsImage;
         private readonly Lazy<ICategoryMasterService> categoryMasterService;
@@ -68,7 +69,7 @@ namespace RestaurantFinder.WebUI.APIController
         {
 
             int id = usersService.Value.userid(name);
-            return restaurantService.Value.GetAll().Where(x=>x.UserId==id);
+            return restaurantService.Value.GetAll().Where(x => x.UserId == id);
 
 
 
@@ -122,20 +123,20 @@ namespace RestaurantFinder.WebUI.APIController
         // PUT: api/Restaurant/5
 
         [Route("api/updatelocation")]
-        public string Post(int RestoId,double Longitude,double Latitude)
+        public string Post(int RestoId, double Longitude, double Latitude)
         {
             try
             {
                 var res = restaurantLocationService.Value.GetAll().Where(x => x.RestaurantId == RestoId).SingleOrDefault();
 
-                res.Longitude=Longitude;
-                res.Latitude=Latitude;
-                
+                res.Longitude = Longitude;
+                res.Latitude = Latitude;
+
                 restaurantLocationService.Value.Edit(res);
                 restaurantLocationService.Value.Save();
 
                 return "SUCCESS";
-                
+
             }
             catch (Exception ex)
             {
@@ -170,13 +171,13 @@ namespace RestaurantFinder.WebUI.APIController
                         select new Restaurantlocationvm()
                         {
                             ID = loc.ID,
-                            Name=loc.LocationName,
+                            Name = loc.LocationName,
                             Latitude = loc.Latitude,
                             Longitude = loc.Longitude,
                             Thumbimageurl = res.ThumbnailImageUrl,
-                            
+
                             LocationName = loc.LocationName,
-                            Distance = GeoLocation.GetDistanceBetweenPoints(loc.Latitude, loc.Longitude,restorantLat, resturantLong),
+                            Distance = GeoLocation.GetDistanceBetweenPoints(loc.Latitude, loc.Longitude, restorantLat, resturantLong),
 
                         };
 
@@ -206,9 +207,9 @@ namespace RestaurantFinder.WebUI.APIController
         public IEnumerable<HomeBannerImage> GetHomeBannerImages()
         {
             string bannerImageCountString = ConfigurationManager.AppSettings.Get("homepage:banner-image-count");
-            int bannerImageCount = !string.IsNullOrEmpty(bannerImageCountString)?Convert.ToInt32(bannerImageCountString) : 0; 
-            
-            return homeBannerImageService.Value.GetAll().OrderByDescending(x=>x.CreatedDate).Take(bannerImageCount);
+            int bannerImageCount = !string.IsNullOrEmpty(bannerImageCountString) ? Convert.ToInt32(bannerImageCountString) : 0;
+
+            return homeBannerImageService.Value.GetAll().OrderByDescending(x => x.CreatedDate).Take(bannerImageCount);
         }
 
         [Route("api/trending")]
@@ -217,7 +218,7 @@ namespace RestaurantFinder.WebUI.APIController
             string trendingCountString = ConfigurationManager.AppSettings.Get("homepage:trending-count");
             int trendingCount = !string.IsNullOrEmpty(trendingCountString) ? Convert.ToInt32(trendingCountString) : 0;
 
-            return restaurantService.Value.GetAll().Where(x=>x.IsTrending==true).Take(trendingCount).Select(res => new RestaurantImagesVm()
+            return restaurantService.Value.GetAll().Where(x => x.IsTrending == true).Take(trendingCount).Select(res => new RestaurantImagesVm()
             {
                 AddressLine1 = res.AddressLine1,
                 AddressLine2 = res.AddressLine2,
@@ -225,9 +226,9 @@ namespace RestaurantFinder.WebUI.APIController
                 RestaurantId = res.ID,
                 City = res.City,
                 Name = res.Name,
-                Thumburl=res.ThumbnailImageUrl,
-               
-                PinCode = res.PinCode,                
+                Thumburl = res.ThumbnailImageUrl,
+
+                PinCode = res.PinCode,
                 State = res.State,
                 IsTrending = res.IsTrending
             });
@@ -241,7 +242,7 @@ namespace RestaurantFinder.WebUI.APIController
         }
 
         [Route("api/autocomplete")]
-        public IEnumerable<KeyValuePair<int,string>> GetAutocomplete(string searchTerm)
+        public IEnumerable<KeyValuePair<int, string>> GetAutocomplete(string searchTerm)
         {
 
             return restaurantService.Value.GetAll().Where(x => x.Name.Contains(searchTerm)).ToList().Select(n => new KeyValuePair<int, string>(n.ID, n.Name));
@@ -250,16 +251,16 @@ namespace RestaurantFinder.WebUI.APIController
         public IEnumerable<RestaurantDetailsvm> GetRestaurantDeatails(int id)
         {
 
-           
+
             var list = from r in restaurantService.Value.GetAll().Where(x => x.ID == id)
                        join c in categoryMappingService.Value.GetAll() on r.ID equals c.RestaurantId
                        join cs in categoryMasterService.Value.GetAll() on c.CategoryId equals cs.ID
                        select new RestaurantDetailsvm
                        {
 
-                           Description=r.Description,
-                           Number=r.Number,
-                           CategoryName=cs.Name,
+                           Description = r.Description,
+                           Number = r.Number,
+                           CategoryName = cs.Name,
 
                        };
             return list;
@@ -269,12 +270,16 @@ namespace RestaurantFinder.WebUI.APIController
 
 
         }
-
+        //[Route("api/RestaurantBySlot")]
+        //public IEnumerable<RestaurantDetailsvm> GetRestaurantBySlot(int id)
+        //{
+        //    var list=
+        //    return List;
+        //}
     }
-
     public class LocationRestoRequest
     {
-      
+
         public int RestoId { get; set; }
 
         public double Longitude { get; set; }
@@ -282,3 +287,4 @@ namespace RestaurantFinder.WebUI.APIController
         public double Latitude { get; set; }
     }
 }
+
