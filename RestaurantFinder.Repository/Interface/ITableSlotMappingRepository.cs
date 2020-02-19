@@ -8,7 +8,7 @@ using System.Threading.Tasks;
 
 namespace RestaurantFinder.Repository.Interface
 {
- public interface IRestaurantSlotMappingRepository:IGenericRepository<RestaurantSlotMapping>
+  public  interface ITableSlotMappingRepository : IGenericRepository<RestaurantSlotMapping>
     {
     }
 }

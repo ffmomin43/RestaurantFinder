@@ -68,6 +68,7 @@
     <Compile Include="Impl\RestaurantSlotService.cs" />
     <Compile Include="Impl\RestaurantTablesService.cs" />
     <Compile Include="Impl\RolesService.cs" />
+    <Compile Include="Impl\TableSlotMappingService.cs" />
     <Compile Include="Impl\UserRolesService.cs" />
     <Compile Include="Impl\UsersService.cs" />
     <Compile Include="Interface\IHomeBannerImageService.cs" />
@@ -83,6 +84,7 @@
     <Compile Include="Interface\IRestaurantTablesService.cs" />
     <Compile Include="Interface\IRestaurantService.cs" />
     <Compile Include="Interface\IRolesService.cs" />
+    <Compile Include="Interface\ITableSlotMappingService.cs" />
     <Compile Include="Interface\IUserRolesService.cs" />
     <Compile Include="Interface\IUsersService.cs" />
     <Compile Include="Interface\IRestaurantDishesService.cs" />

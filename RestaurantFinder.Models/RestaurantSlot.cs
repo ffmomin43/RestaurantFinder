@@ -15,8 +15,8 @@ namespace RestaurantFinder.Models
         public string StartTime { get; set; }
 
         [DataType(DataType.Time)]
-        public String EndTime { get; set; }
+        public string EndTime { get; set; }
 
-        public int RestaurantDayId { get; set; }
+        public int Restaurantid { get; set; }
     }
 }

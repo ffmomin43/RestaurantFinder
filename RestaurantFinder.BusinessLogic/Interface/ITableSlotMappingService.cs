@@ -8,7 +8,7 @@ using System.Threading.Tasks;
 
 namespace RestaurantFinder.BusinessLogic.Interface
 {
- public  interface IRestaurantSlotMappingService:IGenericService<RestaurantSlotMapping>
+  public  interface ITableSlotMappingService: IGenericService<RestaurantSlotMapping>
     {
     }
 }

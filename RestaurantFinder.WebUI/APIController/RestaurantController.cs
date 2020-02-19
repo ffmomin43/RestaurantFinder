@@ -23,6 +23,8 @@ namespace RestaurantFinder.WebUI.APIController
         private readonly Lazy<IRestaurantSlotService> restaurantSlotService;
 
         private readonly Lazy<IRestaurantCategoryMappingService> categoryMappingService;
+        private readonly Lazy<IRestaurantTablesService> restaurantTablesService;
+        private readonly Lazy<ITableSlotMappingService> tableSlotMappingService;
         private readonly Lazy<IRestaurantsImagesService> restaurantsImage;
         private readonly Lazy<ICategoryMasterService> categoryMasterService;
         private readonly Lazy<IPictureService> pictureService;
@@ -35,6 +37,8 @@ namespace RestaurantFinder.WebUI.APIController
             Lazy<IRestaurantService> restaurantService,
             Lazy<ILoggerFacade<RestaurantController>> logger,
             Lazy<ICategoryMasterService> categoryMasterService,
+            Lazy<IRestaurantTablesService> restaurantTablesService,
+            Lazy<ITableSlotMappingService> tableSlotMappingService,
             Lazy<IRestaurantSlotService> restaurantSlotService,
             Lazy<IRestaurantsImagesService> restaurantsImage,
             Lazy<IRestaurantCategoryMappingService> categoryMappingService,
@@ -53,6 +57,8 @@ namespace RestaurantFinder.WebUI.APIController
             this.restaurantLocationService = restaurantLocationService;
             this.categoryMappingService = categoryMappingService;
             this.homeBannerImageService = homeBannerImageService;
+            this.tableSlotMappingService = tableSlotMappingService;
+            this.restaurantTablesService = restaurantTablesService;
             this.logger = logger;
         }
 
@@ -241,14 +247,25 @@ namespace RestaurantFinder.WebUI.APIController
         [Route("api/RestaurantBySlot")]
         public IEnumerable<Restaurantslotvm> GetRestaurantBySlot(int id)
         {
-            return restaurantSlotService.Value.GetAll().Where(x => x.RestaurantDayId == id).Select(restaurantSlotService => new Restaurantslotvm
+         var list=   from rs in tableSlotMappingService.Value.GetAll()
 
+            join table in restaurantTablesService.Value.GetAll() on rs.TableId equals table.ID
+          
+            join rslot in restaurantSlotService.Value.GetAll() on rs.RestaurantSlotId equals rslot.ID
+                  
+                     join restaurant in restaurantService.Value.GetAll() on rslot.Restaurantid equals restaurant.ID
+                     where rslot.Restaurantid == id
+
+                     select new Restaurantslotvm
             {
-                StartTime = restaurantSlotService.StartTime,
-                EndTime = restaurantSlotService.EndTime,
+                StartTime = rslot.StartTime,
+                EndTime = rslot.EndTime,
+                tablenum = table.TableNumber,
+                RestaurantName=restaurant.Name
+                
 
-            });
-
+            };
+            return list;
         }
 
         [Route("api/scan")]

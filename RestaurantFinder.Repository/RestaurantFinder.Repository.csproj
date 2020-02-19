@@ -75,6 +75,7 @@
     <Compile Include="Impl\RestaurantSlotRepository.cs" />
     <Compile Include="Impl\RestaurantTablesRepository.cs" />
     <Compile Include="Impl\RolesRepository.cs" />
+    <Compile Include="Impl\TableSlotMappingRepository.cs" />
     <Compile Include="Impl\UserRolesRepository.cs" />
     <Compile Include="Impl\UsersRepository.cs" />
     <Compile Include="Interface\IHomeBannerImagesRepository.cs" />
@@ -94,6 +95,7 @@
     <Compile Include="Interface\IRestaurantLocationRepository.cs" />
     <Compile Include="Interface\IUserRolesRepository.cs" />
     <Compile Include="Interface\IUsersRepository.cs" />
+    <Compile Include="Interface\ITableSlotMappingRepository.cs" />
     <Compile Include="Migrations\202001272329136_intial.cs" />
     <Compile Include="Migrations\202001272329136_intial.designer.cs">
       <DependentUpon>202001272329136_intial.cs</DependentUpon>
@@ -254,6 +256,14 @@
     <Compile Include="Migrations\202002190853571_RestaurantslotMappingtbl.designer.cs">
       <DependentUpon>202002190853571_RestaurantslotMappingtbl.cs</DependentUpon>
     </Compile>
+    <Compile Include="Migrations\202002190914324_RestaurantslotMappingtbls.cs" />
+    <Compile Include="Migrations\202002190914324_RestaurantslotMappingtbls.designer.cs">
+      <DependentUpon>202002190914324_RestaurantslotMappingtbls.cs</DependentUpon>
+    </Compile>
+    <Compile Include="Migrations\202002190929513_restaurantSlotchanges.cs" />
+    <Compile Include="Migrations\202002190929513_restaurantSlotchanges.designer.cs">
+      <DependentUpon>202002190929513_restaurantSlotchanges.cs</DependentUpon>
+    </Compile>
     <Compile Include="Migrations\Configuration.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
   </ItemGroup>
@@ -387,6 +397,12 @@
     </EmbeddedResource>
     <EmbeddedResource Include="Migrations\202002190853571_RestaurantslotMappingtbl.resx">
       <DependentUpon>202002190853571_RestaurantslotMappingtbl.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Migrations\202002190914324_RestaurantslotMappingtbls.resx">
+      <DependentUpon>202002190914324_RestaurantslotMappingtbls.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Migrations\202002190929513_restaurantSlotchanges.resx">
+      <DependentUpon>202002190929513_restaurantSlotchanges.cs</DependentUpon>
     </EmbeddedResource>
   </ItemGroup>
   <Import Project="$(MSBuildToolsPath)\Microsoft.CSharp.targets" />

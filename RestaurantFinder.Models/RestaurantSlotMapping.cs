@@ -8,7 +8,7 @@ namespace RestaurantFinder.Models
 {
    public class RestaurantSlotMapping:BaseModel
     {
-        public int RestaurantId { get; set; }
+        public int TableId { get; set; }
         public int RestaurantSlotId { get; set; }
 
     }

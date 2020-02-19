@@ -9,9 +9,9 @@ using System.Threading.Tasks;
 
 namespace RestaurantFinder.Repository.Impl
 {
-  public  class RestaurantSlotMappingRespository : GenericRepository<RestaurantContext,RestaurantSlotMapping>,IRestaurantSlotMappingRepository
+ public   class TableSlotMappingRepository : GenericRepository<RestaurantContext, RestaurantSlotMapping>, ITableSlotMappingRepository
     {
-        public RestaurantSlotMappingRespository(RestaurantContext ecommerceContext) : base(ecommerceContext)
+        public TableSlotMappingRepository(RestaurantContext ecommerceContext) : base(ecommerceContext)
         {
         }
     }

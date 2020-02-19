@@ -9,11 +9,13 @@ namespace RestaurantFinder.Models
 {
    public class Restaurantslotvm
     {
-        [DataType(DataType.Time)]
        
-        public String  StartTime { get; set; }
        
-        [DataType(DataType.Time)]
-        public String EndTime { get; set; }
+        public string  StartTime { get; set; }
+       
+        
+        public string EndTime { get; set; }
+        public string RestaurantName { get; set; }
+        public int tablenum { get; set; }
     }
 }
