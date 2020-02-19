@@ -61,6 +61,7 @@
     <Compile Include="Datatables\ISortCriteria.cs" />
     <Compile Include="Datatables\FieldSortOrder.cs" />
     <Compile Include="Impl\ActionRepository.cs" />
+    <Compile Include="Impl\RestaurantSlotMappingRespository.cs" />
     <Compile Include="Impl\HomeBannerImagesRepository.cs" />
     <Compile Include="Impl\RestaurantDishesRepository.cs" />
     <Compile Include="Impl\CategoryMasterRepository.cs" />
@@ -84,6 +85,7 @@
     <Compile Include="Interface\IPermissionRepository.cs" />
     <Compile Include="Interface\IRestaurantDishesRepository.cs" />
     <Compile Include="Interface\IRestaurantsImagesRepository.cs" />
+    <Compile Include="Interface\IRestaurantSlotMappingRepository.cs" />
     <Compile Include="Interface\IRestaurantSlotRepository.cs" />
     <Compile Include="Interface\IRolesRepository.cs" />
     <Compile Include="Interface\IRestaurantCouponMasterRepository.cs" />
@@ -248,6 +250,10 @@
     <Compile Include="Migrations\202002182222179_Restaurantslottblupdateschageing.designer.cs">
       <DependentUpon>202002182222179_Restaurantslottblupdateschageing.cs</DependentUpon>
     </Compile>
+    <Compile Include="Migrations\202002190853571_RestaurantslotMappingtbl.cs" />
+    <Compile Include="Migrations\202002190853571_RestaurantslotMappingtbl.designer.cs">
+      <DependentUpon>202002190853571_RestaurantslotMappingtbl.cs</DependentUpon>
+    </Compile>
     <Compile Include="Migrations\Configuration.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
   </ItemGroup>
@@ -378,6 +384,9 @@
     </EmbeddedResource>
     <EmbeddedResource Include="Migrations\202002182222179_Restaurantslottblupdateschageing.resx">
       <DependentUpon>202002182222179_Restaurantslottblupdateschageing.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Migrations\202002190853571_RestaurantslotMappingtbl.resx">
+      <DependentUpon>202002190853571_RestaurantslotMappingtbl.cs</DependentUpon>
     </EmbeddedResource>
   </ItemGroup>
   <Import Project="$(MSBuildToolsPath)\Microsoft.CSharp.targets" />

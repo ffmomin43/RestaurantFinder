@@ -11,9 +11,9 @@ namespace RestaurantFinder.Models
     {
         [DataType(DataType.Time)]
        
-        public DateTime  StartTime { get; set; }
+        public String  StartTime { get; set; }
        
         [DataType(DataType.Time)]
-        public DateTime EndTime { get; set; }
+        public String EndTime { get; set; }
     }
 }

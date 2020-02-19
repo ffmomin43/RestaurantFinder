@@ -12,10 +12,10 @@ namespace RestaurantFinder.Models
         [DataType(DataType.Time)]
         [DisplayFormat(DataFormatString = "{0:HH:mm:ss}", ApplyFormatInEditMode = true)]
 
-        public DateTime StartTime { get; set; }
+        public string StartTime { get; set; }
 
         [DataType(DataType.Time)]
-        public DateTime EndTime { get; set; }
+        public String EndTime { get; set; }
 
         public int RestaurantDayId { get; set; }
     }

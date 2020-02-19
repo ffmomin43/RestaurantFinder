@@ -64,6 +64,7 @@
     <Compile Include="Impl\RestaurantLocationService.cs" />
     <Compile Include="Impl\RestaurantService.cs" />
     <Compile Include="Impl\RestaurantsImagesService.cs" />
+    <Compile Include="Impl\RestaurantSlotMappingService.cs" />
     <Compile Include="Impl\RestaurantSlotService.cs" />
     <Compile Include="Impl\RestaurantTablesService.cs" />
     <Compile Include="Impl\RolesService.cs" />
@@ -78,6 +79,7 @@
     <Compile Include="Interface\IPermissionService.cs" />
     <Compile Include="Interface\IRestaurantLocationService.cs" />
     <Compile Include="Interface\IRestaurantsImagesService.cs" />
+    <Compile Include="Interface\IRestaurantSlotMappingService.cs" />
     <Compile Include="Interface\IRestaurantTablesService.cs" />
     <Compile Include="Interface\IRestaurantService.cs" />
     <Compile Include="Interface\IRolesService.cs" />

@@ -63,6 +63,7 @@
     <Compile Include="Restaurantlocationvm.cs" />
     <Compile Include="RestaurantsImages.cs" />
     <Compile Include="RestaurantSlot.cs" />
+    <Compile Include="RestaurantSlotMapping.cs" />
     <Compile Include="Restaurantslotvm.cs" />
     <Compile Include="RestaurantTable.cs" />
     <Compile Include="User.cs" />
