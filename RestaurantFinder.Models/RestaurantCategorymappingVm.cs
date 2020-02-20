@@ -11,6 +11,7 @@ namespace RestaurantFinder.Models
         public int id { get; set; }
         public string categoryName { get; set; }
         public string RestaurantName { get; set; }
+        public string Url { get; set; }
         public DateTime CreateDate { get; set; }
     }
 }

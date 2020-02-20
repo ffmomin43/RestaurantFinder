@@ -17,5 +17,6 @@ namespace RestaurantFinder.Models
         public string EndTime { get; set; }
         public string RestaurantName { get; set; }
         public int tablenum { get; set; }
+        public int RestauranrId { get; set; }
     }
 }

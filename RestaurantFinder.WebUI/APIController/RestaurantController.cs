@@ -120,7 +120,7 @@ namespace RestaurantFinder.WebUI.APIController
 
                 this.restaurantService.Value.Add(restaurant);
                 this.restaurantService.Value.Save();
-
+                
                 return "Record has been successfully Created.";
             }
             catch (Exception ex)
@@ -207,7 +207,8 @@ namespace RestaurantFinder.WebUI.APIController
                            RestaurantName = Res.Name,
                            categoryName = catemaster.Name,
                            id = catemapping.ID,
-                           CreateDate = catemapping.CreatedDate
+                           CreateDate = catemapping.CreatedDate,
+                           Url=Res.ThumbnailImageUrl
                        };
 
             return list;
@@ -261,10 +262,12 @@ namespace RestaurantFinder.WebUI.APIController
                 StartTime = rslot.StartTime,
                 EndTime = rslot.EndTime,
                 tablenum = table.TableNumber,
-                RestaurantName=restaurant.Name
-                
+                RestaurantName=restaurant.Name,
+                         RestauranrId=restaurant.ID
 
-            };
+
+
+                     };
             return list;
         }
 
@@ -294,6 +297,7 @@ namespace RestaurantFinder.WebUI.APIController
                            Description = r.Description,
                            Number = r.Number,
                            CategoryName = cs.Name,
+                           Url=r.ThumbnailImageUrl
 
                        };
             return list;
