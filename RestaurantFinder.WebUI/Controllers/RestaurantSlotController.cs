@@ -52,11 +52,11 @@ namespace RestaurantFinder.WebUI.Controllers
             ViewBag.slot = restaurantSlotService.Value.GetAll().Count();
             string[] slot = fc["RestaurantSlotId"].Split(',');
             string[] table = fc["TableId"].Split(',');
-            for (int i = 0; i < slot.Length; i++)
+            for (int i = 0; i < table.Length; i++)
             {
                 slot[i].Split(new char[] { ',' }, StringSplitOptions.RemoveEmptyEntries).Select(Id => Convert.ToString((Id))).ToList();
 
-                for (int j = 0; j <table.Length; i++)
+                for (int j = 0; i < table.Length; i++)
                 {
                     table[j].Split(new char[] { ',' }, StringSplitOptions.RemoveEmptyEntries).Select(Id => Convert.ToString((Id))).ToList();
 
@@ -64,8 +64,8 @@ namespace RestaurantFinder.WebUI.Controllers
 
                     RestaurantSlotMapping restaurantSlot = new RestaurantSlotMapping();
                     restaurantSlot.RestaurantSlotId = Convert.ToInt32(slot[i]);
-                    restaurantSlot.TableId = Convert.ToInt32(table[j]);
-                    restaurantSlot.TableId = 2;
+                    restaurantSlot.TableId = Convert.ToInt32(table[i]);
+
                     restaurantSlot.UniqueId = new Guid();
                     tableSlotMappingService.Value.Add(restaurantSlot);
                     restaurantSlotService.Value.Save();

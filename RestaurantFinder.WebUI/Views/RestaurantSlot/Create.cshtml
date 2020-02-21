@@ -3,48 +3,57 @@
     ViewBag.Title = "Create";
     Layout = "~/Views/Shared/_Layout.cshtml";
 }
+Add Table According your Time Slot 
 @using (Html.BeginForm("Create", "RestaurantSlot", FormMethod.Post, new { enctype = "multi restaurantTablesServicepart/form-data" }))
 {
 <div class="row">
     
 
-    <table>
-        @*@for (int i = 0; i < ViewBag.tables; i++)
-        {
-
-                <tr>
-                    <th> AllSlot</th>
-            <th>@Model.restaurantTable[i].TableName</th>
-
-
-            </tr>
+    <table border="1" >
+        <tr>
+            <th>
+                All Slot
+            </th>
+           
+            @for (int i = 0; i < ViewBag.tables; i++)
+            {
 
 
-        }*@
+
+                <th>
+                    @Model.restaurantTable[i].TableName
+                </th>
+            }
+
+
+
+        </tr>
+
+
         @for (int i = 0; i < ViewBag.slot; i++)
         {
-            <tr>
-                <td>  <input type="hidden" name="RestaurantSlotId" value="@Model.RestaurantSlot[i].ID" /></td>
+        <tr>
+            <input type="hidden" name="RestaurantSlotId" value="@Model.RestaurantSlot[i].ID" />
 
-                <td>@Model.RestaurantSlot[i].StartTime-@Model.RestaurantSlot[i].EndTime</td>
+            <td>@Model.RestaurantSlot[i].StartTime-@Model.RestaurantSlot[i].EndTime</td>
 
 
-                <td>
 
-                    @for (int j = 0; j < ViewBag.tables; j++)
-                    {
-                    <td><input type=checkbox name="TableId" value="@Model.restaurantTable[j].ID" /></td>
-                }
-                </tr>
+            @for (int j = 0; j < ViewBag.tables; j++)
+            {
+                <td><input type=checkbox name="TableId" value="@Model.restaurantTable[j].ID" /></td>
             }
-        
+        </tr>
+            }
+
     </table>
-    <div class="form-group text-right mb-0">
+    
+
+</div>
+<div class="form-group text-right mb-0">
     <button class="btn btn-primary waves-effect waves-light mr-1" id="save" type="submit">
         Next
     </button>
-
-</div>
 
 </div>
 }
