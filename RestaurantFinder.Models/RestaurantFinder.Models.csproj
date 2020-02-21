@@ -66,6 +66,7 @@
     <Compile Include="RestaurantSlotMapping.cs" />
     <Compile Include="Restaurantslotvm.cs" />
     <Compile Include="RestaurantTable.cs" />
+    <Compile Include="TableSlotVm.cs" />
     <Compile Include="User.cs" />
     <Compile Include="Role.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
