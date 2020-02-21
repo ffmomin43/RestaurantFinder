@@ -207,7 +207,7 @@ namespace RestaurantFinder.WebUI.APIController
                            RestaurantName = Res.Name,
                            categoryName = catemaster.Name,
                            id = catemapping.ID,
-                           CreateDate = catemapping.CreatedDate
+                           CreateDate = catemapping.CreatedDate                           
                        };
 
             return list;
