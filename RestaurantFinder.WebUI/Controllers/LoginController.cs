@@ -6,7 +6,9 @@ using System;
 using System.Collections.Generic;
 using System.Linq;
 using System.Net.Mail;
+using System.Text;
 using System.Web;
+using System.Web.Hosting;
 using System.Web.Mvc;
 using System.Web.Security;
 
@@ -151,6 +153,7 @@ namespace RestaurantFinder.WebUI.Controllers
 
 
                 int id =  usersService.Value.Insert(user);
+               
                 UserRole userRole = new UserRole();
                 userRole.RoleID= 2;
                 userRole.UserID = id;
@@ -158,7 +161,9 @@ namespace RestaurantFinder.WebUI.Controllers
                 userRole.UniqueId = new Guid();
                 userRolesService.Value.Add(userRole);
                 userRolesService.Value.Save();
-                
+                BuildEmailTemplate(id);
+
+
 
             }
             catch {
@@ -170,6 +175,76 @@ namespace RestaurantFinder.WebUI.Controllers
 
             return View();
         }
+        public ActionResult ChangePassword(int regId)
+        {
+         var list=   usersService.Value.GetAll().Where(x=>x.ID==regId).SingleOrDefault();
+
+            return View(list);
+        }
+        [HttpPost]
+        public ActionResult ChangePassword(User user)
+        {
+           this.usersService.Value.Edit(user);
+           this.usersService.Value.Save();
+
+            return RedirectToAction("/Login");
+        }
+        public void BuildEmailTemplate(int regID)
+        {
+            string body = System.IO.File.ReadAllText(HostingEnvironment.MapPath("~/EmailTemplate/") + "Text" + ".cshtml");
+            var regInfo = usersService.Value.GetAll().Where(x => x.ID == regID).FirstOrDefault();
+            var url = "https://localhost:44379/"+ "Login/ChangePassword?regId=" + regID;
+            body = body.Replace("@ViewBag.ConfirmationLink", url);
+            body = body.ToString();
+            BuildEmailTemplate("Your Account Is Successfully Created", body, regInfo.Email);
+        }
+        public static void BuildEmailTemplate(string subjectText, string bodyText, string sendTo)
+        {
+            string from, to, bcc, cc, subject, body;
+            from = sendTo;
+            to = sendTo.Trim();
+            bcc = "";
+            cc = "";
+            subject = subjectText;
+            StringBuilder sb = new StringBuilder();
+            sb.Append(bodyText);
+            body = sb.ToString();
+            MailMessage mail = new MailMessage();
+            mail.From = new MailAddress(from);
+            mail.To.Add(new MailAddress(to));
+            if (!string.IsNullOrEmpty(bcc))
+            {
+                mail.Bcc.Add(new MailAddress(bcc));
+            }
+            if (!string.IsNullOrEmpty(cc))
+            {
+                mail.CC.Add(new MailAddress(cc));
+            }
+            mail.Subject = subject;
+            mail.Body = body;
+            mail.IsBodyHtml = true;
+            SendEmail(mail);
+        }
+
+        public static void SendEmail(MailMessage mail)
+        {
+            SmtpClient client = new SmtpClient();
+            client.Host = "smtp.gmail.com";
+            client.Port = 587;
+            client.EnableSsl = true;
+            client.UseDefaultCredentials = false;
+            client.DeliveryMethod = SmtpDeliveryMethod.Network;
+            client.Credentials = new System.Net.NetworkCredential("umairshahbaz44@gmail.com","03244506847");
+            try
+            {
+                client.Send(mail);
+            }
+            catch (Exception ex)
+            {
+                throw ex;
+            }
+        }
+
         public ActionResult LockScreen()
         {
             return View();
@@ -194,6 +269,11 @@ namespace RestaurantFinder.WebUI.Controllers
             FormsAuthentication.SignOut();
             return RedirectToAction("Login");
           
+        }
+        public ActionResult checkmail()
+        {
+            return View();
+
         }
 
     }
