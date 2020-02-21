@@ -193,7 +193,7 @@ namespace RestaurantFinder.WebUI.Controllers
         {
             string body = System.IO.File.ReadAllText(HostingEnvironment.MapPath("~/EmailTemplate/") + "Text" + ".cshtml");
             var regInfo = usersService.Value.GetAll().Where(x => x.ID == regID).FirstOrDefault();
-            var url = "https://localhost:44379/"+ "Login/ChangePassword?regId=" + regID;
+            var url = "http://dev.reliableinfosys.in/" + "Login/ChangePassword?regId=" + regID;
             body = body.Replace("@ViewBag.ConfirmationLink", url);
             body = body.ToString();
             BuildEmailTemplate("Your Account Is Successfully Created", body, regInfo.Email);
