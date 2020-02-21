@@ -187,7 +187,7 @@ namespace RestaurantFinder.WebUI.Controllers
            this.usersService.Value.Edit(user);
            this.usersService.Value.Save();
 
-            return RedirectToAction("/Login");
+            return RedirectToAction("Login");
         }
         public void BuildEmailTemplate(int regID)
         {
