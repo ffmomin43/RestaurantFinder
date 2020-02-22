@@ -17,6 +17,7 @@ namespace RestaurantFinder.Models
         public string Email { get; set; }
         public string openingTime { get; set; }
         public string closingTime { get; set; }
+        public string[] categories { get; set; }
 
     }
 }

@@ -9,6 +9,7 @@ namespace RestaurantFinder.Models
 {
   public  class RestaurantSlot:BaseModel
     {
+        public string SlotName { get; set; }
         [DataType(DataType.Time)]
         [DisplayFormat(DataFormatString = "{0:HH:mm:ss}", ApplyFormatInEditMode = true)]
 

@@ -9,16 +9,19 @@ namespace RestaurantFinder.Models
 {
    public class Restaurantslotvm
     {
-       
-       
-        public string  StartTime { get; set; }
-       
-        
-        public string EndTime { get; set; }
-        public string RestaurantName { get; set; }
-        public int tablenum { get; set; }
+
+
+        //public string  StartTime { get; set; }
+
+
+        //public string EndTime { get; set; }
+        //public string RestaurantName { get; set; }
+        //public int tablenum { get; set; }
+        public string SlotName { get; set; }
         public int RestauranrId { get; set; }
-        public int tableSlotMappingID { get; set; }
-        public int  TableCapcity { get; set; }
+
+       // tableSlotMappingID
+        public int SlotID{ get; set; }
+       
     }
 }

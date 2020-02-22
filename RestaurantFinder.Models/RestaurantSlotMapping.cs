@@ -10,6 +10,7 @@ namespace RestaurantFinder.Models
     {
         public int TableId { get; set; }
         public int RestaurantSlotId { get; set; }
+        public int ResturantID { get; set; }
 
     }
 

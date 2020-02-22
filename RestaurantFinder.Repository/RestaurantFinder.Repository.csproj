@@ -278,6 +278,18 @@
     <Compile Include="Migrations\202002222045185_Restaurantchangesemail.designer.cs">
       <DependentUpon>202002222045185_Restaurantchangesemail.cs</DependentUpon>
     </Compile>
+    <Compile Include="Migrations\202002222104370_Restaurantaddtimeslot.cs" />
+    <Compile Include="Migrations\202002222104370_Restaurantaddtimeslot.designer.cs">
+      <DependentUpon>202002222104370_Restaurantaddtimeslot.cs</DependentUpon>
+    </Compile>
+    <Compile Include="Migrations\202002222130401_Restaurantslot.cs" />
+    <Compile Include="Migrations\202002222130401_Restaurantslot.designer.cs">
+      <DependentUpon>202002222130401_Restaurantslot.cs</DependentUpon>
+    </Compile>
+    <Compile Include="Migrations\202002222224477_Restaurantslotmappingupdateaddid.cs" />
+    <Compile Include="Migrations\202002222224477_Restaurantslotmappingupdateaddid.designer.cs">
+      <DependentUpon>202002222224477_Restaurantslotmappingupdateaddid.cs</DependentUpon>
+    </Compile>
     <Compile Include="Migrations\Configuration.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
   </ItemGroup>
@@ -426,6 +438,15 @@
     </EmbeddedResource>
     <EmbeddedResource Include="Migrations\202002222045185_Restaurantchangesemail.resx">
       <DependentUpon>202002222045185_Restaurantchangesemail.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Migrations\202002222104370_Restaurantaddtimeslot.resx">
+      <DependentUpon>202002222104370_Restaurantaddtimeslot.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Migrations\202002222130401_Restaurantslot.resx">
+      <DependentUpon>202002222130401_Restaurantslot.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Migrations\202002222224477_Restaurantslotmappingupdateaddid.resx">
+      <DependentUpon>202002222224477_Restaurantslotmappingupdateaddid.cs</DependentUpon>
     </EmbeddedResource>
   </ItemGroup>
   <Import Project="$(MSBuildToolsPath)\Microsoft.CSharp.targets" />

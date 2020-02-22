@@ -44,6 +44,7 @@
     <Reference Include="System.Xml" />
   </ItemGroup>
   <ItemGroup>
+    <Compile Include="Availabletablevm.cs" />
     <Compile Include="BaseModel.cs" />
     <Compile Include="CategoryMaster.cs" />
     <Compile Include="DayMaster.cs" />
