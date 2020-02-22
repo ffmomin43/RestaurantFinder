@@ -31,6 +31,7 @@ namespace RestaurantFinder.WebUI.APIController
         private readonly Lazy<IRestaurantService> restaurantService;
         private readonly Lazy<IRestaurantLocationService> restaurantLocationService;
         private readonly Lazy<IHomeBannerImageService> homeBannerImageService;
+        private readonly Lazy<IRestaurantBookingService> restaurantBookingService;
         private readonly Lazy<ILoggerFacade<RestaurantController>> logger;
 
         public RestaurantController(
@@ -42,6 +43,7 @@ namespace RestaurantFinder.WebUI.APIController
             Lazy<IRestaurantSlotService> restaurantSlotService,
             Lazy<IRestaurantsImagesService> restaurantsImage,
             Lazy<IRestaurantCategoryMappingService> categoryMappingService,
+            Lazy<IRestaurantBookingService> restaurantBookingService,
             Lazy<IPictureService> pictureService,
             Lazy<IRestaurantLocationService> restaurantLocationService,
             Lazy<IHomeBannerImageService> homeBannerImageService,
@@ -51,6 +53,7 @@ namespace RestaurantFinder.WebUI.APIController
             this.restaurantService = restaurantService;
             this.categoryMasterService = categoryMasterService;
             this.restaurantsImage = restaurantsImage;
+            this.restaurantBookingService = restaurantBookingService;
             this.usersService = usersService;
             this.restaurantSlotService = restaurantSlotService;
             this.pictureService = pictureService;
@@ -162,6 +165,7 @@ namespace RestaurantFinder.WebUI.APIController
         [Route("api/categories")]
         public IEnumerable<CategoryMaster> GetCategoryMasters()
         {
+
             return categoryMasterService.Value.GetAll();
         }
 
@@ -185,6 +189,9 @@ namespace RestaurantFinder.WebUI.APIController
                             Latitude = loc.Latitude,
                             Longitude = loc.Longitude,
                             Thumbimageurl = res.ThumbnailImageUrl,
+                            RestaurantId=res.ID,
+                            Starting_Price=res.StartingPrice,
+
 
                             LocationName = loc.LocationName,
                             Distance = GeoLocation.GetDistanceBetweenPoints(loc.Latitude, loc.Longitude, restorantLat, resturantLong),
@@ -206,9 +213,13 @@ namespace RestaurantFinder.WebUI.APIController
                        {
                            RestaurantName = Res.Name,
                            categoryName = catemaster.Name,
-                           id = catemapping.ID,
+                           ResMappingid = catemapping.ID,
                            CreateDate = catemapping.CreatedDate,
-                           Url=Res.ThumbnailImageUrl
+                           Url=Res.ThumbnailImageUrl,
+                           Resid=Res.ID,
+                           RestaurantAddress=Res.AddressLine1
+                           
+                           
                        };
 
             return list;
@@ -229,20 +240,26 @@ namespace RestaurantFinder.WebUI.APIController
             string trendingCountString = ConfigurationManager.AppSettings.Get("homepage:trending-count");
             int trendingCount = !string.IsNullOrEmpty(trendingCountString) ? Convert.ToInt32(trendingCountString) : 0;
 
-            return restaurantService.Value.GetAll().Where(x => x.IsTrending == true).Take(trendingCount).Select(res => new RestaurantImagesVm()
-            {
-                AddressLine1 = res.AddressLine1,
-                AddressLine2 = res.AddressLine2,
-                Area = res.Area,
-                RestaurantId = res.ID,
-                City = res.City,
-                Name = res.Name,
-                Thumburl = res.ThumbnailImageUrl,
-
-                PinCode = res.PinCode,
-                State = res.State,
-                IsTrending = res.IsTrending
-            });
+            return
+               from n in restaurantService.Value.GetAll().Where(x => x.IsTrending == true).Take(trendingCount)
+               join catgorymapping in categoryMappingService.Value.GetAll() on n.ID equals  catgorymapping.RestaurantId
+              join category in categoryMasterService.Value.GetAll() on catgorymapping.CategoryId equals category.ID
+               select new RestaurantImagesVm
+               {
+                AddressLine1 = n.AddressLine1,
+                AddressLine2 = n.AddressLine2,
+                Area = n.Area,
+                RestaurantId = n.ID,
+                City = n.City,
+                Name = n.Name,
+                Thumburl = n.ThumbnailImageUrl,
+              
+                PinCode = n.PinCode,
+                State = n.State,
+                IsTrending =n.IsTrending,
+                CategoryName=category.Name
+                
+            };
 
         }
         [Route("api/RestaurantBySlot")]
@@ -263,8 +280,10 @@ namespace RestaurantFinder.WebUI.APIController
                 EndTime = rslot.EndTime,
                 tablenum = table.TableNumber,
                 RestaurantName=restaurant.Name,
-                         RestauranrId=restaurant.ID
-
+                  RestauranrId=restaurant.ID,
+                  tableSlotMappingID=rs.ID,
+                  TableCapcity=table.TableCapacity
+                  
 
 
                      };
@@ -286,16 +305,17 @@ namespace RestaurantFinder.WebUI.APIController
         [Route("api/RestaurantDetails")]
         public IEnumerable<RestaurantDetailsvm> GetRestaurantDeatails(int id)
         {
-
-
+           
             var list = from r in restaurantService.Value.GetAll().Where(x => x.ID == id)
+                       
                        join c in categoryMappingService.Value.GetAll() on r.ID equals c.RestaurantId
                        join cs in categoryMasterService.Value.GetAll() on c.CategoryId equals cs.ID
                        select new RestaurantDetailsvm
                        {
-
+                           Email =r.RestaurantEmail,
                            Description = r.Description,
                            Number = r.Number,
+                           
                            CategoryName = cs.Name,
                            Url=r.ThumbnailImageUrl
 
@@ -307,11 +327,14 @@ namespace RestaurantFinder.WebUI.APIController
 
 
         }
-        //[Route("api/RestaurantBySlot")]
-        //public IEnumerable<RestaurantDetailsvm> GetRestaurantBySlot(int id)
+
+        //[Route("api/Availabletable")]
+        //public IEnumerable<RestaurantBooking> GetAvailabletable(DateTime date, int resid)
         //{
-        //    var list=
-        //    return List;
+        //    var id = restaurantBookingService.Value.GetAll().Where(x => x.RestaurantID == resid && x.BookingDate == date).Select(x => x.TableSlotMappingID);
+        //    return id;
+               
+        //   ;
         //}
     }
     public class LocationRestoRequest

@@ -8,10 +8,12 @@ namespace RestaurantFinder.Models
 {
    public  class RestaurantCategorymappingVm
     {
-        public int id { get; set; }
+        public int ResMappingid { get; set; }
         public string categoryName { get; set; }
         public string RestaurantName { get; set; }
         public string Url { get; set; }
         public DateTime CreateDate { get; set; }
+        public int Resid { get; set; }
+        public string RestaurantAddress { get; set; }
     }
 }

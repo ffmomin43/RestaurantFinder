@@ -56,6 +56,7 @@
     <Compile Include="Common\WebRoleProvider.cs" />
     <Compile Include="Impl\CategoryMasterService.cs" />
     <Compile Include="Impl\HomeBannerImageService.cs" />
+    <Compile Include="Impl\RestaurantBookingService.cs" />
     <Compile Include="Impl\RestaurantCategoryMappingService.cs" />
     <Compile Include="Impl\PermissionService.cs" />
     <Compile Include="Impl\PictureService.cs" />
@@ -89,6 +90,7 @@
     <Compile Include="Interface\IUsersService.cs" />
     <Compile Include="Interface\IRestaurantDishesService.cs" />
     <Compile Include="Interface\IRestaurantSlotService.cs" />
+    <Compile Include="Interface\IRestaurantBookingService.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
   </ItemGroup>
   <ItemGroup>

@@ -29,6 +29,7 @@ namespace RestaurantFinder.Models
 
         public bool IsTrending { get; set; }
         public string Thumburl { get; set; }
+        public string CategoryName { get; set; }
 
         //public IEnumerable<string> ImageUrls { get; set; }
 

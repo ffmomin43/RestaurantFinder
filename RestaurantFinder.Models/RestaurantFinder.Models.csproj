@@ -52,6 +52,7 @@
     <Compile Include="Action.cs" />
     <Compile Include="Picture.cs" />
     <Compile Include="RestaruantDay.cs" />
+    <Compile Include="RestaurantBooking.cs" />
     <Compile Include="RestaurantCategoryMapping.cs" />
     <Compile Include="RestaurantCategorymappingVm.cs" />
     <Compile Include="RestaurantCouponsMaster.cs" />

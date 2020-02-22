@@ -39,7 +39,7 @@ namespace RestaurantFinder.WebUI.Controllers
                        select new RestaurantCategorymappingVm
 
                        {
-                           id = catemapping.ID,
+                           ResMappingid = catemapping.ID,
                            CreateDate = catemapping.CreatedDate,
                            categoryName = catemaster.Name,
                            RestaurantName = Res.Name

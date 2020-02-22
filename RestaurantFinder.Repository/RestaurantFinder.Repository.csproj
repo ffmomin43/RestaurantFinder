@@ -61,6 +61,7 @@
     <Compile Include="Datatables\ISortCriteria.cs" />
     <Compile Include="Datatables\FieldSortOrder.cs" />
     <Compile Include="Impl\ActionRepository.cs" />
+    <Compile Include="Impl\RestaurantBookingRepository.cs" />
     <Compile Include="Impl\RestaurantSlotMappingRespository.cs" />
     <Compile Include="Impl\HomeBannerImagesRepository.cs" />
     <Compile Include="Impl\RestaurantDishesRepository.cs" />
@@ -79,6 +80,7 @@
     <Compile Include="Impl\UserRolesRepository.cs" />
     <Compile Include="Impl\UsersRepository.cs" />
     <Compile Include="Interface\IHomeBannerImagesRepository.cs" />
+    <Compile Include="Interface\IRestaurantBookingRepository.cs" />
     <Compile Include="Interface\IRestaurantCategoryMappingRepository.cs" />
     <Compile Include="Interface\ICategoryMasterRepository.cs" />
     <Compile Include="Interface\IActionRepository.cs" />
@@ -264,6 +266,18 @@
     <Compile Include="Migrations\202002190929513_restaurantSlotchanges.designer.cs">
       <DependentUpon>202002190929513_restaurantSlotchanges.cs</DependentUpon>
     </Compile>
+    <Compile Include="Migrations\202002220839258_RestaurantBooking.cs" />
+    <Compile Include="Migrations\202002220839258_RestaurantBooking.designer.cs">
+      <DependentUpon>202002220839258_RestaurantBooking.cs</DependentUpon>
+    </Compile>
+    <Compile Include="Migrations\202002222012486_Restaurantchangesaddprice.cs" />
+    <Compile Include="Migrations\202002222012486_Restaurantchangesaddprice.designer.cs">
+      <DependentUpon>202002222012486_Restaurantchangesaddprice.cs</DependentUpon>
+    </Compile>
+    <Compile Include="Migrations\202002222045185_Restaurantchangesemail.cs" />
+    <Compile Include="Migrations\202002222045185_Restaurantchangesemail.designer.cs">
+      <DependentUpon>202002222045185_Restaurantchangesemail.cs</DependentUpon>
+    </Compile>
     <Compile Include="Migrations\Configuration.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
   </ItemGroup>
@@ -403,6 +417,15 @@
     </EmbeddedResource>
     <EmbeddedResource Include="Migrations\202002190929513_restaurantSlotchanges.resx">
       <DependentUpon>202002190929513_restaurantSlotchanges.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Migrations\202002220839258_RestaurantBooking.resx">
+      <DependentUpon>202002220839258_RestaurantBooking.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Migrations\202002222012486_Restaurantchangesaddprice.resx">
+      <DependentUpon>202002222012486_Restaurantchangesaddprice.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Migrations\202002222045185_Restaurantchangesemail.resx">
+      <DependentUpon>202002222045185_Restaurantchangesemail.cs</DependentUpon>
     </EmbeddedResource>
   </ItemGroup>
   <Import Project="$(MSBuildToolsPath)\Microsoft.CSharp.targets" />

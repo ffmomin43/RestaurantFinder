@@ -33,6 +33,8 @@ namespace RestaurantFinder.Models
         public string ThumbnailImageUrl { get; set; }
         [NotMapped]
         public HttpPostedFileBase imagefile { get; set; }
+        public decimal StartingPrice { get; set; }
+        public string RestaurantEmail { get; set; }
 
         //public virtual List<RestaurantsImages> RestaurantsImages { get; set; }
 

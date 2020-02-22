@@ -23,6 +23,7 @@ namespace RestaurantFinder.Models
         public int RestaurantId { get; set; }
 
         public double Distance { get; set; }
+        public decimal Starting_Price { get; set; }
 
 
     }
