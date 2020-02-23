@@ -165,9 +165,13 @@ namespace RestaurantFinder.WebUI.APIController
         [Route("api/categories")]
         public IEnumerable<CategoryMaster> GetCategoryMasters()
         {
-
-            return categoryMasterService.Value.GetAll();
+            
+          return  (from n in categoryMasterService.Value.GetAll().ToList()
+            join categoryMappingService in categoryMappingService.Value.GetAll() on
+            n.ID equals categoryMappingService.CategoryId
+            select n).Distinct();
         }
+        
 
         [Route("api/login")]
         public bool Get(string user, string pass)
