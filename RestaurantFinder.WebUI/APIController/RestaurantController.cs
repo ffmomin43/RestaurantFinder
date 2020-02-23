@@ -294,7 +294,19 @@ namespace RestaurantFinder.WebUI.APIController
         [Route("api/scan")]
         public string PostQR(string userid, string qrcode, double Longitude, double Latitude)
         {
-            return "SUCCESS";
+
+            var res = restaurantService.Value.GetAll().Where(x => x.UniqueId.ToString() == qrcode).SingleOrDefault();
+           var loc= restaurantLocationService.Value.GetAll().Where(x => x.RestaurantId == res.ID).SingleOrDefault();
+            var Distance = GeoLocation.GetDistanceBetweenPoints(loc.Latitude, loc.Longitude, Latitude, Longitude);
+                if (Distance > 100)
+            {
+                return "Insert Record Successs";
+            }
+                else
+            {
+
+                return "some error";
+            }
         }
 
         [Route("api/autocomplete")]
