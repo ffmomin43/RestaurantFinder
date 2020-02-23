@@ -298,7 +298,7 @@ namespace RestaurantFinder.WebUI.APIController
             var res = restaurantService.Value.GetAll().Where(x => x.UniqueId.ToString() == qrcode).SingleOrDefault();
            var loc= restaurantLocationService.Value.GetAll().Where(x => x.RestaurantId == res.ID).SingleOrDefault();
             var Distance = GeoLocation.GetDistanceBetweenPoints(loc.Latitude, loc.Longitude, Latitude, Longitude);
-                if (Distance > 100)
+                if (Distance < 100)
             {
                 return "Insert Record Successs";
             }
