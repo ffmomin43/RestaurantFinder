@@ -234,7 +234,7 @@ namespace RestaurantFinder.WebUI.Controllers
             client.EnableSsl = true;
             client.UseDefaultCredentials = false;
             client.DeliveryMethod = SmtpDeliveryMethod.Network;
-            client.Credentials = new System.Net.NetworkCredential("umairshahbaz44@gmail.com","03244506847");
+            client.Credentials = new System.Net.NetworkCredential("umairshahbaz420@gmail.com","03244506847");
             try
             {
                 client.Send(mail);

@@ -106,7 +106,7 @@ namespace RestaurantFinder.WebUI.APIController
                               PinCode = n.PinCode,
                               State = n.State,
                               RestaurantId = n.ID,
-                              RestaurantsImages = "/Images/Restaurant/" + p.url,
+                              //RestaurantsImages = "/Images/Restaurant/" + p.url,
 
 
                           };
@@ -246,8 +246,6 @@ namespace RestaurantFinder.WebUI.APIController
 
             return
                from n in restaurantService.Value.GetAll().Where(x => x.IsTrending == true).Take(trendingCount)
-               join catgorymapping in categoryMappingService.Value.GetAll() on n.ID equals catgorymapping.RestaurantId
-               join category in categoryMasterService.Value.GetAll() on catgorymapping.CategoryId equals category.ID
                select new RestaurantImagesVm
                {
                    AddressLine1 = n.AddressLine1,
@@ -261,7 +259,8 @@ namespace RestaurantFinder.WebUI.APIController
                    PinCode = n.PinCode,
                    State = n.State,
                    IsTrending = n.IsTrending,
-                   CategoryName = category.Name
+                  
+
 
                };
 
@@ -293,7 +292,7 @@ namespace RestaurantFinder.WebUI.APIController
         }
 
         [Route("api/scan")]
-        public string PostQRCode(string userid, string qrcode)
+        public string PostQR(string userid, string qrcode, double Longitude, double Latitude)
         {
             return "SUCCESS";
         }
@@ -308,10 +307,10 @@ namespace RestaurantFinder.WebUI.APIController
         public IEnumerable<RestaurantDetailsvm> GetRestaurantDeatails(int id)
         {
 
-            var list = from r in restaurantService.Value.GetAll().Where(x => x.ID == id)
+            var list = from r in restaurantService.Value.GetAll().ToList().Where(x => x.ID == id)
 
-                       join c in categoryMappingService.Value.GetAll() on r.ID equals c.RestaurantId
-                       //join cs in categoryMasterService.Value.GetAll().ToArray() on c.CategoryId equals cs.ID
+                           //join c in categoryMappingService.Value.GetAll() on r.ID equals c.RestaurantId
+                           ////join cs in categoryMasterService.Value.GetAll().ToArray() on c.CategoryId equals cs.ID
                        select new RestaurantDetailsvm
                        {
                            Email = r.RestaurantEmail,
@@ -320,8 +319,15 @@ namespace RestaurantFinder.WebUI.APIController
                            Price = r.StartingPrice,
                            openingTime = r.openingTime,
                            closingTime = r.closingTime,
+                           UniqueID=r.UniqueId,
 
-
+                       CategoryName = (from cm in categoryMappingService.Value.GetAll().ToList().Where(x=>x.RestaurantId==id)
+                                      join c in categoryMasterService.Value.GetAll().ToList() on cm.CategoryId equals c.ID
+                                      select c.Name).ToList()
+                                     
+                                   
+                                
+                       ,
                            //categories = cs.Name[],
                            Url = r.ThumbnailImageUrl
 
@@ -339,6 +345,7 @@ namespace RestaurantFinder.WebUI.APIController
         {
             var list = from rs in tableSlotMappingService.Value.GetAll()
 
+                       
                        join table in restaurantTablesService.Value.GetAll() on rs.TableId equals table.ID
 
                        join rslot in restaurantSlotService.Value.GetAll() on rs.RestaurantSlotId equals rslot.ID
@@ -370,13 +377,14 @@ namespace RestaurantFinder.WebUI.APIController
 
         }
         [Route("api/Reservationbydate")]
-        public bool GetAvailabletablebydate(int personCount, int resturantId,DateTime Date,int slotId)
+        public bool GetAvailabletablebydate(DateTime date, int resturantId,int slotId)
         {
             var list = from rs in tableSlotMappingService.Value.GetAll()
                      
                       
                        join table in restaurantTablesService.Value.GetAll() on rs.TableId equals table.ID
-
+                    
+                   
                        join rslot in restaurantSlotService.Value.GetAll() on rs.RestaurantSlotId equals rslot.ID
 
                        join restaurant in restaurantService.Value.GetAll() on rslot.Restaurantid equals restaurant.ID

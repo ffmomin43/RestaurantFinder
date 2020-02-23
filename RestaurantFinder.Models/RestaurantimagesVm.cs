@@ -25,11 +25,12 @@ namespace RestaurantFinder.Models
 
         public int RestaurantId { get; set; }
 
-        public string RestaurantsImages { get; set; }
+        //public string RestaurantsImages { get; set; }
 
         public bool IsTrending { get; set; }
         public string Thumburl { get; set; }
-        public string CategoryName { get; set; }
+        //public List<string> CategoryName { get; set; }
+
 
         //public IEnumerable<string> ImageUrls { get; set; }
 
