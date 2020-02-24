@@ -46,6 +46,7 @@
   <ItemGroup>
     <Compile Include="Availabletablevm.cs" />
     <Compile Include="BaseModel.cs" />
+    <Compile Include="BookingViewmodel.cs" />
     <Compile Include="CategoryMaster.cs" />
     <Compile Include="DayMaster.cs" />
     <Compile Include="HomeBannerImage.cs" />

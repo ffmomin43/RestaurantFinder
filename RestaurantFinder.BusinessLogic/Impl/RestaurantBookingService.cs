@@ -23,6 +23,13 @@ namespace RestaurantFinder.BusinessLogic.Impl
 
             restaurantBookingRepository.Value.Add(entity);
         }
+        public bool Added(Models.RestaurantBooking entity)
+        {
+
+            restaurantBookingRepository.Value.Add(entity);
+            restaurantBookingRepository.Value.Save();
+            return true;
+        }
 
         public void Delete(Models.RestaurantBooking entity)
         {

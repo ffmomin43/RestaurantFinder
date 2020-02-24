@@ -17,7 +17,7 @@ namespace RestaurantFinder.WebUI.APIController
     public class RestaurantController : ApiController
     {
 
-
+        RestaurantBooking restaurantBooking = new RestaurantBooking();
         private readonly Lazy<IUsersService> usersService;
 
         private readonly Lazy<IRestaurantSlotService> restaurantSlotService;
@@ -165,13 +165,13 @@ namespace RestaurantFinder.WebUI.APIController
         [Route("api/categories")]
         public IEnumerable<CategoryMaster> GetCategoryMasters()
         {
-            
-          return  (from n in categoryMasterService.Value.GetAll().ToList()
-            join categoryMappingService in categoryMappingService.Value.GetAll() on
-            n.ID equals categoryMappingService.CategoryId
-            select n).Distinct();
+
+            return (from n in categoryMasterService.Value.GetAll().ToList()
+                    join categoryMappingService in categoryMappingService.Value.GetAll() on
+                    n.ID equals categoryMappingService.CategoryId
+                    select n).Distinct();
         }
-        
+
 
         [Route("api/login")]
         public bool Get(string user, string pass)
@@ -264,7 +264,7 @@ namespace RestaurantFinder.WebUI.APIController
                    PinCode = n.PinCode,
                    State = n.State,
                    IsTrending = n.IsTrending,
-                  
+
 
 
                };
@@ -301,13 +301,13 @@ namespace RestaurantFinder.WebUI.APIController
         {
 
             var res = restaurantService.Value.GetAll().Where(x => x.UniqueId.ToString() == qrcode).SingleOrDefault();
-           var loc= restaurantLocationService.Value.GetAll().Where(x => x.RestaurantId == res.ID).SingleOrDefault();
+            var loc = restaurantLocationService.Value.GetAll().Where(x => x.RestaurantId == res.ID).SingleOrDefault();
             var Distance = GeoLocation.GetDistanceBetweenPoints(loc.Latitude, loc.Longitude, Latitude, Longitude);
-                if (Distance < 100)
+            if (Distance < 100)
             {
                 return "Insert Record Successs";
             }
-                else
+            else
             {
 
                 return "some error";
@@ -336,14 +336,14 @@ namespace RestaurantFinder.WebUI.APIController
                            Price = r.StartingPrice,
                            openingTime = r.openingTime,
                            closingTime = r.closingTime,
-                           UniqueID=r.UniqueId,
+                           UniqueID = r.UniqueId,
 
-                       CategoryName = (from cm in categoryMappingService.Value.GetAll().ToList().Where(x=>x.RestaurantId==id)
-                                      join c in categoryMasterService.Value.GetAll().ToList() on cm.CategoryId equals c.ID
-                                      select c.Name).ToList()
-                                     
-                                   
-                                
+                           CategoryName = (from cm in categoryMappingService.Value.GetAll().ToList().Where(x => x.RestaurantId == id)
+                                           join c in categoryMasterService.Value.GetAll().ToList() on cm.CategoryId equals c.ID
+                                           select c.Name).ToList()
+
+
+
                        ,
                            //categories = cs.Name[],
                            Url = r.ThumbnailImageUrl
@@ -362,51 +362,14 @@ namespace RestaurantFinder.WebUI.APIController
         {
             var list = from rs in tableSlotMappingService.Value.GetAll()
 
-                       
+
                        join table in restaurantTablesService.Value.GetAll() on rs.TableId equals table.ID
 
                        join rslot in restaurantSlotService.Value.GetAll() on rs.RestaurantSlotId equals rslot.ID
 
                        join restaurant in restaurantService.Value.GetAll() on rslot.Restaurantid equals restaurant.ID
-                       where rs.ResturantID == resturantId && table.TableCapacity==personCount && rs.IsActive==false
+                       where rs.ResturantID == resturantId && table.TableCapacity == personCount && rs.IsActive == false
 
-                       select new Availabletablevm
-                       {
-
-                           tableno=table.TableNumber,
-
-
-
-                       };
-            if(list.Count()>0)
-            {
-
-                return true;
-
-            }
-            else
-            {
-
-
-                return false;
-            }
-
-
-        }
-        [Route("api/Reservationbydate")]
-        public bool GetAvailabletablebydate(DateTime date, int resturantId,int slotId)
-        {
-            var list = from rs in tableSlotMappingService.Value.GetAll()
-                     
-                      
-                       join table in restaurantTablesService.Value.GetAll() on rs.TableId equals table.ID
-                    
-                   
-                       join rslot in restaurantSlotService.Value.GetAll() on rs.RestaurantSlotId equals rslot.ID
-
-                       join restaurant in restaurantService.Value.GetAll() on rslot.Restaurantid equals restaurant.ID
-                       
-                     
                        select new Availabletablevm
                        {
 
@@ -430,15 +393,144 @@ namespace RestaurantFinder.WebUI.APIController
 
 
         }
-        //[Route("api/Availabletable")]
-        //public IEnumerable<RestaurantBooking> GetAvailabletable(DateTime date, int resid)
-        //{
-        //    var id = restaurantBookingService.Value.GetAll().Where(x => x.RestaurantID == resid && x.BookingDate == date).Select(x => x.TableSlotMappingID);
-        //    return id;
+        [Route("api/Reservationbydate")]
+        public bool GetAvailabletablebydate(DateTime date, int resturantId, int slotId, int personcount)
+        {
 
-        //   ;
-        //}
+            var tableids = tableSlotMappingService.Value.GetAll().ToList().Where(x => x.ResturantID == resturantId && x.RestaurantSlotId == slotId).ToList();
+            //for (int i = 1; i < tableids.ToList().Count(); i++)
+            foreach (var item in tableids)
+
+
+            {
+
+                var capicity = restaurantTablesService.Value.GetAll().ToList().Where(x => x.ID == item.TableId).SingleOrDefault();
+                if (personcount == capicity.TableCapacity)
+                {
+                    var tableid = restaurantTablesService.Value.GetAll().ToList().Where(x => x.ID == capicity.ID).SingleOrDefault();
+
+
+                    var mappingid = tableSlotMappingService.Value.GetAll().ToList().Where(x => x.RestaurantSlotId == slotId
+                    & x.TableId == tableid.ID).SingleOrDefault();
+
+
+                    var Result = restaurantBookingService.Value.GetAll().ToList().Where(x => x.TableSlotMappingID == mappingid.ID & x.BookingDate == date).Count();
+
+                    if (Result == 0)
+                        return true;
+                    else
+
+                    {
+                        return false;
+                    }
+
+                }
+
+
+
+            }
+
+
+            return false;
+
+
+
+        }
+
+
+
+
+
+        [Route("api/ConformationBooking")]
+        public BookingViewmodel PostAvailabletablebydate(DateTime date, int resturantId, int slotId, int personcount)
+        {
+
+            var tableids = tableSlotMappingService.Value.GetAll().ToList().Where(x => x.ResturantID == resturantId && x.RestaurantSlotId == slotId).ToList();
+            //for (int i = 1; i < tableids.ToList().Count(); i++)
+            foreach (var item in tableids)
+
+
+            {
+
+                var capicity = restaurantTablesService.Value.GetAll().ToList().Where(x => x.ID == item.TableId).SingleOrDefault();
+                if (personcount == capicity.TableCapacity)
+                {
+                    var tableid = restaurantTablesService.Value.GetAll().ToList().Where(x => x.ID == capicity.ID).SingleOrDefault();
+
+
+                    var mappingid = tableSlotMappingService.Value.GetAll().ToList().Where(x => x.RestaurantSlotId == slotId
+                    & x.TableId == tableid.ID).SingleOrDefault();
+
+
+                    var Result = restaurantBookingService.Value.GetAll().ToList().Where(x => x.TableSlotMappingID == mappingid.ID & x.BookingDate == date).Count();
+
+                    if (Result == 0)
+                        restaurantBooking.BookingDate = date;
+                    restaurantBooking.RestaurantID = resturantId;
+                    restaurantBooking.CreatedDate = DateTime.Now;
+                    restaurantBooking.TableSlotMappingID = mappingid.ID;
+                    restaurantBookingService.Value.Add(restaurantBooking);
+                    restaurantBookingService.Value.Save();
+                    BookingViewmodel bookingViewmodeles = new BookingViewmodel();
+                    bookingViewmodeles.Tableid = tableid.ID;
+                    bookingViewmodeles.BookingNum = restaurantBooking.UniqueId;
+                    bookingViewmodeles.Status = true;
+                    var list1 = bookingViewmodeles;
+                    return list1;
+                }
+                else
+
+                {
+                    BookingViewmodel bookingViewmodeles = new BookingViewmodel();
+                    
+                    bookingViewmodeles.Status = false;
+                    var list2 = bookingViewmodeles;
+                    return list2;
+                }
+
+            }
+
+            BookingViewmodel bookingViewmodeless = new BookingViewmodel();
+
+            bookingViewmodeless.Status = false;
+            var list3 = bookingViewmodeless;
+            return list3;
+
+
+        }
+
+
+
+
+
     }
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+    //[Route("api/Availabletable")]
+    //public IEnumerable<RestaurantBooking> GetAvailabletable(DateTime date, int resid)
+    //{
+    //    var id = restaurantBookingService.Value.GetAll().Where(x => x.RestaurantID == resid && x.BookingDate == date).Select(x => x.TableSlotMappingID);
+    //    return id;
+
+    //   ;
+    //}
+
     public class LocationRestoRequest
     {
 
@@ -448,5 +540,6 @@ namespace RestaurantFinder.WebUI.APIController
 
         public double Latitude { get; set; }
     }
-}
 
+
+}

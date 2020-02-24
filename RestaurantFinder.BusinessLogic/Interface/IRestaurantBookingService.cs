@@ -10,5 +10,6 @@ namespace RestaurantFinder.BusinessLogic.Interface
 {
    public interface IRestaurantBookingService : IGenericService<RestaurantBooking>
     {
+        bool Added(Models.RestaurantBooking entity);
     }
 }
