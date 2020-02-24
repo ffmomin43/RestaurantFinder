@@ -196,6 +196,7 @@
     <Compile Include="Controllers\RestaurantPictureController.cs" />
     <Compile Include="Controllers\RestaurantSlotController.cs" />
     <Compile Include="Controllers\RestaurantTableController.cs" />
+    <Compile Include="Controllers\TableSlotMappingController.cs" />
     <Compile Include="Controllers\UserController.cs" />
     <Compile Include="Global.asax.cs">
       <DependentUpon>Global.asax</DependentUpon>
@@ -545,6 +546,10 @@
     <Content Include="Views\User\Edit.cshtml" />
     <Content Include="Views\Login\checkmail.cshtml" />
     <Content Include="Views\Login\ChangePassword.cshtml" />
+    <Content Include="Views\RestaurantSlot\CreateResturantSlot.cshtml" />
+    <Content Include="Views\RestaurantSlot\Index.cshtml" />
+    <Content Include="Views\TableSlotMapping\Create.cshtml" />
+    <Content Include="Views\TableSlotMapping\Index.cshtml" />
   </ItemGroup>
   <ItemGroup>
     <Folder Include="APIModels\" />

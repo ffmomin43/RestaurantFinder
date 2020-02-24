@@ -32,8 +32,10 @@ namespace RestaurantFinder.WebUI.Controllers
         // GET: RestaurantSlot
         public ActionResult Index()
         {
-            return View();
+          var list=  restaurantSlotService.Value.GetAll();
+            return View(list);
         }
+
 
         public ActionResult Create()
         {
@@ -73,6 +75,19 @@ namespace RestaurantFinder.WebUI.Controllers
             }
             return View();
 
+        }
+        public ActionResult CreateResturantSlot()
+        {
+
+            return View();
+        }
+        [HttpPost]
+        public ActionResult CreateResturantSlot( RestaurantSlot restaurantSlot)
+        {
+            restaurantSlotService.Value.Add(restaurantSlot);
+            restaurantSlotService.Value.Save();
+
+            return View("Index");
         }
 
     }

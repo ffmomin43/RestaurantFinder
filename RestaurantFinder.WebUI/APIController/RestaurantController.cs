@@ -195,6 +195,11 @@ namespace RestaurantFinder.WebUI.APIController
                             Thumbimageurl = res.ThumbnailImageUrl,
                             RestaurantId = res.ID,
                             Starting_Price = res.StartingPrice,
+                            Categories = (from cm in categoryMappingService.Value.GetAll().ToList().Where(x => x.RestaurantId == res.ID)
+                                          join c in categoryMasterService.Value.GetAll().ToList() on cm.CategoryId equals c.ID
+                                          select c.Name).ToList(),
+
+
 
 
                             LocationName = loc.LocationName,

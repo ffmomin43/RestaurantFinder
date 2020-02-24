@@ -47,6 +47,36 @@
                                 </div>
 
                                 <div class="form-group">
+                                    <label for="passWord2">Number <span class="text-danger">*</span></label>
+                                    <input data-parsley-equalto="#pass1" name="Number" type="number" required
+                                           placeholder="Number" class="form-control" value="@Model.Number" id="passWord2">
+                                </div>
+                                <div class="form-group">
+                                    <label for="passWord2">Description <span class="text-danger">*</span></label>
+                                    <input data-parsley-equalto="#pass1" name="Description" type="text" required
+                                           placeholder="Description" class="form-control" value="@Model.Description" id="passWord2">
+                                </div>
+                                <div class="form-group">
+                                    <label for="passWord2">StartingPrice <span class="text-danger">*</span></label>
+                                    <input data-parsley-equalto="#pass1" name="StartingPrice" type="text" required
+                                           placeholder="StartingPrice" class="form-control" value="@Model.StartingPrice" id="passWord2">
+                                </div>
+                                <div class="form-group">
+                                    <label for="passWord2">RestaurantEmail <span class="text-danger">*</span></label>
+                                    <input data-parsley-equalto="#pass1" name="RestaurantEmail" type="text" required
+                                           placeholder="RestaurantEmail" class="form-control" value="@Model.RestaurantEmail" id="passWord2">
+                                </div>
+                                <div class="form-group">
+                                    <label for="passWord2">openingTime <span class="text-danger">*</span></label>
+                                    <input data-parsley-equalto="#pass1" name="openingTime" type="time" required
+                                           placeholder="openingTime" class="form-control" value="@Model.openingTime" id="passWord2">
+                                </div>
+                                <div class="form-group">
+                                    <label for="passWord2">closingTime <span class="text-danger">*</span></label>
+                                    <input data-parsley-equalto="#pass1" name="closingTime" type="time" required
+                                           placeholder="closingTime" class="form-control" value="@Model.closingTime" id="passWord2">
+                                </div>
+                                <div class="form-group">
                                     <label for="passWord2">State <span class="text-danger">*</span></label>
                                     <input data-parsley-equalto="#pass1" name="State" type="text" required
                                            placeholder="State" class="form-control" value="@Model.State" id="passWord2">
@@ -60,7 +90,9 @@
                                     <input data-parsley-equalto="#pass1" name="IsActive" value="@Model.IsActive" type="hidden" required />
                                     <input type="hidden" name="IsTrending" value="@Model.IsTrending" />
 
-                                </div> <label>
+                                </div>
+
+                                <label>
                                     Image Upload
                                 </label>
                                 <input id="Resturantpicture" type="file" class="form-control" name="imagefile" multiple />

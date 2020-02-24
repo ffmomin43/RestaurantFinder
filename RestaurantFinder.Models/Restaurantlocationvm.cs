@@ -24,6 +24,7 @@ namespace RestaurantFinder.Models
 
         public double Distance { get; set; }
         public decimal Starting_Price { get; set; }
+        public List<string> Categories { get; set; }
 
 
     }
