@@ -189,12 +189,13 @@ namespace RestaurantFinder.WebUI.APIController
                         select new Restaurantlocationvm()
                         {
                             ID = loc.ID,
-                            Name = loc.LocationName,
+                            Name = res.Name,
                             Latitude = loc.Latitude,
                             Longitude = loc.Longitude,
                             Thumbimageurl = res.ThumbnailImageUrl,
                             RestaurantId = res.ID,
                             Starting_Price = res.StartingPrice,
+                          
                             Categories = (from cm in categoryMappingService.Value.GetAll().ToList().Where(x => x.RestaurantId == res.ID)
                                           join c in categoryMasterService.Value.GetAll().ToList() on cm.CategoryId equals c.ID
                                           select c.Name).ToList(),
@@ -337,6 +338,7 @@ namespace RestaurantFinder.WebUI.APIController
                            openingTime = r.openingTime,
                            closingTime = r.closingTime,
                            UniqueID = r.UniqueId,
+                           RestaurantName=r.Name,
 
                            CategoryName = (from cm in categoryMappingService.Value.GetAll().ToList().Where(x => x.RestaurantId == id)
                                            join c in categoryMasterService.Value.GetAll().ToList() on cm.CategoryId equals c.ID

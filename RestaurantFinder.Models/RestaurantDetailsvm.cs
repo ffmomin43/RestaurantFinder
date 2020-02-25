@@ -10,6 +10,7 @@ namespace RestaurantFinder.Models
     {
 
         public int Number { get; set; }
+        public string RestaurantName { get; set; }
         public Guid  UniqueID{ get; set; }
         public string Description { get; set; }
         public decimal Price { get; set; }

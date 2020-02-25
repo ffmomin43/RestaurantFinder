@@ -78,7 +78,7 @@ namespace RestaurantFinder.WebUI.Controllers
                         restaurant.CreatedBy = "System";
                         string filename = Path.GetFileNameWithoutExtension(restaurant.imagefile.FileName);
                         string extentsion = Path.GetExtension(restaurant.imagefile.FileName);
-                        filename = filename + DateTime.Now.ToString("yymmssfff") + extentsion;
+                        filename = filename +restaurant.UniqueId + extentsion;
                         restaurant.ThumbnailImageUrl = "/Images/Restaurant/" + filename;
                         filename = Path.Combine(Server.MapPath("~/Images/Restaurant/"), filename);
                         restaurant.imagefile.SaveAs(filename);
