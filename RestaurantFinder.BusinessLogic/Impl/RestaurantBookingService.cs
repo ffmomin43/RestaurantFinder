@@ -63,5 +63,21 @@ namespace RestaurantFinder.BusinessLogic.Impl
         {
             restaurantBookingRepository.Value.Save();
         }
+
+        public List<int> GetBookTableonSpecificDate(DateTime date)
+        {
+
+           return restaurantBookingRepository.Value.GetAll().Where(x => x.BookingDate == date).Select(x => x.TableSlotMappingID).ToList();
+
+            
+        }
+        
+        public List<int> GetBookTableonSpecificRestaurant(int rid)
+        {
+
+            return restaurantBookingRepository.Value.GetAll().Where(x => x.RestaurantID == rid).Select(x => x.TableSlotMappingID).ToList();
+
+
+        }
     }
 }

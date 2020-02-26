@@ -8,10 +8,7 @@ using System.Threading.Tasks;
 
 namespace RestaurantFinder.BusinessLogic.Interface
 {
-  public  interface ITableSlotMappingService: IGenericService<RestaurantSlotMapping>
+  public  interface IUserVisitingService : IGenericService<UserVisiting>
     {
-     List<int> GetTablebySlot(int resturantId, int slotId);
-        List<int> GetTablebyRestaurant(int resturantId);
-
     }
 }

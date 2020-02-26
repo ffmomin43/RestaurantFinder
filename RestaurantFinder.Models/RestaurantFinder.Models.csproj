@@ -46,6 +46,7 @@
   <ItemGroup>
     <Compile Include="Availabletablevm.cs" />
     <Compile Include="BaseModel.cs" />
+    <Compile Include="BookingUserRestaurantList.cs" />
     <Compile Include="BookingViewmodel.cs" />
     <Compile Include="CategoryMaster.cs" />
     <Compile Include="DayMaster.cs" />
@@ -75,6 +76,7 @@
     <Compile Include="Properties\AssemblyInfo.cs" />
     <Compile Include="Restaurant.cs" />
     <Compile Include="UserRoles.cs" />
+    <Compile Include="UserVisiting.cs" />
   </ItemGroup>
   <Import Project="$(MSBuildToolsPath)\Microsoft.CSharp.targets" />
 </Project>

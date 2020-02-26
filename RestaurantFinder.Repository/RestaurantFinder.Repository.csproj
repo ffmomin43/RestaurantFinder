@@ -79,6 +79,7 @@
     <Compile Include="Impl\TableSlotMappingRepository.cs" />
     <Compile Include="Impl\UserRolesRepository.cs" />
     <Compile Include="Impl\UsersRepository.cs" />
+    <Compile Include="Impl\UserVisitingRepository.cs" />
     <Compile Include="Interface\IHomeBannerImagesRepository.cs" />
     <Compile Include="Interface\IRestaurantBookingRepository.cs" />
     <Compile Include="Interface\IRestaurantCategoryMappingRepository.cs" />
@@ -98,6 +99,7 @@
     <Compile Include="Interface\IUserRolesRepository.cs" />
     <Compile Include="Interface\IUsersRepository.cs" />
     <Compile Include="Interface\ITableSlotMappingRepository.cs" />
+    <Compile Include="Interface\IUserVisitingRepository.cs" />
     <Compile Include="Migrations\202001272329136_intial.cs" />
     <Compile Include="Migrations\202001272329136_intial.designer.cs">
       <DependentUpon>202001272329136_intial.cs</DependentUpon>
@@ -290,6 +292,18 @@
     <Compile Include="Migrations\202002222224477_Restaurantslotmappingupdateaddid.designer.cs">
       <DependentUpon>202002222224477_Restaurantslotmappingupdateaddid.cs</DependentUpon>
     </Compile>
+    <Compile Include="Migrations\202002252333325_uservisiting.cs" />
+    <Compile Include="Migrations\202002252333325_uservisiting.designer.cs">
+      <DependentUpon>202002252333325_uservisiting.cs</DependentUpon>
+    </Compile>
+    <Compile Include="Migrations\202002260803514_Useridaddbooking.cs" />
+    <Compile Include="Migrations\202002260803514_Useridaddbooking.designer.cs">
+      <DependentUpon>202002260803514_Useridaddbooking.cs</DependentUpon>
+    </Compile>
+    <Compile Include="Migrations\202002260848453_Slotidaddbooking.cs" />
+    <Compile Include="Migrations\202002260848453_Slotidaddbooking.designer.cs">
+      <DependentUpon>202002260848453_Slotidaddbooking.cs</DependentUpon>
+    </Compile>
     <Compile Include="Migrations\Configuration.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
   </ItemGroup>
@@ -447,6 +461,15 @@
     </EmbeddedResource>
     <EmbeddedResource Include="Migrations\202002222224477_Restaurantslotmappingupdateaddid.resx">
       <DependentUpon>202002222224477_Restaurantslotmappingupdateaddid.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Migrations\202002252333325_uservisiting.resx">
+      <DependentUpon>202002252333325_uservisiting.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Migrations\202002260803514_Useridaddbooking.resx">
+      <DependentUpon>202002260803514_Useridaddbooking.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Migrations\202002260848453_Slotidaddbooking.resx">
+      <DependentUpon>202002260848453_Slotidaddbooking.cs</DependentUpon>
     </EmbeddedResource>
   </ItemGroup>
   <Import Project="$(MSBuildToolsPath)\Microsoft.CSharp.targets" />

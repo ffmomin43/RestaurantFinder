@@ -21,6 +21,7 @@ namespace RestaurantFinder.WebUI.APIController
         private readonly Lazy<IUsersService> usersService;
 
         private readonly Lazy<IRestaurantSlotService> restaurantSlotService;
+        private readonly Lazy<IUserVisitingService>userVisitingService;
 
         private readonly Lazy<IRestaurantCategoryMappingService> categoryMappingService;
         private readonly Lazy<IRestaurantTablesService> restaurantTablesService;
@@ -40,6 +41,7 @@ namespace RestaurantFinder.WebUI.APIController
             Lazy<ICategoryMasterService> categoryMasterService,
             Lazy<IRestaurantTablesService> restaurantTablesService,
             Lazy<ITableSlotMappingService> tableSlotMappingService,
+             Lazy<IUserVisitingService> userVisitingService,
             Lazy<IRestaurantSlotService> restaurantSlotService,
             Lazy<IRestaurantsImagesService> restaurantsImage,
             Lazy<IRestaurantCategoryMappingService> categoryMappingService,
@@ -62,6 +64,7 @@ namespace RestaurantFinder.WebUI.APIController
             this.homeBannerImageService = homeBannerImageService;
             this.tableSlotMappingService = tableSlotMappingService;
             this.restaurantTablesService = restaurantTablesService;
+            this.userVisitingService = userVisitingService;
             this.logger = logger;
         }
 
@@ -195,7 +198,7 @@ namespace RestaurantFinder.WebUI.APIController
                             Thumbimageurl = res.ThumbnailImageUrl,
                             RestaurantId = res.ID,
                             Starting_Price = res.StartingPrice,
-                          
+
                             Categories = (from cm in categoryMappingService.Value.GetAll().ToList().Where(x => x.RestaurantId == res.ID)
                                           join c in categoryMasterService.Value.GetAll().ToList() on cm.CategoryId equals c.ID
                                           select c.Name).ToList(),
@@ -274,20 +277,14 @@ namespace RestaurantFinder.WebUI.APIController
         [Route("api/RestaurantBySlot")]
         public IEnumerable<Restaurantslotvm> GetRestaurantBySlot(int id)
         {
-            var list = from rs in tableSlotMappingService.Value.GetAll()
+            var list = from rs in restaurantSlotService.Value.GetAll()
 
-                       join table in restaurantTablesService.Value.GetAll() on rs.TableId equals table.ID
-
-                       join rslot in restaurantSlotService.Value.GetAll() on rs.RestaurantSlotId equals rslot.ID
-
-                       join restaurant in restaurantService.Value.GetAll() on rslot.Restaurantid equals restaurant.ID
-                       where rs.ResturantID == id
-
+                      
                        select new Restaurantslotvm
                        {
 
-                           SlotName = rslot.SlotName,
-                           RestauranrId = restaurant.ID,
+                           SlotName = rs.SlotName,
+                           RestauranrId = rs.Restaurantid,
                            // tableSlotMappingID
                            SlotID = rs.ID,
 
@@ -306,7 +303,16 @@ namespace RestaurantFinder.WebUI.APIController
             var Distance = GeoLocation.GetDistanceBetweenPoints(loc.Latitude, loc.Longitude, Latitude, Longitude);
             if (Distance < 100)
             {
-                return "Insert Record Successs";
+                UserVisiting userVisiting = new UserVisiting();
+                userVisiting.Userid = userid;
+                userVisiting.qrcode = qrcode;
+                userVisiting.RestaurantID = res.ID;
+                userVisiting.Longitude = Longitude;
+                userVisiting.Latitude = Latitude;
+                userVisiting.UniqueId = new Guid();
+                userVisitingService.Value.Add(userVisiting);
+                userVisitingService.Value.Save();
+                return "save";
             }
             else
             {
@@ -338,7 +344,7 @@ namespace RestaurantFinder.WebUI.APIController
                            openingTime = r.openingTime,
                            closingTime = r.closingTime,
                            UniqueID = r.UniqueId,
-                           RestaurantName=r.Name,
+                           RestaurantName = r.Name,
 
                            CategoryName = (from cm in categoryMappingService.Value.GetAll().ToList().Where(x => x.RestaurantId == id)
                                            join c in categoryMasterService.Value.GetAll().ToList() on cm.CategoryId equals c.ID
@@ -362,25 +368,18 @@ namespace RestaurantFinder.WebUI.APIController
         [Route("api/Reservation")]
         public bool GetAvailabletable(int personCount, int resturantId)
         {
-            var list = from rs in tableSlotMappingService.Value.GetAll()
 
-
-                       join table in restaurantTablesService.Value.GetAll() on rs.TableId equals table.ID
-
-                       join rslot in restaurantSlotService.Value.GetAll() on rs.RestaurantSlotId equals rslot.ID
-
-                       join restaurant in restaurantService.Value.GetAll() on rslot.Restaurantid equals restaurant.ID
-                       where rs.ResturantID == resturantId && table.TableCapacity == personCount && rs.IsActive == false
-
-                       select new Availabletablevm
-                       {
-
-                           tableno = table.TableNumber,
-
-
-
-                       };
-            if (list.Count() > 0)
+            var tablebyresrtraunt= tableSlotMappingService.Value.GetTablebyRestaurant(resturantId);
+            var bookingTableid = restaurantBookingService.Value.GetBookTableonSpecificRestaurant(resturantId);
+            var AvailabeTablelist =tablebyresrtraunt.Except(bookingTableid);
+            
+                       var Nearesttableid = from r in restaurantTablesService.Value.GetAll().ToList()
+                                            join a in AvailabeTablelist.ToList() on r.ID equals a
+                                            select r;
+            //get final table
+            var finaltable = Nearesttableid.ToList().Where(x => x.TableCapacity >=personCount).Select(x=>x.ID).FirstOrDefault();
+           
+            if (finaltable>0)
             {
 
                 return true;
@@ -399,44 +398,58 @@ namespace RestaurantFinder.WebUI.APIController
         public bool GetAvailabletablebydate(DateTime date, int resturantId, int slotId, int personcount)
         {
 
-            var tableids = tableSlotMappingService.Value.GetAll().ToList().Where(x => x.ResturantID == resturantId && x.RestaurantSlotId == slotId).ToList();
-            //for (int i = 1; i < tableids.ToList().Count(); i++)
-            foreach (var item in tableids)
+            var tableids = tableSlotMappingService.Value.GetTablebySlot(resturantId, slotId);
 
+            //get all table id book already
+            var bookingTableid = restaurantBookingService.Value.GetBookTableonSpecificDate(date);
 
+              var AvailabeTablelist  =tableids.Except(bookingTableid);
+
+            var Nearesttableid = from r in restaurantTablesService.Value.GetAll().ToList()
+                                 join a in AvailabeTablelist.ToList() on r.ID equals a
+                                 select r;
+            //get final table
+            var finaltable = Nearesttableid.ToList().Where(x => x.TableCapacity >= personcount).Select(x=>x.ID).First();
+            if (finaltable > 0)
+            {
+                return true;
+            }
+            else
             {
 
-                var capicity = restaurantTablesService.Value.GetAll().ToList().Where(x => x.ID == item.TableId).SingleOrDefault();
-                if (personcount == capicity.TableCapacity)
-                {
-                    var tableid = restaurantTablesService.Value.GetAll().ToList().Where(x => x.ID == capicity.ID).SingleOrDefault();
-
-
-                    var mappingid = tableSlotMappingService.Value.GetAll().ToList().Where(x => x.RestaurantSlotId == slotId
-                    & x.TableId == tableid.ID).SingleOrDefault();
-
-
-                    var Result = restaurantBookingService.Value.GetAll().ToList().Where(x => x.TableSlotMappingID == mappingid.ID & x.BookingDate == date).Count();
-
-                    if (Result == 0)
-                        return true;
-                    else
-
-                    {
-                        return false;
-                    }
-
-                }
-
-
-
+                return false;
             }
+            
+        }
 
 
-            return false;
 
 
 
+        [Route("api/RestaurantBookingByUser")]
+        public IEnumerable<BookingUserRestaurantList> GetRestaurantBookingByUser(string userid)
+        {
+            var list = from bookingres in restaurantBookingService.Value.GetAll().ToList().Where(x => x.UserId == userid)
+                       join r in restaurantService.Value.GetAll().ToList() on bookingres.RestaurantID equals r.ID
+                       join rtable in restaurantTablesService.Value.GetAll().ToList() on bookingres.TableSlotMappingID equals rtable.ID
+                       join slot in restaurantSlotService.Value.GetAll().ToList() on bookingres.Slotid equals slot.ID
+                       select new BookingUserRestaurantList
+
+                       {
+                           RestaurantId = bookingres.RestaurantID,
+                           Tableid=bookingres.TableSlotMappingID,
+                           BookingDate=bookingres.BookingDate,
+                           UserId=bookingres.UserId,
+                           RestaurantName=r.Name,
+                           Restaurantimage=r.ThumbnailImageUrl,
+                           NoOfPerson=rtable.TableCapacity,
+                           slotname=slot.SlotName
+
+
+
+                       };
+            return list;
+            
         }
 
 
@@ -444,79 +457,73 @@ namespace RestaurantFinder.WebUI.APIController
 
 
         [Route("api/ConformationBooking")]
-        public BookingViewmodel PostAvailabletablebydate(DateTime date, int resturantId, int slotId, int personcount)
+        public BookingViewmodel PostAvailabletablebydate(DateTime date, string Userid, int resturantId, int slotId, int personcount)
         {
-
-            var tableids = tableSlotMappingService.Value.GetAll().ToList().Where(x => x.ResturantID == resturantId && x.RestaurantSlotId == slotId).ToList();
-            //for (int i = 1; i < tableids.ToList().Count(); i++)
-            foreach (var item in tableids)
+            BookingViewmodel bookingViewmodel = new BookingViewmodel();
 
 
-            {
+            var tableids = tableSlotMappingService.Value.GetTablebySlot(resturantId, slotId);
 
-                var capicity = restaurantTablesService.Value.GetAll().ToList().Where(x => x.ID == item.TableId).SingleOrDefault();
-                if (personcount == capicity.TableCapacity)
-                {
-                    var tableid = restaurantTablesService.Value.GetAll().ToList().Where(x => x.ID == capicity.ID).SingleOrDefault();
+            //get all table id book already
+            var bookingTableid = restaurantBookingService.Value.GetBookTableonSpecificDate(date);
+            // availabe table list
+            var AvailabeTablelist = tableids.Except(bookingTableid);
 
-
-                    var mappingid = tableSlotMappingService.Value.GetAll().ToList().Where(x => x.RestaurantSlotId == slotId
-                    & x.TableId == tableid.ID).SingleOrDefault();
-
-
-                    var Result = restaurantBookingService.Value.GetAll().ToList().Where(x => x.TableSlotMappingID == mappingid.ID & x.BookingDate == date).Count();
-
-                    if (Result == 0)
-                        restaurantBooking.BookingDate = date;
-                    restaurantBooking.RestaurantID = resturantId;
-                    restaurantBooking.CreatedDate = DateTime.Now;
-                    restaurantBooking.TableSlotMappingID = mappingid.ID;
-                    restaurantBookingService.Value.Add(restaurantBooking);
-                    restaurantBookingService.Value.Save();
-                    BookingViewmodel bookingViewmodeles = new BookingViewmodel();
-                    bookingViewmodeles.Tableid = tableid.ID;
-                    bookingViewmodeles.BookingNum = restaurantBooking.UniqueId;
-                    bookingViewmodeles.Status = true;
-                    var list1 = bookingViewmodeles;
-                    return list1;
-                }
-                else
-
-                {
-                    BookingViewmodel bookingViewmodeles = new BookingViewmodel();
-                    
-                    bookingViewmodeles.Status = false;
-                    var list2 = bookingViewmodeles;
-                    return list2;
-                }
-
+            var Nearesttableid = from r in restaurantTablesService.Value.GetAll().ToList()
+                                 join a in AvailabeTablelist.ToList() on r.ID equals a
+                                 select r;
+            //get final table
+            var finaltable = Nearesttableid.Where(x => x.TableCapacity >= personcount).Select(x=>x.ID).First();
+            // table id is greater then 0 then record insert
+            if (finaltable>0)
+            { 
+            restaurantBooking.BookingDate = date;
+            restaurantBooking.TableSlotMappingID = finaltable;
+                restaurantBooking.Slotid = slotId;
+                restaurantBooking.UserId = Userid;
+                restaurantBooking.RestaurantID =resturantId;
+            restaurantBooking.UniqueId = Guid.NewGuid();
+            restaurantBookingService.Value.Add(restaurantBooking);
+            restaurantBookingService.Value.Save();
+            
+            
+           
+            bookingViewmodel.Tableid = finaltable;
+            bookingViewmodel.Status = true;
+                bookingViewmodel.Guid = restaurantBooking.UniqueId;
+                return bookingViewmodel;
             }
 
-            BookingViewmodel bookingViewmodeless = new BookingViewmodel();
+            BookingViewmodel bookingViewmodel2 = new BookingViewmodel();
+            // false and not record insert
+           
+                bookingViewmodel2.Tableid = 0;
+                
+            bookingViewmodel.Status = false;
+            
 
-            bookingViewmodeless.Status = false;
-            var list3 = bookingViewmodeless;
-            return list3;
+
+            return bookingViewmodel2;
+            }
+
+        
 
 
-        }
+
+
+
+
+
+
+
+
+
 
 
 
 
 
     }
-
-
-
-
-
-
-
-
-
-
-
 
 
 

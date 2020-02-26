@@ -10,6 +10,7 @@ namespace RestaurantFinder.Models
     {
         public int Tableid { get; set; }
         public bool Status { get; set; }
-        public Guid BookingNum { get; set; }
+        public Guid Guid { get; set; }
+       
     }
 }

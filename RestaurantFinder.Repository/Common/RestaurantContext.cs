@@ -15,6 +15,8 @@ namespace RestaurantFinder.Repository
 
         }
 
+        public DbSet<UserVisiting> userVisitings { get; set; }
+
         public DbSet<Role> Role { get; set; }
 
         public DbSet<Permission> Permission { get; set; }

@@ -45,6 +45,12 @@ namespace RestaurantFinder.BusinessLogic.Impl
             return tableSlotMappingRepository.Value.GetAll();
         }
 
+        public List<int> GetTablebySlot(int resturantId, int slotId)
+        {
+         return   tableSlotMappingRepository.Value.GetAll().ToList().Where(x => x.ResturantID == resturantId && x.RestaurantSlotId == slotId).Select(x=>x.TableId).ToList();
+
+           
+        }
 
 
         //public bool IsExist(int restaurantId, int categoryId)
@@ -56,5 +62,13 @@ namespace RestaurantFinder.BusinessLogic.Impl
         {
             tableSlotMappingRepository.Value.Save();
         }
+        public List<int> GetTablebyRestaurant(int resturantId)
+        {
+
+
+            return tableSlotMappingRepository.Value.GetAll().ToList().Where(x => x.ResturantID == resturantId).Select(x => x.TableId).ToList();
+
+        }
+
     }
 }
