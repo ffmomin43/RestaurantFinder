@@ -6,11 +6,11 @@ using System.Threading.Tasks;
 
 namespace RestaurantFinder.Models
 {
- public   class BookingViewmodel
+ public   class BookingResponseViewmodel
     {
-        public int Tableid { get; set; }
+        public int TableId { get; set; }
         public bool Status { get; set; }
-        public Guid bookingid { get; set; }
+        public string BookingId { get; set; }
        
     }
 }

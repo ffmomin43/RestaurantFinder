@@ -64,20 +64,19 @@ namespace RestaurantFinder.BusinessLogic.Impl
             restaurantBookingRepository.Value.Save();
         }
 
-        public List<int> GetBookTableonSpecificDate(DateTime date)
+        public IEnumerable<int> GetBookTableOnSpecificDate(DateTime date)
         {
+           return restaurantBookingRepository.Value.GetAll()
+                .Where(x => x.BookingDate == date)
+                .Select(x => x.TableID);
 
-           return restaurantBookingRepository.Value.GetAll().Where(x => x.BookingDate == date).Select(x => x.TableSlotMappingID).ToList();
-
-            
         }
         
-        public List<int> GetBookTableonSpecificRestaurant(int rid)
+        public IEnumerable<int> GetBookTableonSpecificRestaurant(int rid)
         {
-
-            return restaurantBookingRepository.Value.GetAll().Where(x => x.RestaurantID == rid).Select(x => x.TableSlotMappingID).ToList();
-
-
+            return restaurantBookingRepository.Value.GetAll()
+                .Where(x => x.RestaurantID == rid)
+                .Select(x => x.TableID);
         }
     }
 }
