@@ -490,13 +490,13 @@ namespace RestaurantFinder.WebUI.APIController
            
             bookingViewmodel.Tableid = finaltable;
             bookingViewmodel.Status = true;
-                bookingViewmodel.Guid = restaurantBooking.UniqueId;
+                bookingViewmodel.bookingid = restaurantBooking.UniqueId;
                 return bookingViewmodel;
             }
 
             BookingViewmodel bookingViewmodel2 = new BookingViewmodel();
             // false and not record insert
-           
+            
                 bookingViewmodel2.Tableid = 0;
                 
             bookingViewmodel.Status = false;
