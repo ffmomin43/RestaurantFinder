@@ -401,17 +401,30 @@ namespace RestaurantFinder.WebUI.APIController
 
             var tableids = tableSlotMappingService.Value.GetTablebySlot(resturantId, slotId);
 
+            if (!tableids.Any())
+            {
+                return false ;
+            }
+
             //get all table id book already
             var bookingTableid = restaurantBookingService.Value.GetBookTableOnSpecificDate(date);
 
             var AvailabeTablelist = tableids.Except(bookingTableid);
+            if (!AvailabeTablelist.Any())
+            {
+                return false;
+            }
 
-            var Nearesttableid = from r in restaurantTablesService.Value.GetAll().ToList()
-                                 join a in AvailabeTablelist.ToList() on r.ID equals a
-                                 select r;
+
+            var availableTableObjects = restaurantTablesService.Value.GetAll().Where(x => AvailabeTablelist.Contains(x.ID));
+
+            if (!availableTableObjects.Any())
+            {
+                return true;
+            }
             //get final table
-            var finaltable = Nearesttableid.ToList().Where(x => x.TableCapacity >= personcount).Select(x => x.ID).First();
-            if (finaltable > 0)
+            var finaltable = availableTableObjects.Where(x => x.TableCapacity >= personcount).OrderBy(x => x.TableCapacity).FirstOrDefault();
+            if (finaltable!=null)
             {
                 return true;
             }
