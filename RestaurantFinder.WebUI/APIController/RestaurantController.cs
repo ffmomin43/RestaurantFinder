@@ -485,7 +485,9 @@ namespace RestaurantFinder.WebUI.APIController
             }
 
             //get final table
-            var finaltable = availableTableObjects.Where(x => x.TableCapacity >= personcount).FirstOrDefault();
+            var finaltable = availableTableObjects
+                .Where(x => x.TableCapacity >= personcount)
+                .OrderBy(x=>x.TableCapacity).FirstOrDefault();
 
             // table id is greater then 0 then record insert
             if (finaltable != null)
