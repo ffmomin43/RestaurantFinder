@@ -9,10 +9,10 @@ using System.Threading.Tasks;
 
 namespace RestaurantFinder.Repository.Impl
 {
-   public class UserVisitingRepository : GenericRepository<RestaurantContext, UserVisiting>,IUserVisitingRepository
+   public class UserVisitingRepository : GenericRepository<RestaurantContext,UserVisiting>, IUserVisitingRepository
     {
         public UserVisitingRepository(RestaurantContext ecommerceContext) : base(ecommerceContext)
-        {
-        }
+    {
     }
+}
 }

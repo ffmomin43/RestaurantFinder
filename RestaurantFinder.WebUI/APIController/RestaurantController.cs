@@ -296,7 +296,7 @@ namespace RestaurantFinder.WebUI.APIController
         }
 
         [Route("api/scan")]
-        public string PostQR(string userid, string qrcode, double Longitude, double Latitude)
+        public string PostQR(string userid, string qrcode,double Longitude,double Latitude)
         {
 
             var res = restaurantService.Value.GetAll().Where(x => x.UniqueId.ToString() == qrcode).SingleOrDefault();
@@ -321,6 +321,29 @@ namespace RestaurantFinder.WebUI.APIController
                 return "some error";
             }
         }
+        [Route("api/UserRestaurantcount")]
+        public IEnumerable<Object> GetUserRestaurantcount(string userid)
+        {
+            var list = userVisitingService.Value.GetAll().Where(x => x.Userid == userid)
+
+                       .GroupBy(x => new { x.RestaurantID })
+        .Select(group => new { Restaurantid = group.Key, Count = group.Count() })
+        .OrderByDescending(x => x.Count);
+            return list;
+
+
+        }
+
+        [Route("api/UserVistingList")]
+        public IEnumerable<UserVisiting> GetUserVistingList()
+
+        {
+           return userVisitingService.Value.GetAll();
+
+        }
+
+
+
 
         [Route("api/autocomplete")]
         public IEnumerable<KeyValuePair<int, string>> GetAutocomplete(string searchTerm)
