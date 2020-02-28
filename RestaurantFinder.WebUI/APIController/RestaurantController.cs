@@ -300,8 +300,17 @@ namespace RestaurantFinder.WebUI.APIController
         {
 
             var res = restaurantService.Value.GetAll().Where(x => x.UniqueId.ToString() == qrcode).SingleOrDefault();
+            if (res != null)
+            {
+               return "NO Restaurant Found";
+            }
             var loc = restaurantLocationService.Value.GetAll().Where(x => x.RestaurantId == res.ID).SingleOrDefault();
+            if (loc != null)
+            {
+                return "Restaurant Location Not Found";
+            }
             var Distance = GeoLocation.GetDistanceBetweenPoints(loc.Latitude, loc.Longitude, Latitude, Longitude);
+            
             if (Distance < 100)
             {
                 UserVisiting userVisiting = new UserVisiting();
