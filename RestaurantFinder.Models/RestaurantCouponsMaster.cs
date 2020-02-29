@@ -19,6 +19,7 @@ namespace RestaurantFinder.Models
         public DateTime StartDate { get; set; }
         [DisplayFormat( ApplyFormatInEditMode = true)]
         public DateTime EndDate { get; set; }
+        public string Discount { get; set; }
 
         public bool IsPublished { get; set; }
 

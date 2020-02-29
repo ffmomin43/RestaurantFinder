@@ -308,6 +308,10 @@
     <Compile Include="Migrations\202002261528421_rename_columns.designer.cs">
       <DependentUpon>202002261528421_rename_columns.cs</DependentUpon>
     </Compile>
+    <Compile Include="Migrations\202002280821102_couponsmodelchange.cs" />
+    <Compile Include="Migrations\202002280821102_couponsmodelchange.designer.cs">
+      <DependentUpon>202002280821102_couponsmodelchange.cs</DependentUpon>
+    </Compile>
     <Compile Include="Migrations\Configuration.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
   </ItemGroup>
@@ -477,6 +481,9 @@
     </EmbeddedResource>
     <EmbeddedResource Include="Migrations\202002261528421_rename_columns.resx">
       <DependentUpon>202002261528421_rename_columns.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Migrations\202002280821102_couponsmodelchange.resx">
+      <DependentUpon>202002280821102_couponsmodelchange.cs</DependentUpon>
     </EmbeddedResource>
   </ItemGroup>
   <Import Project="$(MSBuildToolsPath)\Microsoft.CSharp.targets" />

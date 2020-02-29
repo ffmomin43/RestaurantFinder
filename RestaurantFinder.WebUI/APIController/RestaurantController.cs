@@ -21,6 +21,7 @@ namespace RestaurantFinder.WebUI.APIController
         private readonly Lazy<IUsersService> usersService;
 
         private readonly Lazy<IRestaurantSlotService> restaurantSlotService;
+        private readonly Lazy<IRestaurantCouponMasterService> couponMasterService;
         private readonly Lazy<IUserVisitingService> userVisitingService;
 
         private readonly Lazy<IRestaurantCategoryMappingService> categoryMappingService;
@@ -39,6 +40,7 @@ namespace RestaurantFinder.WebUI.APIController
             Lazy<IRestaurantService> restaurantService,
             Lazy<ILoggerFacade<RestaurantController>> logger,
             Lazy<ICategoryMasterService> categoryMasterService,
+            Lazy<IRestaurantCouponMasterService> couponMasterService,
             Lazy<IRestaurantTablesService> restaurantTablesService,
             Lazy<ITableSlotMappingService> tableSlotMappingService,
              Lazy<IUserVisitingService> userVisitingService,
@@ -58,6 +60,7 @@ namespace RestaurantFinder.WebUI.APIController
             this.restaurantBookingService = restaurantBookingService;
             this.usersService = usersService;
             this.restaurantSlotService = restaurantSlotService;
+            this.couponMasterService = couponMasterService;
             this.pictureService = pictureService;
             this.restaurantLocationService = restaurantLocationService;
             this.categoryMappingService = categoryMappingService;
@@ -294,6 +297,28 @@ namespace RestaurantFinder.WebUI.APIController
                        };
             return list;
         }
+
+
+        [Route("api/CouponAvailable")]
+        public IEnumerable<couponsvm>  GetCouponsList()
+            {
+            var list = from c in couponMasterService.Value.GetAll()
+                       join r in this.restaurantService.Value.GetAll() on c.RestaurantId equals r.ID
+                       select new couponsvm
+                       {
+                           CouponsCode = c.CouponCode,
+                           Discount=c.Discount,
+                           Restaurant=r.Name,
+                           ValidUntil=c.EndDate,
+                          
+              
+
+                       };
+            return list;
+
+
+}
+
 
         [Route("api/scan")]
         public string PostQR(string userid, string qrcode,double Longitude,double Latitude)

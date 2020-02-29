@@ -49,6 +49,7 @@
     <Compile Include="BookingUserRestaurantList.cs" />
     <Compile Include="BookingViewmodel.cs" />
     <Compile Include="CategoryMaster.cs" />
+    <Compile Include="couponsvm.cs" />
     <Compile Include="DayMaster.cs" />
     <Compile Include="HomeBannerImage.cs" />
     <Compile Include="Permission.cs" />
