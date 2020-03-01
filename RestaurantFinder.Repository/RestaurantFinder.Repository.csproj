@@ -312,6 +312,14 @@
     <Compile Include="Migrations\202002280821102_couponsmodelchange.designer.cs">
       <DependentUpon>202002280821102_couponsmodelchange.cs</DependentUpon>
     </Compile>
+    <Compile Include="Migrations\202003010811020_changevisiting.cs" />
+    <Compile Include="Migrations\202003010811020_changevisiting.designer.cs">
+      <DependentUpon>202003010811020_changevisiting.cs</DependentUpon>
+    </Compile>
+    <Compile Include="Migrations\202003010944381_changevisitingstbl.cs" />
+    <Compile Include="Migrations\202003010944381_changevisitingstbl.designer.cs">
+      <DependentUpon>202003010944381_changevisitingstbl.cs</DependentUpon>
+    </Compile>
     <Compile Include="Migrations\Configuration.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
   </ItemGroup>
@@ -484,6 +492,12 @@
     </EmbeddedResource>
     <EmbeddedResource Include="Migrations\202002280821102_couponsmodelchange.resx">
       <DependentUpon>202002280821102_couponsmodelchange.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Migrations\202003010811020_changevisiting.resx">
+      <DependentUpon>202003010811020_changevisiting.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Migrations\202003010944381_changevisitingstbl.resx">
+      <DependentUpon>202003010944381_changevisitingstbl.cs</DependentUpon>
     </EmbeddedResource>
   </ItemGroup>
   <Import Project="$(MSBuildToolsPath)\Microsoft.CSharp.targets" />

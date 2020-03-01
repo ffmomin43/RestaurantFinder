@@ -321,10 +321,11 @@ namespace RestaurantFinder.WebUI.APIController
 
 
         [Route("api/scan")]
-        public string PostQR(string userid, string qrcode,double Longitude,double Latitude)
+        public string PostQR(string userid,string qrcode,double Longitude,double Latitude)
         {
 
-            var res = restaurantService.Value.GetAll().Where(x => x.UniqueId.ToString() == qrcode).SingleOrDefault();
+          
+            var res = restaurantService.Value.GetAll().Where(x => x.UniqueId.ToString()==qrcode.ToLower()).SingleOrDefault();
             if (res != null)
             {
                return "NO Restaurant Found";
