@@ -281,7 +281,7 @@ namespace RestaurantFinder.WebUI.APIController
         [Route("api/RestaurantBySlot")]
         public IEnumerable<Restaurantslotvm> GetRestaurantBySlot(int id)
         {
-            var list = from rs in restaurantSlotService.Value.GetAll()
+            var list = from rs in restaurantSlotService.Value.GetAll().Where(x=>x.Restaurantid==id)
 
 
                        select new Restaurantslotvm
@@ -325,8 +325,8 @@ namespace RestaurantFinder.WebUI.APIController
         {
 
           
-            var res = restaurantService.Value.GetAll().Where(x => x.UniqueId.ToString()==qrcode.ToLower()).SingleOrDefault();
-            if (res != null)
+            var res = restaurantService.Value.GetAll().Where(x => x.UniqueId.ToString()== qrcode).SingleOrDefault();
+            if (res != null) 
             {
                return "NO Restaurant Found";
             }
@@ -357,14 +357,35 @@ namespace RestaurantFinder.WebUI.APIController
             }
         }
         [Route("api/UserRestaurantcount")]
-        public IEnumerable<Object> GetUserRestaurantcount(string userid)
+        public IEnumerable<object>GetUserRestaurantcount(string userid)
         {
-            var list = userVisitingService.Value.GetAll().Where(x => x.Userid == userid)
 
-                       .GroupBy(x => new { x.RestaurantID })
-        .Select(group => new { Restaurantid = group.Key, Count = group.Count() })
-        .OrderByDescending(x => x.Count);
+            var list = from u in userVisitingService.Value.GetAll().Where(x => x.Userid == userid)
+
+                       join r in restaurantService.Value.GetAll() on u.RestaurantID equals r.ID
+                       group r by new {r.Name, r.ID,r.ThumbnailImageUrl } into cg
+                       select new 
+                       {
+                        Restaurantname = cg.Key.Name,
+                           TotalCount = cg.Count(),
+                           thumbUrl=cg.Key.ThumbnailImageUrl,
+                          
+                          
+                           
+                            
+                          
+
+                       };
+
             return list;
+
+
+        //    var list = userVisitingService.Value.GetAll().Where(x => x.Userid == userid)
+
+        //               .GroupBy(x => new { x.RestaurantID })
+        //.Select(group => new { Restaurantid = group.Key, Count = group.Count() })
+        //.OrderByDescending(x => x.Count);
+        //    return list;
 
 
         }

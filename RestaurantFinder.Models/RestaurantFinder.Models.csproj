@@ -59,6 +59,7 @@
     <Compile Include="RestaurantBooking.cs" />
     <Compile Include="RestaurantCategoryMapping.cs" />
     <Compile Include="RestaurantCategorymappingVm.cs" />
+    <Compile Include="RestaurantCount.cs" />
     <Compile Include="RestaurantCouponsMaster.cs" />
     <Compile Include="RestaurantDetailsvm.cs" />
     <Compile Include="RestaurantDishes.cs" />
