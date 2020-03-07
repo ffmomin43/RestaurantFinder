@@ -12,25 +12,28 @@ namespace RestaurantFinder.WebUI.Controllers
     public class UserController : Controller
     {
         private readonly Lazy<IUsersService> usersService;
-        
+        private readonly Lazy<IUserVisitingService> userVisitingService;
 
-      
+
+
 
         private readonly Lazy<ILoggerFacade<UserController>> logger;
 
         public UserController(Lazy<IUsersService> usersService,
-           
+             Lazy<IUserVisitingService> userVisitingService,
+
             Lazy<ILoggerFacade<UserController>> logger)
         {
             this.usersService = usersService;
-           
+
             this.logger = logger;
+            this.userVisitingService = userVisitingService;
         }
 
         // GET: User
         public ActionResult Index()
         {
-           var list= usersService.Value.GetAll();
+            var list = usersService.Value.GetAll();
             return View(list);
         }
 
@@ -65,7 +68,7 @@ namespace RestaurantFinder.WebUI.Controllers
         // GET: User/Edit/5
         public ActionResult Edit(int id)
         {
-       var list=    usersService.Value.GetAll().Where(x => x.ID == id).SingleOrDefault();
+            var list = usersService.Value.GetAll().Where(x => x.ID == id).SingleOrDefault();
             return View(list);
         }
 
@@ -76,8 +79,8 @@ namespace RestaurantFinder.WebUI.Controllers
             try
             {
 
-              this. usersService.Value.Edit(user);
-               this.usersService.Value.Save();
+                this.usersService.Value.Edit(user);
+                this.usersService.Value.Save();
 
                 return RedirectToAction("Index");
             }
@@ -110,5 +113,21 @@ namespace RestaurantFinder.WebUI.Controllers
                 return View();
             }
         }
+        public ActionResult AddUserVIsiting()
+        {
+
+            return View();
+
+        }
+        [HttpPost]
+        public ActionResult AddUserVIsiting(UserVisiting userVisiting)
+        {
+
+            userVisitingService.Value.Add(userVisiting);
+            userVisitingService.Value.Save();
+            return View();
+
+        }
     }
-}
+
+    }
