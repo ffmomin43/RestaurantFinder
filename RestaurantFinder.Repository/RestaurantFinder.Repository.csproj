@@ -324,6 +324,10 @@
     <Compile Include="Migrations\202003050650317_addiscancel.designer.cs">
       <DependentUpon>202003050650317_addiscancel.cs</DependentUpon>
     </Compile>
+    <Compile Include="Migrations\202003071919007_changebooking.cs" />
+    <Compile Include="Migrations\202003071919007_changebooking.designer.cs">
+      <DependentUpon>202003071919007_changebooking.cs</DependentUpon>
+    </Compile>
     <Compile Include="Migrations\Configuration.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
   </ItemGroup>
@@ -505,6 +509,9 @@
     </EmbeddedResource>
     <EmbeddedResource Include="Migrations\202003050650317_addiscancel.resx">
       <DependentUpon>202003050650317_addiscancel.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Migrations\202003071919007_changebooking.resx">
+      <DependentUpon>202003071919007_changebooking.cs</DependentUpon>
     </EmbeddedResource>
   </ItemGroup>
   <Import Project="$(MSBuildToolsPath)\Microsoft.CSharp.targets" />

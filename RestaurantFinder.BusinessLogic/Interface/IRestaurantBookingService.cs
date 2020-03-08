@@ -13,6 +13,7 @@ namespace RestaurantFinder.BusinessLogic.Interface
         bool Added(Models.RestaurantBooking entity);
         IEnumerable<int> GetBookTableOnSpecificDate(DateTime date);
         IEnumerable<int> GetBookTableonSpecificRestaurant(int Restaurantid);
+        bool CheckUserBooking(string userid, DateTime date);
 
     }
 

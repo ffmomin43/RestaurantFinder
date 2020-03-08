@@ -63,5 +63,21 @@ public    class UserVisitingService : IUserVisitingService
         {
             throw new NotImplementedException();
         }
+        public void SaveUserVistingParameters(string userid, Guid guid,
+            string qrcode, int ID, double Longitude, double Latitude)
+        {
+           Models.UserVisiting userVisiting = new Models.UserVisiting();
+            userVisiting.Userid = userid;
+            userVisiting.UniqueId = Guid.NewGuid();
+            userVisiting.qrcode = qrcode;
+            userVisiting.RestaurantID = ID;
+            userVisiting.Longitude = Longitude;
+            userVisiting.Latitude = Latitude;
+            userVisiting.UniqueId = new Guid();
+           userVisitingRepository.Value.Add(userVisiting);
+            userVisitingRepository.Value.Save();
+
+        }
+
     }
 }

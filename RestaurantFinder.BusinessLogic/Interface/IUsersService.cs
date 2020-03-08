@@ -13,6 +13,7 @@ namespace RestaurantFinder.BusinessLogic.Interface
         bool Checklogin(string name, string pass);
         int userid(string name);
          int Insert(User entity);
+       
     }
 
 }

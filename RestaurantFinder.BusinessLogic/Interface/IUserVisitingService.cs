@@ -10,5 +10,7 @@ namespace RestaurantFinder.BusinessLogic.Interface
 {
   public  interface IUserVisitingService : IGenericService<UserVisiting>
     {
+        void SaveUserVistingParameters(string userid, Guid guid,
+            string qrcode,int ID,double Longitude,double Latitude);
     }
 }

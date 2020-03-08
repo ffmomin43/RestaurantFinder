@@ -78,5 +78,22 @@ namespace RestaurantFinder.BusinessLogic.Impl
                 .Where(x => x.RestaurantID == rid)
                 .Select(x => x.TableID);
         }
+        public bool CheckUserBooking(string userid, DateTime date)
+        {
+            bool isvalid;
+            var res= restaurantBookingRepository.Value.GetAll()
+                .Where(x => x.UserId == userid && x.BookingDate == date).Count();
+            if (res > 0)
+            {
+
+                isvalid = true;
+            }
+            else
+            {
+                isvalid = false;
+
+            }
+            return isvalid;
+        }
     }
 }

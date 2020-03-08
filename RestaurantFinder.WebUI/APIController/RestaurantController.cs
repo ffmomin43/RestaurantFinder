@@ -323,43 +323,46 @@ namespace RestaurantFinder.WebUI.APIController
         [Route("api/scan")]
         public string PostQR(string qrcode,string userid,double Latitude, double Longitude)
         {
-
-          
-            var res = restaurantService.Value.GetAll().Where(x => x.UniqueId.ToString()==qrcode).Single();
-            if (!res.Name.Any())
+            DateTime date = DateTime.Now.Date;
+            if (restaurantBookingService.Value.CheckUserBooking(userid, date))
             {
-                return "Res Not Found";
-            }
-            var loc = restaurantLocationService.Value.GetAll().Where(x => x.RestaurantId == res.ID).SingleOrDefault();
-            if (!loc.LocationName.Any())   
+                var res = restaurantService.Value.GetAll().Where(x => x.UniqueId.ToString() == qrcode).Single();
+                if (!res.Name.Any())
                 {
-                return "Not Found";
-            }
-            var Distance = GeoLocation.GetDistanceBetweenPoints(loc.Latitude, loc.Longitude, Latitude, Longitude);
+                    return "Res Not Found";
+                }
+                var loc = restaurantLocationService.Value.GetAll().Where(x => x.RestaurantId == res.ID).SingleOrDefault();
+                if (!loc.LocationName.Any())
+                {
+                    return "Not Found";
+                }
+                var Distance = GeoLocation.GetDistanceBetweenPoints(loc.Latitude, loc.Longitude, Latitude, Longitude);
 
-            if (res.ID!=0)
-            { 
-                UserVisiting userVisiting = new UserVisiting();
-                userVisiting.Userid = userid;
-                userVisiting.UniqueId = Guid.NewGuid();
-                userVisiting.qrcode =qrcode;
-                userVisiting.RestaurantID = res.ID;
-                userVisiting.Longitude =loc.Longitude;
-                userVisiting.Latitude =loc.Latitude;
-                userVisiting.UniqueId = new Guid();
-                userVisitingService.Value.Add(userVisiting);
-                userVisitingService.Value.Save();
-               var restaurant= restaurantBookingService.Value.GetAll().Where(x => x.RestaurantID == res.ID).Single();
-                restaurant.BookingStatus = "Visited";
-                restaurantBookingService.Value.Edit(restaurant);
-                restaurantBookingService.Value.Save();
-                return "save";
+                if (res.ID != 0)
+                {
+                    userVisitingService.Value.SaveUserVistingParameters(
+                     userid,
+                     Guid.NewGuid(),
+                     qrcode,
+                     res.ID,
+                     loc.Longitude,
+                      loc.Latitude
+                        );
+                    var restaurant = restaurantBookingService.Value.GetAll().Where(x => x.RestaurantID == res.ID && x.UserId == userid).Single();
+                    restaurant.BookingStatus = "Visited";
+                    restaurantBookingService.Value.Edit(restaurant);
+                    restaurantBookingService.Value.Save();
+                    return "save";
+                }
             }
+           
+
             else
             {
 
-                return "some error";
+                return "Booking Not found";
             }
+            return "Booking not found";
         }
         [Route("api/UserRestaurantcount")]
         public IEnumerable<object> GetUserRestaurantcount(string userid)
@@ -406,27 +409,31 @@ namespace RestaurantFinder.WebUI.APIController
         public string PostCancelBooking(string userid,int resid,string bookingid)
 
         {
-           var res= restaurantBookingService.Value.GetAll().
-                Where(x => x.UserId == userid & x.RestaurantID == resid &
-                x.UniqueId.ToString() == bookingid).Single();
-            if(res.ID==0)
+            var res = restaurantBookingService.Value.GetAll().ToList().
+                 Where(x => x.UserId == userid & x.RestaurantID == resid &
+                 x.UniqueId.ToString() == bookingid);
+            if (!res.Any())
             {
-                return "Not Booking found";
+                return "Some Error Plese Contact Restaurant";
 
             }
-            res.IsCancel = false;
-            res.BookingStatus = "Cancel";
-            restaurantBookingService.Value.Edit(res);
-            restaurantBookingService.Value.Save();
+            else
+            {
+                res.Single().IsCancel = false;
+                res.Single().UpdatedDate = DateTime.Now;
+                res.Single().BookingStatus = "Cancel";
+                restaurantBookingService.Value.Edit(res.Single());
+                restaurantBookingService.Value.Save();
 
-            return "Cancel booking";
+                return "Cancel booking";
 
+            }
         }
         [Route("api/CancelbookingList")]
         public IEnumerable<BookingUserRestaurantList> GetCancellist(string userid)
 
         {
-            var list = from bookingres in restaurantBookingService.Value.GetAll().ToList().Where(x => x.UserId == userid && x.IsCancel==false)
+            var list = from bookingres in restaurantBookingService.Value.GetAll().ToList().Where(x => x.UserId == userid && x.IsCancel == false)
                        join r in restaurantService.Value.GetAll().ToList() on bookingres.RestaurantID equals r.ID
                        join rtable in restaurantTablesService.Value.GetAll().ToList() on bookingres.TableID equals rtable.ID
                        join slot in restaurantSlotService.Value.GetAll().ToList() on bookingres.Slotid equals slot.ID
@@ -438,6 +445,7 @@ namespace RestaurantFinder.WebUI.APIController
                            BookingDate = bookingres.BookingDate,
                            UserId = bookingres.UserId,
                            RestaurantName = r.Name,
+                          
                            Restaurantimage = r.ThumbnailImageUrl,
                            NoOfPerson = rtable.TableCapacity,
                            slotname = slot.SlotName,
@@ -661,6 +669,7 @@ namespace RestaurantFinder.WebUI.APIController
                 restaurantBooking.UserId = Userid;
                 restaurantBooking.RestaurantID = resturantId;
                 restaurantBooking.UniqueId = Guid.NewGuid();
+                restaurantBooking.BookingStatus = "Not Visiting";
                 restaurantBookingService.Value.Add(restaurantBooking);
 
                 restaurantBookingService.Value.Save();
