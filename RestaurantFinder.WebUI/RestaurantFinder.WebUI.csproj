@@ -551,6 +551,8 @@
     <Content Include="Views\TableSlotMapping\Create.cshtml" />
     <Content Include="Views\TableSlotMapping\Index.cshtml" />
     <Content Include="Views\User\AddUserVIsiting.cshtml" />
+    <Content Include="Views\RestaurantSlot\Edit.cshtml" />
+    <Content Include="Views\RestaurantSlot\Delete.cshtml" />
   </ItemGroup>
   <ItemGroup>
     <Folder Include="APIModels\" />

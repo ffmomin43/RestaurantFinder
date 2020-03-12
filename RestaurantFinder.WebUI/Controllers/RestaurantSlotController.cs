@@ -89,6 +89,36 @@ namespace RestaurantFinder.WebUI.Controllers
 
             return View("Index");
         }
+        public ActionResult Edit(int id)
+        {
+        var list=    restaurantSlotService.Value.GetAll().Where(x => x.ID == id).SingleOrDefault();
+            return View(list);
+        }
+
+       [HttpPost]
+        public ActionResult Edit(RestaurantSlot restaurantSlot)
+        {
+
+            restaurantSlotService.Value.Edit(restaurantSlot);
+            restaurantSlotService.Value.Save();
+            return RedirectToAction("Index","RestaurantSlot");
+        }
+        public ActionResult Delete(int id)
+        {
+
+            var list = restaurantSlotService.Value.GetAll().Where(x => x.ID == id).SingleOrDefault();
+            return View(list);
+            }
+        [HttpPost]
+        public ActionResult Delete(RestaurantSlot restaurantSlot)
+        {
+
+            restaurantSlotService.Value.Delete(restaurantSlot);
+            restaurantSlotService.Value.Save();
+            return RedirectToAction("Index", "RestaurantSlot");
+        }
+
+
 
     }
 
