@@ -183,6 +183,7 @@
     <Compile Include="Common\logger\LoggerFacade.cs" />
     <Compile Include="Common\helper\WebRoleProvider.cs" />
     <Compile Include="Controllers\BannerPictureControllerController.cs" />
+    <Compile Include="Controllers\BokingController.cs" />
     <Compile Include="Controllers\CategoryMasterController.cs" />
     <Compile Include="Controllers\HomeBannerImagesController.cs" />
     <Compile Include="Controllers\HomeController.cs" />
@@ -553,6 +554,7 @@
     <Content Include="Views\User\AddUserVIsiting.cshtml" />
     <Content Include="Views\RestaurantSlot\Edit.cshtml" />
     <Content Include="Views\RestaurantSlot\Delete.cshtml" />
+    <Content Include="Views\Boking\Index.cshtml" />
   </ItemGroup>
   <ItemGroup>
     <Folder Include="APIModels\" />

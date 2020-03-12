@@ -599,7 +599,7 @@ namespace RestaurantFinder.WebUI.APIController
         [Route("api/RestaurantBookingByUser")]
         public IEnumerable<BookingUserRestaurantList> GetRestaurantBookingByUser(string userid)
         {
-            var list = from bookingres in restaurantBookingService.Value.GetAll().ToList().Where(x => x.UserId == userid)
+            var list = from bookingres in restaurantBookingService.Value.GetAll().ToList().Where(x => x.UserId == userid )
                        join r in restaurantService.Value.GetAll().ToList() on bookingres.RestaurantID equals r.ID
                        join rtable in restaurantTablesService.Value.GetAll().ToList() on bookingres.TableID equals rtable.ID
                        join slot in restaurantSlotService.Value.GetAll().ToList() on bookingres.Slotid equals slot.ID
