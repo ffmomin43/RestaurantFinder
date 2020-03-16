@@ -64,32 +64,16 @@ namespace RestaurantFinder.WebUI.Controllers
         [HttpPost]
         public ActionResult Create(FormCollection fc)
         {
-            ViewBag.tables = restaurantTablesService.Value.GetAll().Count();
-            ViewBag.slot = restaurantSlotService.Value.GetAll().Count();
-            string[] slot = fc["RestaurantSlotId"].Split(',');
-            string[] table = fc["TableId"].Split(',');
-            for (int i = 0; i < table.Length; i++)
-            {
-                slot[i].Split(new char[] { ',' }, StringSplitOptions.RemoveEmptyEntries).Select(Id => Convert.ToString((Id))).ToList();
+           
+            string[] slot = fc["ids"].Split('|');
 
-                for (int j = 0; i < table.Length; i++)
-                {
-                    table[j].Split(new char[] { ',' }, StringSplitOptions.RemoveEmptyEntries).Select(Id => Convert.ToString((Id))).ToList();
-
-
-
-                    RestaurantSlotMapping restaurantSlot = new RestaurantSlotMapping();
-                    restaurantSlot.RestaurantSlotId = Convert.ToInt32(slot[i]);
-                    restaurantSlot.TableId = Convert.ToInt32(table[i]);
-
-                    restaurantSlot.UniqueId = new Guid();
-                    tableSlotMappingService.Value.Add(restaurantSlot);
-                    restaurantSlotService.Value.Save();
-                }
-            }
             return View();
 
         }
+            
+           
+
+        
 
         // GET: TableSlotMapping/Edit/5
         public ActionResult Edit(int id)
