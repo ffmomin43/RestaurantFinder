@@ -12,12 +12,16 @@ namespace RestaurantFinder.WebUI.Controllers
     {
         private readonly Lazy<IRestaurantSlotService> restaurantSlotService;
         private readonly Lazy<IRestaurantTablesService> restaurantTablesService;
+        private readonly Lazy<IUsersService> usersService;
+        private readonly Lazy<IRestaurantService> restaurantService;
         private readonly Lazy<ITableSlotMappingService> tableSlotMappingService;
 
 
         public TableSlotMappingController(
             Lazy<IRestaurantSlotService> restaurantSlotService,
           Lazy<ITableSlotMappingService> tableSlotMappingService,
+          Lazy<IRestaurantService> restaurantService,
+          Lazy<IUsersService> usersService,
              Lazy<IRestaurantTablesService> restaurantTablesService
             )
 
@@ -25,6 +29,8 @@ namespace RestaurantFinder.WebUI.Controllers
 
             this.restaurantTablesService = restaurantTablesService;
             this.tableSlotMappingService = tableSlotMappingService;
+            this.usersService = usersService;
+            this.restaurantService = restaurantService;
             this.restaurantSlotService = restaurantSlotService;
         }
         public ActionResult Index()
@@ -42,24 +48,47 @@ namespace RestaurantFinder.WebUI.Controllers
         // GET: TableSlotMapping/Create
         public ActionResult Create()
         {
-            return View();
+            TableSlotVm tableSlotVm = new TableSlotVm();
+            ViewBag.tables = restaurantTablesService.Value.GetAll().Count();
+            ViewBag.slot = restaurantSlotService.Value.GetAll().Count();
+            tableSlotVm.RestaurantSlot = restaurantSlotService.Value.GetAll().ToList();
+            tableSlotVm.restaurantTable = restaurantTablesService.Value.GetAll().ToList();
+            string name = User.Identity.Name;
+            int id = usersService.Value.userid(name);
+            ViewBag.resturant = restaurantService.Value.GetAll().Where(x => x.UserId == id);
+
+            return View(tableSlotVm);
         }
 
         // POST: TableSlotMapping/Create
         [HttpPost]
-        public ActionResult Create(RestaurantSlotMapping restaurantSlotMapping)
+        public ActionResult Create(FormCollection fc)
         {
-            try
+            ViewBag.tables = restaurantTablesService.Value.GetAll().Count();
+            ViewBag.slot = restaurantSlotService.Value.GetAll().Count();
+            string[] slot = fc["RestaurantSlotId"].Split(',');
+            string[] table = fc["TableId"].Split(',');
+            for (int i = 0; i < table.Length; i++)
             {
-                tableSlotMappingService.Value.Add(restaurantSlotMapping);
-                tableSlotMappingService.Value.Save();
+                slot[i].Split(new char[] { ',' }, StringSplitOptions.RemoveEmptyEntries).Select(Id => Convert.ToString((Id))).ToList();
 
-                return RedirectToAction("Index");
+                for (int j = 0; i < table.Length; i++)
+                {
+                    table[j].Split(new char[] { ',' }, StringSplitOptions.RemoveEmptyEntries).Select(Id => Convert.ToString((Id))).ToList();
+
+
+
+                    RestaurantSlotMapping restaurantSlot = new RestaurantSlotMapping();
+                    restaurantSlot.RestaurantSlotId = Convert.ToInt32(slot[i]);
+                    restaurantSlot.TableId = Convert.ToInt32(table[i]);
+
+                    restaurantSlot.UniqueId = new Guid();
+                    tableSlotMappingService.Value.Add(restaurantSlot);
+                    restaurantSlotService.Value.Save();
+                }
             }
-            catch
-            {
-                return View();
-            }
+            return View();
+
         }
 
         // GET: TableSlotMapping/Edit/5

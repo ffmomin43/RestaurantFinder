@@ -1,61 +1,62 @@
-﻿@model RestaurantFinder.Models.RestaurantSlotMapping
-
+﻿@model RestaurantFinder.Models.TableSlotVm
 @{
+    ViewBag.Title = "Create";
     Layout = "~/Views/Shared/_Layout.cshtml";
 }
+<h3 style="color:orangered">Add Table According your Time Slot</h3>
+@using (Html.BeginForm("Create", "TableSlotMapping", FormMethod.Post))
+{
+    <div class="row">
 
-<!DOCTYPE html>
 
-<html>
-<head>
-    <meta name="viewport" content="width=device-width" />
-    <title>Create</title>
-</head>
-<body>
-    @using (Html.BeginForm()) 
-    {
-        @Html.AntiForgeryToken()
-        
-        <div class="form-horizontal">
-            <h4>RestaurantSlotMapping</h4>
-            <hr />
-            @Html.ValidationSummary(true, "", new { @class = "text-danger" })
-           
-    
-            <div class="form-group">
-                @Html.LabelFor(model => model.TableId, htmlAttributes: new { @class = "control-label col-md-2" })
-                <div class="col-md-10">
-                    @Html.EditorFor(model => model.TableId, new { htmlAttributes = new { @class = "form-control" } })
-                    @Html.ValidationMessageFor(model => model.TableId, "", new { @class = "text-danger" })
-                </div>
-            </div>
-    
-            <div class="form-group">
-                @Html.LabelFor(model => model.RestaurantSlotId, htmlAttributes: new { @class = "control-label col-md-2" })
-                <div class="col-md-10">
-                    @Html.EditorFor(model => model.RestaurantSlotId, new { htmlAttributes = new { @class = "form-control" } })
-                    @Html.ValidationMessageFor(model => model.RestaurantSlotId, "", new { @class = "text-danger" })
-                </div>
-            </div>
-    
-            <div class="form-group">
-                @Html.LabelFor(model => model.ResturantID, htmlAttributes: new { @class = "control-label col-md-2" })
-                <div class="col-md-10">
-                    @Html.EditorFor(model => model.ResturantID, new { htmlAttributes = new { @class = "form-control" } })
-                    @Html.ValidationMessageFor(model => model.ResturantID, "", new { @class = "text-danger" })
-                </div>
-            </div>
-    
-            <div class="form-group">
-                <div class="col-md-offset-2 col-md-10">
-                    <input type="submit" value="Create" class="btn btn-success" />
-                </div>
-            </div>
-        </div>
-    }
-    
-    <div>
-        @Html.ActionLink("Back to List", "Index")
+        <table border="1">
+            <tr>
+                <th>
+                    All Slot
+                </th>
+
+                @for (int i = 0; i < ViewBag.tables; i++)
+                {
+
+
+
+                    <th class="col-md-4">
+                        @Model.restaurantTable[i].TableName
+                    </th>
+                }
+
+
+
+            </tr>
+
+
+            @for (int i = 0; i < ViewBag.slot; i++)
+            {
+                <tr>
+                    <input type="hidden" name="RestaurantSlotId" value="@Model.RestaurantSlot[i].ID" />
+                    
+                    <td class="col-md-8">@Model.RestaurantSlot[i].StartTime-@Model.RestaurantSlot[i].EndTime</td>
+
+
+
+                    @for (int j = 0; j < ViewBag.tables; j++)
+                    {
+                        <td class="col-md-8"><input type=checkbox name="TableId" value="@Model.restaurantTable[j].ID" /></td>
+                    }
+                </tr>
+            }
+
+        </table>
+
+
     </div>
-</body>
-</html>
+    <div class="form-group text-right mb-0">
+        <button class="btn btn-primary waves-effect waves-light mr-1" id="save" type="submit">
+            Next
+        </button>
+
+    </div>
+}
+<div id="imagetemplate" style="display:none">
+    <img class='image img-fluid' src='' height="50px" width="50px" />
+</div>

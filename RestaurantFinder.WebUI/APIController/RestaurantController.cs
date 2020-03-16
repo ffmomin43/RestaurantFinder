@@ -449,7 +449,7 @@ namespace RestaurantFinder.WebUI.APIController
                            Restaurantimage = r.ThumbnailImageUrl,
                            NoOfPerson = rtable.TableCapacity,
                            slotname = slot.SlotName,
-                           Bookingid = bookingres.ID
+                           Bookingid = bookingres.UniqueId.ToString().Split('-')[0]
 
 
 
@@ -614,8 +614,8 @@ namespace RestaurantFinder.WebUI.APIController
                            Restaurantimage = r.ThumbnailImageUrl,
                            NoOfPerson = rtable.TableCapacity,
                            slotname = slot.SlotName,
-                           Bookingid=bookingres.ID
-                           
+                           Bookingid=bookingres.UniqueId.ToString().Split('-')[0]
+
 
 
 

@@ -17,8 +17,8 @@
 
                         <form method="post" class="parsley-examples" data-parsley-validate novalidate>
                             <div class="form-group">
-                                @Html.DropDownListFor(x=>x.RestaurantId,new SelectList(ViewBag.resturant,"ID","Name"),"Select Resturant",new { @class ="form-control" })
-                                            </div>
+                                @Html.DropDownListFor(x => x.RestaurantId, new SelectList(ViewBag.resturant, "ID", "Name"), "Select Resturant", new { @class = "form-control" })
+                            </div>
                             <div class="form-group">
                                 <label for="emailAddress">Table Number<span class="text-danger">*</span></label>
                                 <input type="text" name="TableNumber" parsley-trigger="change" required
@@ -29,7 +29,12 @@
                                 <input id="pass1" type="text" name="TableName" placeholder="TableName" required
                                        class="form-control">
                             </div>
-                            
+                            <div class="form-group">
+                                <label for="pass1">TableCapacity<span class="text-danger">*</span></label>
+                                <input id="pass1" type="text" name="TableCapacity" placeholder="TableCapacity" required
+                                       class="form-control">
+                            </div>
+
                             <div class="form-group text-right mb-0">
                                 <button class="btn btn-primary waves-effect waves-light mr-1" type="submit">
                                     Submit

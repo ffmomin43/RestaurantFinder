@@ -13,11 +13,15 @@ namespace RestaurantFinder.WebUI.Controllers
         private readonly Lazy<IRestaurantSlotService> restaurantSlotService;
         private readonly Lazy<IRestaurantTablesService> restaurantTablesService;
         private readonly Lazy<ITableSlotMappingService> tableSlotMappingService;
+        private readonly Lazy<IRestaurantService> restaurantService;
+        private readonly Lazy<IUsersService> usersService;
 
 
         public RestaurantSlotController(
             Lazy<IRestaurantSlotService> restaurantSlotService,
           Lazy<ITableSlotMappingService> tableSlotMappingService,
+           Lazy<IRestaurantService> restaurantService,
+          Lazy<IUsersService> usersService,
              Lazy<IRestaurantTablesService> restaurantTablesService
             )
 
@@ -25,6 +29,8 @@ namespace RestaurantFinder.WebUI.Controllers
             
             this.restaurantTablesService = restaurantTablesService;
             this.tableSlotMappingService = tableSlotMappingService;
+            this.usersService = usersService;
+            this.restaurantService = restaurantService;
             this.restaurantSlotService = restaurantSlotService;
         }
 
@@ -32,7 +38,9 @@ namespace RestaurantFinder.WebUI.Controllers
         // GET: RestaurantSlot
         public ActionResult Index()
         {
-          var list=  restaurantSlotService.Value.GetAll();
+            string name = User.Identity.Name;
+            int id = usersService.Value.userid(name);
+            var list=  restaurantSlotService.Value.GetAll();
             return View(list);
         }
 
@@ -78,6 +86,9 @@ namespace RestaurantFinder.WebUI.Controllers
         }
         public ActionResult CreateResturantSlot()
         {
+            string name = User.Identity.Name;
+            int id = usersService.Value.userid(name);
+            ViewBag.resturant = restaurantService.Value.GetAll().Where(x => x.UserId == id);
 
             return View();
         }
@@ -87,7 +98,7 @@ namespace RestaurantFinder.WebUI.Controllers
             restaurantSlotService.Value.Add(restaurantSlot);
             restaurantSlotService.Value.Save();
 
-            return View("Index");
+            return RedirectToAction("Index","RestaurantSlot");
         }
         public ActionResult Edit(int id)
         {

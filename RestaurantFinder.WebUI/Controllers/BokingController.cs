@@ -44,11 +44,11 @@ namespace RestaurantFinder.WebUI.Controllers
             int id = usersService.Value.userid(name);
            string getid = id.ToString();
             var list = from bookingres in restaurantBookingService.Value.GetAll().ToList()
-                      
+
                        join r in restaurantService.Value.GetAll().ToList() on bookingres.RestaurantID equals r.ID
                        join rtable in restaurantTablesService.Value.GetAll().ToList() on bookingres.TableID equals rtable.ID
                        join slot in restaurantSlotService.Value.GetAll().ToList() on bookingres.Slotid equals slot.ID
-                       where r.UserId==id
+                       where r.UserId == id
                        select new BookingUserRestaurantList
 
                        {
@@ -60,9 +60,9 @@ namespace RestaurantFinder.WebUI.Controllers
                            Restaurantimage = r.ThumbnailImageUrl,
                            NoOfPerson = rtable.TableCapacity,
                            slotname = slot.SlotName,
-                           Bookingid = bookingres.ID
-                           
-                          
+                           Bookingid = bookingres.UniqueId.ToString().Split('-')[0]
+
+
 
 
 

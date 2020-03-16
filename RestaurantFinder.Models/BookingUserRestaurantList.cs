@@ -18,6 +18,6 @@ namespace RestaurantFinder.Models
         public string Restaurantimage { get; set; }
         public int NoOfPerson { get; set; }
         public string slotname { get; set; }
-        public int Bookingid { get; set; }
+        public string Bookingid { get; set; }
     }
 }
