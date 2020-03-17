@@ -33,7 +33,7 @@
             @for (int i = 0; i < ViewBag.slot; i++)
             {
             <tr>
-                <input type="hidden" name="RestaurantSlotId" value="@Model.RestaurantSlot[i].ID" />
+                @*<input type="hidden" name="RestaurantSlotId" value="@Model.RestaurantSlot[i].ID" />*@
 
                 <td class="col-md-8">@Model.RestaurantSlot[i].StartTime-@Model.RestaurantSlot[i].EndTime</td>
 
@@ -41,7 +41,11 @@
 
                 @for (int j = 0; j < ViewBag.tables; j++)
                 {
-                    <td class="col-md-8"><input type=checkbox name="TableId" value="@Model.restaurantTable[j].ID" /></td>
+                    <td class="col-md-8"><input type=checkbox name="TableId" value="@Model.restaurantTable[j].ID|@Model.RestaurantSlot[i].ID" /></td>
+                  
+                    
+                    
+                    
                     <td class="col-md-8" hidden><input type=checkbox name="ids" value="@Model.restaurantTable[j].ID|@Model.RestaurantSlot[i].ID" /></td>
 
                 }

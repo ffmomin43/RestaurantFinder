@@ -10,6 +10,7 @@ namespace RestaurantFinder.WebUI.Controllers
 {
     public class TableSlotMappingController : Controller
     {
+        RestaurantSlotMapping RestaurantSlotMapping;
         private readonly Lazy<IRestaurantSlotService> restaurantSlotService;
         private readonly Lazy<IRestaurantTablesService> restaurantTablesService;
         private readonly Lazy<IUsersService> usersService;
@@ -32,6 +33,7 @@ namespace RestaurantFinder.WebUI.Controllers
             this.usersService = usersService;
             this.restaurantService = restaurantService;
             this.restaurantSlotService = restaurantSlotService;
+            this.RestaurantSlotMapping = new RestaurantSlotMapping();
         }
         public ActionResult Index()
         {
@@ -64,8 +66,20 @@ namespace RestaurantFinder.WebUI.Controllers
         [HttpPost]
         public ActionResult Create(FormCollection fc)
         {
-           
-            string[] slot = fc["ids"].Split('|');
+
+           string[] id = fc["TableId"].Split(',');
+            foreach (var item in id)
+            {
+                string[] ids =item.Split('|');
+
+                RestaurantSlotMapping.RestaurantSlotId =Convert.ToInt32( ids[0]);
+                RestaurantSlotMapping.TableId =Convert.ToInt32( ids[1]);
+
+                RestaurantSlotMapping.ResturantID = 1035;
+                RestaurantSlotMapping.UniqueId = Guid.NewGuid();
+                tableSlotMappingService.Value.Add(RestaurantSlotMapping);
+                tableSlotMappingService.Value.Save();
+            }
 
             return View();
 
